@@ -2,6 +2,8 @@ Title: Everything is a draft
 Date: 24-07-2016
 Tags: rules, draft
 Summary: and that's OK
+Slug: draft
+
 
 With this blog, I’m trying something new. I rarely share the things that go
 through my mind outside of a very close circle of family and friends, let

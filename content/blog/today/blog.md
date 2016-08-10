@@ -2,6 +2,7 @@ Title: Today I did this blog
 Date: 23-07-2016
 Tags: webdev, python, pelican, recurse
 Summary: and it was fun!
+Slug: blog
 
 Today I created this blog. I used [pelican](http://blog.getpelican.com/), a
 site generator written in Python for static sites like this one and

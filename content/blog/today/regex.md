@@ -2,6 +2,8 @@ Title: Today I did a regex
 Date: 24-07-2016
 Tags: python
 Summary: and it contained backreferences
+Slug: regex
+
 
 OK, it wasn't today, it was a few days ago, and I'm only writing it up
 today.
