@@ -2,6 +2,8 @@ Title: Today I wrote a pelican plugin
 Date: 31-07-2016
 Tags: python, pelican, git, shell, webdev, recurse
 Summary: and I used All The Things
+Slug: plugin
+
 
 Today I wrote another thing. One feature of
 [**erdos**](http://erdosnet.work) that I like a lot is the

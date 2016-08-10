@@ -2,7 +2,7 @@ Title: Today I drew circles
 Date: 08-08-2016
 Tags: webdev, d3, networks, recurse
 Summary: and I did it with d3.js
-
+Slug: circles
 
 Recently I was told there's a *Visualization in Network Science* course
 being given this Fall at my

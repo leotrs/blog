@@ -2,6 +2,8 @@ Title: Today I counted triangles
 Date: 29-07-2016
 Tags: python, networks
 Summary: and I used matrices to do it
+Slug: triangles
+
 
 Today I wrote the
 [Triangles and Transitivity](http://erdosnet.work/triangles-and-transitivity.html)
