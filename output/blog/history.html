@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Today I rewrote history - Leo Torres</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="../blog/history.html">
+
+        <meta name="author" content="Leo Torres" />
+        <meta name="keywords" content="git,shell" />
+        <meta name="description" content="on my git repos" />
+
+        <meta property="og:site_name" content="Leo Torres" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Today I rewrote history"/>
+        <meta property="og:url" content="../blog/history.html"/>
+        <meta property="og:description" content="on my git repos"/>
+        <meta property="article:published_time" content="2016-08-13" />
+            <meta property="article:section" content="today" />
+            <meta property="article:tag" content="git" />
+            <meta property="article:tag" content="shell" />
+            <meta property="article:author" content="Leo Torres" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="../theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="../theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="../theme/css/pygments/solarizedlight.css" rel="stylesheet">
+    <link rel="stylesheet" href="../theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand">
+Leo Torres            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/am.html">Who I am</a></li>
+                    <li><a href="/did.html">What I did</a></li>
+                    <li><a href="/read.html">What I read</a></li>
+                    <li><a href="/do.html">What I do</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("../images/banner.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container">
+		<div class="copy">
+			<h1>Leo Torres</h1>
+				<p class="intro">Grad student, human being</p>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="../blog/history.html"
+                       rel="bookmark"
+                       title="Permalink to Today I rewrote history">
+                        Today I rewrote history
+                    </a>
+                </h1>
+                <h3><p>on my git repos</p></h3>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-08-13T00:00:00-04:00"> Sat 13 August 2016</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="../tag/git.html">git</a>
+        /
+	<a href="../tag/shell.html">shell</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Today I realized my contribution activity on my
+<a href="https://github.com/leotrs">Github profile</a> was off. Some of my
+contributions were not showing.  Soon I found the problem, explained on
+GitHub's excellent documentation: I hadn't set my git
+<a href="https://help.github.com/articles/setting-your-email-in-git/">user email</a>
+on my new laptop, so my commits weren't tied to my email, which is
+necessary to tie them to my account.  After setting my email, my new
+commits were showing up correctly.</p>
+<p>But, because I'm a control freak, I wanted to retroactively set the correct
+email for all my previous commits.
+<a href="https://help.github.com/articles/changing-author-info/">Github to the rescue</a>,
+again.  And sure enough, it worked perfectly.</p>
+<p>But now I want to know exactly what it is that I did.  If you look at
+Github's recommended steps they use a few things I'm unfamiliar with.  I
+mean, <code>clone --bare</code>? <code>filter-branch</code>? <code>push --tags</code>?  Huh?</p>
+<p>Well, I looked into it after the fact.  Shoot first, ask later.  What
+follows is the trail I followed to understand the script I had just ran on
+a number of my repos.</p>
+<p>I ended up doing something along these lines:</p>
+<div class="highlight"><pre><span></span>git filter-branch --env-filter &#39;&lt;script&gt;&#39; --tag-name-filter cat -- --branches --tags
+</pre></div>
+
+
+<p>Here it is dissected word by word.</p>
+<h3>git clone --bare</h3>
+<p>The relevant section of the man page reads</p>
+<div class="highlight"><pre><span></span><span class="x">--bare</span>
+<span class="x">[...] instead of creating &lt;directory&gt; and placing the administrative</span>
+<span class="x">files in &lt;directory&gt;/.git, make the &lt;directory&gt; itself the </span><span class="p">$</span><span class="nv">GIT_DIR</span><span class="x"> [...]</span>
+</pre></div>
+
+
+<p>OK, it seems I'm just downloading the 'administrative' files, instead of
+the actual working tree.  That makes sense, as I'm not going to modify
+files or make commits.</p>
+<h3>git filter-branch</h3>
+<p>This bad boy seems to be doing all the work.  Let's read the manual.</p>
+<div class="highlight"><pre><span></span>NAME
+       git-filter-branch - Rewrite branches
+</pre></div>
+
+
+<p>Good.  Rewriting is what I'm trying to do.</p>
+<div class="highlight"><pre><span></span>DESCRIPTION
+   Lets you rewrite Git revision history by rewriting the branches
+   mentioned in the &lt;rev-list options&gt;. [...] can modify [...] information
+   about each commit.
+</pre></div>
+
+
+<p>Still good.</p>
+<div class="highlight"><pre><span></span>WARNING! The rewritten history will have different object names for all the
+       objects and will not converge with the original branch. You will not
+       be able to easily push and distribute the rewritten branch on top of
+       the original branch. [...]
+</pre></div>
+
+
+<p>I guess that's what the force push is for.  Okay.</p>
+<div class="highlight"><pre>
+   <strong>Please do not use this command if you do not know the full
+   implications</strong>, and avoid using it anyway, if a simple single
+   commit would suffice to fix your problem.
+</pre></div>
+
+<p>Woops.</p>
+<h3>--env-filter</h3>
+<div class="highlight"><pre><span></span>--env-filter &lt;command&gt;
+     This filter may be used if you only need to modify the
+     environment in which the commit will be performed. Specifically,
+     you might want to rewrite the author/committer name/email/time
+     environment variables [...]
+</pre></div>
+
+
+<p>Aha! Starting to make sense.  So the script I'm executing as <code>env-filter</code>
+is where we rewrite history.</p>
+<h3>The script</h3>
+<p>This is the script run by <code>git filter-branch</code>, passed to git as the
+<code>--env-filter</code>, which will overwrite the environment of the commits (not
+the commits themselves).</p>
+<div class="highlight"><pre><span></span><span class="nv">OLD_EMAIL</span><span class="o">=</span><span class="s2">&quot;Leonardo Torres&quot;</span>
+<span class="nv">CORRECT_NAME</span><span class="o">=</span><span class="s2">&quot;leotrs&quot;</span>
+<span class="nv">CORRECT_EMAIL</span><span class="o">=</span><span class="s2">&quot;dleonardotn@gmail.com&quot;</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$GIT_COMMITTER_EMAIL</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$OLD_EMAIL</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">export</span> <span class="nv">GIT_COMMITTER_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CORRECT_NAME</span><span class="s2">&quot;</span>
+    <span class="nb">export</span> <span class="nv">GIT_COMMITTER_EMAIL</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CORRECT_EMAIL</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$GIT_AUTHOR_EMAIL</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$OLD_EMAIL</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">export</span> <span class="nv">GIT_AUTHOR_NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CORRECT_NAME</span><span class="s2">&quot;</span>
+    <span class="nb">export</span> <span class="nv">GIT_AUTHOR_EMAIL</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CORRECT_EMAIL</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+
+
+<p>Seems simple enough.  It looks like it's going to be run inside a new
+environment for each commit.</p>
+<p>And sure enough,</p>
+<div class="highlight"><pre><span></span><span class="x">Filters</span>
+<span class="x">  [..] The &lt;command&gt; argument is always evaluated in the shell context</span>
+<span class="x">  using the eval command (with the notable exception of the commit filter,</span>
+<span class="x">  for technical reasons). Prior to that, the </span><span class="p">$</span><span class="nv">GIT_COMMIT</span><span class="x"> environment</span>
+<span class="x">  variable will be set to contain the id of the commit being</span>
+<span class="x">  rewritten. Also, GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL, GIT_AUTHOR_DATE,</span>
+<span class="x">  GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, and GIT_COMMITTER_DATE are taken</span>
+<span class="x">  from the current commit and exported to the environment,</span>
+</pre></div>
+
+
+<p>Great.</p>
+<h3>--tag-name-filter cat</h3>
+<p>After some 30 minutes of reading even more Git documentation, I learned
+that tags are way of aliasing specific commits.  By default, every commit
+is only referred to by its SHA-1, so it makes sense to give friendlier
+names to the commits one might want to go back to at some point.</p>
+<p>But why do I need to filter the tags?</p>
+<div class="highlight"><pre><span></span>--tag-name-filter &lt;command&gt;
+    When passed, it will be called for every tag ref that points to a
+    rewritten object. [...] The original tags are not deleted, but can be
+    overwritten; use &quot;--tag-name-filter cat&quot; to simply update the tags.
+</pre></div>
+
+
+<p>I see.  Still making sense.</p>
+<p>At this point, I am surprised that all these man pages are making sense to
+me.  I used to shy away from technical documentation.</p>
+<h3>-- --branches --tags</h3>
+<p>This is passed as the mentioned <code>--rev-list-options</code> parameter.  It defines
+what objects I'm rewriting.  At this point, it's clear to me I'm only
+rewriting branches and tags, not commits.</p>
+<h3>push --force --tags "refs/heads/*"</h3>
+<p>As per the warning at the beginning, the <code>--force</code> is necessary because the
+rewritten objects will differ from the old ones: the local repo's history
+doesn't match the origin's any more.  I need also to specify <code>--tags</code> as
+they have been modified and they aren't pushed by default.  <code>refs/heads/*</code>
+specifies that I am pushing the head of every branch.</p>
+<h2>Conclusion</h2>
+<p>So in the past hour I learned about git's references, that commits carry a
+whole environment with them, that when you create a new branch, you are
+creating a new ref to the commit where it branched off from, and that
+haphazardly-pushed commits can be haphazardly rewritten by careless
+programmers like me.  Cool!</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+
+
+            <li class="list-group-item"><a href="../do.html"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4></a>
+                <ul class="list-group list-inline" id="categories">
+                    <li class="list-group-item">
+                        <a href="../category/life.html">
+life
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="../category/today.html">
+today
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><a href="../do.html"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group list-inline tagcloud" id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="../tag/d3.html">
+                            d3
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="../tag/draft.html">
+                            draft
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="../tag/git.html">
+                            git
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="../tag/networks.html">
+                            networks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="../tag/pelican.html">
+                            pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="../tag/python.html">
+                            python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="../tag/recurse.html">
+                            recurse
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="../tag/rules.html">
+                            rules
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="../tag/shell.html">
+                            shell
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="../tag/webdev.html">
+                            webdev
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+        <hr />
+        <li class="list-group-item">
+        <div class="rc-scout"></div>
+        </li>
+
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+        <div class="col-xs-10">
+            <div class="rc-scout"></div>
+            &copy; 2016 Leo Torres
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="../theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="../theme/js/respond.min.js"></script>
+
+    <script src="../theme/js/bodypadding.js"></script>
+
+<script async defer src="https://www.recurse-scout.com/loader.js?t=8ee529bb51c0ad21d73b98a45a13d144"></script>
+</body>
+</html>

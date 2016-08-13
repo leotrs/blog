@@ -56,7 +56,7 @@ DEFAULT_PAGINATION = False
 PLUGIN_PATHS = ['../pelican/pelican-plugins/']
 PLUGINS = ['render_math', 'tag_cloud', 'jinja2content']
 
-JINJA2CONTENT_TEMPLATES = 'static'
+JINJA2CONTENT_TEMPLATES = ['static']
 
 # bootstrap3 theme tweaks
 CATEGORIES_URL = 'do.html'
