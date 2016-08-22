@@ -46,24 +46,58 @@ Slug: read
 
 6. Chaitin, Gregory J. **The Unknowable**. Singapore: Springer, 1999.
 
+7. Damasio, Antonio R. Self **Comes to Mind: Constructing the Conscious
+   Brain**. New York: Pantheon, 2010.
+
 7. Feynman, Richard P., and Ralph Leighton. **"Surely You're Joking,
    Mr. Feynman!": Adventures of a Curious Character**. New York:
    W.W. Norton, 1985.
 
+8. Frenkel, Edward. **Love and Math: The Heart of Hidden Reality**. New
+   York, NY: Basic, 2013.
+
 7. Gazzaniga, Michael S. **Human: The Science behind What Makes Us
    Unique**. New York: Ecco, 2008.
+
+8. Gell-Mann, Murray. **The Quark and the Jaguar: Adventures in the Simple
+   and the Complex**. New York: W.H. Freeman, 1994.
+
+8. Hawkins, Jeff, and Sandra Blakeslee. **On Intelligence**. New York:
+   Times, 2004.
 
 3. Hidalgo, César A. **Why Information Grows: The Evolution of Order, from
    Atoms to Economies**. 2015.
 
+4. Highfield, Roger. **The Science of Harry Potter: How Magic Really
+   Works**. New York: Viking, 2002.
+
+4. Hoffmann, Banesh. **Relativity and Its Roots**. New York, NY: Scientific
+   American, 1983.
+
+5. Holland, John H. **Emergence: From Chaos to Order**. Reading, MA:
+   Addison-Wesley, 1998.
+
+5. Joyner, David. **Adventures in Group Theory: Rubik's Cube, Merlin's
+   Machine, and Other Mathematical Toys**. Baltimore: Johns Hopkins
+   UP, 2002.
+
 6. Kuhn, Thomas S. **The Structure of Scientific Revolution**. Chicago: U
    of Chicago, 1996.
+
+7. Mayr, Ernst. **This Is Biology: The Science of the Living
+   World**. Cambridge, MA: Belknap of Harvard UP, 1997.
 
 7. Nowak, Martin A. **Evolutionary Dynamics: Exploring the Equations of
    Life.** Cambridge: Belknap of Harvard UP, 2006.
 
 7. Pólya, George. **How to Solve It: A New Aspect of Mathematical Method.**
    Princeton: Princeton UP, 1945.
+
+8. Ramachandran, V. S. **The Tell-tale Brain: A Neuroscientist's Quest for
+   What Makes Us Human**. New York: W.W. Norton, 2011.
+
+9. Smith, John Maynard, and Eörs Szathmáry. **The Origins of Life: From the
+   Birth of Life to the Origin of Language**. Oxford: Oxford UP, 1999.
 
 6. Sporns, Olaf. **Networks of the Brain**. Cambridge, MA: MIT, 2011.
 
@@ -96,6 +130,9 @@ Slug: read
 
 7. Asimov, Isaac. **Foundation's Edge**. Garden City, NY: Doubleday, 1982.
 
+8. Asimov, Isaac, and Robert Silverberg. **Nightfall**. New York:
+   Doubleday, 1990.
+
 5. Asimov, Isaac. **Prelude to Foundation**. New York:
    Doubleday, 1988.
 
@@ -110,6 +147,8 @@ Slug: read
 8. Herbert, Frank. **Dune**. Philadelphia: Chilton, 1965.
 
 9. Herbert, Frank. **Dune Messiah**. New York: Putnam, 1969.
+
+8. Pohl, Frederik. **The Meeting**. 1972.
 
 7. Rowling, J. K. **Harry Potter and the Chamber of Secrets.** London:
    Bloomsbury, 1998.
@@ -131,5 +170,8 @@ Slug: read
 
 6. Rowling, J. K. **Harry Potter and the Sorcerer's Stone**. London:
    Bloomsbury, 1997.
+
+7. Tolkien, J. R. R. **The Hobbit, Or, There and Back Again**. Boston:
+   Houghton Mifflin, 1966.
 
 9. Tolkien, J. R. R. **The Lord of the Rings**. 1967.
