@@ -197,3 +197,11 @@ whole environment with them, that when you create a new branch, you are
 creating a new ref to the commit where it branched off from, and that
 haphazardly-pushed commits can be haphazardly rewritten by careless
 programmers like me.  Cool!
+
+
+## PS
+
+Something that the Github help page doesn't say is that after this I had to
+`pull --force origin` on my local repo (not the bare one).  If not, I
+couldn't have pushed anything, as my local repo's history didn't match the
+origin any more.
