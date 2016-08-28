@@ -12,9 +12,28 @@ Slug: read
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
 
+3. Kim, Beom Jun. **Performance of Networks of Artificial Neurons: The Role
+   of Clustering.** Physical Review E Phys. Rev. E 69.4 (2004).
+
+4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
+   Computation.** Science 346.6209 (2014): 551-52.
+
 2. Rubinov, Mikail, and Olaf Sporns. **Complex Network Measures of Brain
    Connectivity: Uses and Interpretations.** *NeuroImage* 52.3 (2010):
    1059-069.
+
+3. Shih, Chi-Tin, Olaf Sporns, Shou-Li Yuan, Ta-Shun Su, Yen-Jen Lin,
+   Chao-Chun Chuang, Ting-Yuan Wang, Chung-Chuang Lo, Ralph J. Greenspan,
+   and Ann-Shyn Chiang. **Connectomics-Based Analysis of Information Flow
+   in the Drosophila Brain.** Current Biology 25.10 (2015): 1249-258.
+
+3. Thagard, Paul, and Terrence C. Stewart. **The AHA! Experience:
+   Creativity Through Emergent Binding in Neural Networks.** Cognitive
+   Science 35.1 (2010): 1-33.
+
+4. Torres, J.j., M.a. Muñoz, J. Marro, and P.l. Garrido. **Influence of
+   Topology on the Performance of a Neural Network.** Neurocomputing 58-60
+   (2004): 229-34.
 
 10. Turing, A. M. **Computing Machinery And Intelligence.** Mind LIX.236
     (1950): 433-60.
@@ -22,6 +41,9 @@ Slug: read
 10. Turing, A.m. **On Computable Numbers, with an Application to the
     Entscheidungsproblem.** Annual Review in Automatic Programming (1960):
     230-64.
+
+11. Watts, Duncan J., and Steven H. Strogatz. **Collective Dynamics of
+    "small-world" Networks.** Nature 393.6684 (1998): 440-42.
 
 
 
@@ -139,14 +161,28 @@ Slug: read
 4. Asimov, Isaac. **Second Foundation**. Garden City, NY:
    Doubleday, 1953.
 
+5. Card, Orson Scott. **Ender's Game**. New York: Tor, 1991.
+
+5. Clarke, Arthur C. **Childhood's End**. New York: Ballantine, 1953.
+
+6. Clarke, Arthur C. **Rendezvous with Rama**. New York: Harcourt Brace
+   Jovanovich, 1973.
+
 5. Dick, Philip K. **A Maze of Death**. New York: Vintage, 1994.
 
 5. Dick, Philip K. **Do Androids Dream of Electric Sheep?** London:
    Voyager, 1997.
 
+6. Galbraith, Robert. **The Cuckoo's Calling**. London: Sphere, 2014.
+
+7. Heinlein, Robert A. **Stranger in a Strange Land**. New York:
+   G.P. Putnam's, 1961.
+
 8. Herbert, Frank. **Dune**. Philadelphia: Chilton, 1965.
 
 9. Herbert, Frank. **Dune Messiah**. New York: Putnam, 1969.
+
+9. Huxley, Aldous. **Brave New World**. New York: Harper & Bros., 1946.
 
 8. Pohl, Frederik. **The Meeting**. 1972.
 
