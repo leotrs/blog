@@ -8,6 +8,9 @@ Slug: read
    Random Networks.** *Science* 286.5439 (1999):
    509-12.
 
+2. Benson, A. R., D. Gleich F., and J. Leskovec. **Higher-order
+   Organization of Complex Networks.** Science 353.6295 (2016): 163-66.
+
 2. Benzi, Michele, and Christine Klymko. **On the Limiting Behavior of
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
