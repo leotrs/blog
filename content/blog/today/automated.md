@@ -4,6 +4,7 @@ Tags: python, shell
 Summary: and it didn't save me a lot of time
 Slug: automated
 
+
 Today I wrote a thing. In the course of writing the first batch of content
 for [**erdos**](http://erdosnet.work), I found that the main site resource
 ("challenge" pages) have mainly the same structure, even with the same
