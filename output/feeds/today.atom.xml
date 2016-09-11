@@ -25,7 +25,13 @@ through specialized circuits?)  Networks with feature 4. can be found
 elsewhere in Network Biology: metabolomes, proteomes, etc.&lt;/p&gt;
 &lt;p&gt;Right now, I'll dedicate most of my time to thinking about networks in
 general, and in particular to applying my findings to network datasets that
-are large, dynamic, computational, and evolved.&lt;/p&gt;</summary><category term="networks"></category><category term="brains"></category></entry><entry><title>Today I rewrote history</title><link href="/blog/history.html" rel="alternate"></link><published>2016-08-13T00:00:00-04:00</published><author><name>Leo Torres</name></author><id>tag:,2016-08-13:blog/history.html</id><summary type="html">&lt;p&gt;Today I realized my contribution activity on my
+are large, dynamic, computational, and evolved.&lt;/p&gt;
+&lt;p&gt;Update: after discussing with a colleague, now I believe that some
+socio-political networks are also capable of computation. The input would
+be public opinion or an ideology, and the output would be policy.  I wonder
+if this is a way to reconcile the view of society as a super-organism.  Do
+all networks under natural selection perform computations? Do all organism
+networks perform computation? Can an ant colony be said to compute?&lt;/p&gt;</summary><category term="networks"></category><category term="brains"></category></entry><entry><title>Today I rewrote history</title><link href="/blog/history.html" rel="alternate"></link><published>2016-08-13T00:00:00-04:00</published><author><name>Leo Torres</name></author><id>tag:,2016-08-13:blog/history.html</id><summary type="html">&lt;p&gt;Today I realized my contribution activity on my
 &lt;a href="https://github.com/leotrs"&gt;Github profile&lt;/a&gt; was off. Some of my
 contributions were not showing.  Soon I found the problem, explained on
 GitHub's excellent documentation: I hadn't set my git

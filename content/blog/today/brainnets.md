@@ -25,7 +25,6 @@ Brain networks are networks that
 3. compute information (as opposed to just spreading it),
 4. have evolved over time (in the strict sense, meaning Natural Selection).
 
-
 Features 1. and 2. are common in the NetSci literature these days.
 Feature 3. is a bit trickier, although I'm not sure there's a huge
 difference in networks that relay/spread information and networks that
@@ -36,3 +35,11 @@ elsewhere in Network Biology: metabolomes, proteomes, etc.
 Right now, I'll dedicate most of my time to thinking about networks in
 general, and in particular to applying my findings to network datasets that
 are large, dynamic, computational, and evolved.
+
+
+Update: after discussing with a colleague, now I believe that some
+socio-political networks are also capable of computation. The input would
+be public opinion or an ideology, and the output would be policy.  I wonder
+if this is a way to reconcile the view of society as a super-organism.  Do
+all networks under natural selection perform computations? Do all organism
+networks perform computation? Can an ant colony be said to compute?
