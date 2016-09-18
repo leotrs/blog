@@ -4,6 +4,9 @@ Slug: read
 
 ## Papers
 
+1. Anscombe, F. J. **Graphs in Statistical Analysis**. The American
+   Statistician 27.1 (1973): 17.
+
 1. Barabási, Albert-László, and Réka Albert. **Emergence of Scaling in
    Random Networks.** *Science* 286.5439 (1999):
    509-12.
@@ -14,6 +17,18 @@ Slug: read
 2. Benzi, Michele, and Christine Klymko. **On the Limiting Behavior of
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
+
+3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
+   for Networks**. KDD'16 (2016).
+
+3. Henderson, Keith, Brian Gallagher, Tina Eliassi-Rad, Hanghang Tong,
+   Sugato Basu, Leman Akoglu, Danai Koutra, Christos Faloutsos, and Lei
+   Li. **RolX: Structural Role Extraction & Mining in Large Graphs.** KDD
+   '12 (2012).
+
+4. Henderson, Keith, Brian Gallagher, Lei Li, Leman Akoglu, Tina
+   Eliassi-Rad, Hanghang Tong, and Christos Faloutsos. **It's Who You Know:
+   Graph Mining Using Recursive Structural Features**.  KDD'11 (2011).
 
 3. Kim, Beom Jun. **Performance of Networks of Artificial Neurons: The Role
    of Clustering.** Physical Review E Phys. Rev. E 69.4 (2004).
