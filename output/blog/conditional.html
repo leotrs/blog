@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Today I looked up from my desk - Leo Torres</title>
+    <title>Today I did some probability - Leo Torres</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,23 +9,21 @@
 
 
 
-<link rel="canonical" href="/blog/great.html">
+<link rel="canonical" href="/blog/conditional.html">
 
         <meta name="author" content="Leo Torres" />
-        <meta name="keywords" content="life,boston,gradschool,brains" />
-        <meta name="description" content="and I felt great" />
+        <meta name="keywords" content="math,networks" />
+        <meta name="description" content="and it worked" />
 
         <meta property="og:site_name" content="Leo Torres" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Today I looked up from my desk"/>
-        <meta property="og:url" content="/blog/great.html"/>
-        <meta property="og:description" content="and I felt great"/>
-        <meta property="article:published_time" content="2016-09-09" />
-            <meta property="article:section" content="life" />
-            <meta property="article:tag" content="life" />
-            <meta property="article:tag" content="boston" />
-            <meta property="article:tag" content="gradschool" />
-            <meta property="article:tag" content="brains" />
+        <meta property="og:title" content="Today I did some probability"/>
+        <meta property="og:url" content="/blog/conditional.html"/>
+        <meta property="og:description" content="and it worked"/>
+        <meta property="article:published_time" content="2016-09-17" />
+            <meta property="article:section" content="today" />
+            <meta property="article:tag" content="math" />
+            <meta property="article:tag" content="networks" />
             <meta property="article:author" content="Leo Torres" />
 
 
@@ -41,8 +39,8 @@
 
 
 
-        <link href="/feeds/life.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Leo Torres life ATOM Feed"/>
+        <link href="/feeds/today.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Leo Torres today ATOM Feed"/>
 
 </head>
 <body>
@@ -96,13 +94,13 @@ Leo Torres            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="/blog/great.html"
+                    <a href="/blog/conditional.html"
                        rel="bookmark"
-                       title="Permalink to Today I looked up from my desk">
-                        Today I looked up from my desk
+                       title="Permalink to Today I did some probability">
+                        Today I did some probability
                     </a>
                 </h1>
-                <h3><p>and I felt great</p></h3>
+                <h3><p>and it worked</p></h3>
             </header>
             <div class="entry-content">
                 <div class="panel">
@@ -110,7 +108,7 @@ Leo Torres            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-09-09T00:00:00-04:00"> Fri 09 September 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-09-17T00:00:00-04:00"> Sat 17 September 2016</time>
     </span>
 
 
@@ -118,20 +116,130 @@ Leo Torres            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="/tag/life.html">life</a>
+	<a href="/tag/math.html">math</a>
         /
-	<a href="/tag/boston.html">boston</a>
-        /
-	<a href="/tag/gradschool.html">gradschool</a>
-        /
-	<a href="/tag/brains.html">brains</a>
+	<a href="/tag/networks.html">networks</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Today I was sitting in my desk at the lab, reading an awesome paper on
-network role discovery, listening to great music, thinking about brain
-networks.  I looked up and saw an awesome view out the window.</p>
-<p>I actually love my life today.  And I'll love it tomorrow too.</p>
+                <p>Today I wrote
+<a href="http://erdosnet.work/challenges/erdos-renyi-random-graph.html">this</a> page
+on <strong>erdos</strong>, about the random graph model developed by the eponymous Paul
+Erdos.  While looking for sources on the average clustering coefficient of
+a node in the model, I found something weird.</p>
+<p>All of these resources —whose references have been omitted—, made a common
+mistake in probability: mistake arithmetic means and expected values of
+random variables.  Concretely, this occurred in the context of the
+clustering coefficient of a node <span class="math">\(i\)</span> in a graph, defined as <span class="math">\(c_i = \frac{2
+m_i}{k_i (k_i - 1)}\)</span>, where <span class="math">\(m_i\)</span> is the number of edges between <span class="math">\(i\)</span>'s
+neighbors and <span class="math">\(k_i\)</span> is the degree of <span class="math">\(i\)</span>.</p>
+<p>The mistake was to assume that <span class="math">\(k_i\)</span> takes its expected value and then
+compute the expected value of <span class="math">\(m_i\)</span> assuming that we know the value of
+<span class="math">\(k_i\)</span>, like so: <span class="math">\(\mathbf{E}[m_i] =
+\mathbf{E}[m_i \mid k_i = \langle k \rangle]\)</span>. This, we end up with the
+formula,</p>
+<div class="math">$$ \mathbf{E}[c_i] = \frac{2 \mathbf{E}[m_i]}{\langle k \rangle (\langle k \rangle - 1)} $$</div>
+<p>Any person who has taken an in-depth course in probability will tell you
+this is wrong.  First of all, we can't just assume that a random variable
+takes some arbitrary value and use that to compute a conditional
+expectation.  The fact that we're computing expectations and we happily
+chose the mathematical expectation as this arbitrary value doesn't make
+this procedure correct.</p>
+<p>Now, I don't mean to get all strict and thump my fist over Kolmogorov's
+axioms.  This is an understandable mistake to make, it's very common, and
+just points to the fact that Probability Theory (yes, in capital letters)
+is a bit more complicated than expected (heh — "expected").</p>
+<p>But if the reader is interested, here is the most correct way I
+found to do this.  (You can find the same explanation in the linked
+<strong>erdos</strong> page section on expansion questions.)</p>
+<hr />
+<p>The clustering coefficient of node <span class="math">\(i\)</span> is equal to the number of edges
+etween its neighbors, which we call <span class="math">\(m_i\)</span>, divided by the total number
+of possible edges between them.  Thus, if <span class="math">\(k_i\)</span> is <span class="math">\(i\)</span>'s degree, we
+have</p>
+<div class="math">$$
+k_i \sim Bin(n-1, p) \\
+m_i \mid _{k_i} \sim Bin(\frac{k_i (k_i - 1)}{2}, p) \\
+c_i = \frac{2 m_i}{k_i (k_i - 1)}
+$$</div>
+<p>Now, we can compute the conditional expectation of the clustering
+coefficient given the degree,</p>
+<div class="math">$$\begin{align*}
+\mathbf{E}[c_i \mid k_i] &amp;= \sum_d \mathbf{E}[\frac{2 m_i}{d (d - 1)} \mid k_i = d] \mathbf{P}(k_i = d) \\
+                    &amp;= \sum_d \frac{2}{d (d - 1)} \mathbf{E}[m_i \mid k_i = d] \mathbf{P}(k_i = d) \\
+                    &amp;= p \sum_d \mathbf{P}(k_i = d) \\
+                    &amp;= p \\
+\end{align*}
+$$</div>
+<p>Where we have used the fact that the expected value of a <span class="math">\(Bin(\frac{d
+(d - 1)}{2}, p)\)</span> random variable is <span class="math">\(p \frac{d (d - 1)}{2}\)</span>.</p>
+<p>We finish by observing that</p>
+<div class="math">$$ \mathbf{E}[c_i] = \mathbf{E}[\mathbf{E}[c_i \mid k_i]] = p. $$</div>
+<hr />
+<p>In light of this proof, we can see that the aforementioned mistake did
+indeed work, but only because <span class="math">\(m_i\)</span> is <span class="math">\(k_i\)</span>-measurable and we happened to
+choose the same value (in this case, <span class="math">\(\langle k \rangle\)</span>) for both the
+denominator and the value we were conditioning on in the numerator.</p>
+<p>Being able to find this argument (I'm sure there's a number of other,
+possibly simpler, ones), made me remember why I love math in the first
+place.  <em>It just works.</em></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
         </article>

@@ -1,5 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Leo Torres</title><link href="/" rel="alternate"></link><link href="/feeds/today.atom.xml" rel="self"></link><id>/</id><updated>2016-09-08T00:00:00-04:00</updated><entry><title>Today I thought about brain networks</title><link href="/blog/brainnets.html" rel="alternate"></link><published>2016-09-08T00:00:00-04:00</published><author><name>Leo Torres</name></author><id>tag:,2016-09-08:blog/brainnets.html</id><summary type="html">&lt;p&gt;Today was my second day in grad school.  After being assigned a couple
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Leo Torres</title><link href="/" rel="alternate"></link><link href="/feeds/today.atom.xml" rel="self"></link><id>/</id><updated>2016-09-17T00:00:00-04:00</updated><entry><title>Today I did some probability</title><link href="/blog/conditional.html" rel="alternate"></link><published>2016-09-17T00:00:00-04:00</published><author><name>Leo Torres</name></author><id>tag:,2016-09-17:blog/conditional.html</id><summary type="html">&lt;p&gt;Today I wrote
+&lt;a href="http://erdosnet.work/challenges/erdos-renyi-random-graph.html"&gt;this&lt;/a&gt; page
+on &lt;strong&gt;erdos&lt;/strong&gt;, about the random graph model developed by the eponymous Paul
+Erdos.  While looking for sources on the average clustering coefficient of
+a node in the model, I found something weird.&lt;/p&gt;
+&lt;p&gt;All of these resources —whose references have been omitted—, made a common
+mistake in probability: mistake arithmetic means and expected values of
+random variables.  Concretely, this occurred in the context of the
+clustering coefficient of a node &lt;span class="math"&gt;\(i\)&lt;/span&gt; in a graph, defined as &lt;span class="math"&gt;\(c_i = \frac{2
+m_i}{k_i (k_i - 1)}\)&lt;/span&gt;, where &lt;span class="math"&gt;\(m_i\)&lt;/span&gt; is the number of edges between &lt;span class="math"&gt;\(i\)&lt;/span&gt;'s
+neighbors and &lt;span class="math"&gt;\(k_i\)&lt;/span&gt; is the degree of &lt;span class="math"&gt;\(i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The mistake was to assume that &lt;span class="math"&gt;\(k_i\)&lt;/span&gt; takes its expected value and then
+compute the expected value of &lt;span class="math"&gt;\(m_i\)&lt;/span&gt; assuming that we know the value of
+&lt;span class="math"&gt;\(k_i\)&lt;/span&gt;, like so: &lt;span class="math"&gt;\(\mathbf{E}[m_i] =
+\mathbf{E}[m_i \mid k_i = \langle k \rangle]\)&lt;/span&gt;. This, we end up with the
+formula,&lt;/p&gt;
+&lt;div class="math"&gt;$$ \mathbf{E}[c_i] = \frac{2 \mathbf{E}[m_i]}{\langle k \rangle (\langle k \rangle - 1)} $$&lt;/div&gt;
+&lt;p&gt;Any person who has taken an in-depth course in probability will tell you
+this is wrong.  First of all, we can't just assume that a random variable
+takes some arbitrary value and use that to compute a conditional
+expectation.  The fact that we're computing expectations and we happily
+chose the mathematical expectation as this arbitrary value doesn't make
+this procedure correct.&lt;/p&gt;
+&lt;p&gt;Now, I don't mean to get all strict and thump my fist over Kolmogorov's
+axioms.  This is an understandable mistake to make, it's very common, and
+just points to the fact that Probability Theory (yes, in capital letters)
+is a bit more complicated than expected (heh — "expected").&lt;/p&gt;
+&lt;p&gt;But if the reader is interested, here is the most correct way I
+found to do this.  (You can find the same explanation in the linked
+&lt;strong&gt;erdos&lt;/strong&gt; page section on expansion questions.)&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;The clustering coefficient of node &lt;span class="math"&gt;\(i\)&lt;/span&gt; is equal to the number of edges
+etween its neighbors, which we call &lt;span class="math"&gt;\(m_i\)&lt;/span&gt;, divided by the total number
+of possible edges between them.  Thus, if &lt;span class="math"&gt;\(k_i\)&lt;/span&gt; is &lt;span class="math"&gt;\(i\)&lt;/span&gt;'s degree, we
+have&lt;/p&gt;
+&lt;div class="math"&gt;$$
+k_i \sim Bin(n-1, p) \\
+m_i \mid _{k_i} \sim Bin(\frac{k_i (k_i - 1)}{2}, p) \\
+c_i = \frac{2 m_i}{k_i (k_i - 1)}
+$$&lt;/div&gt;
+&lt;p&gt;Now, we can compute the conditional expectation of the clustering
+coefficient given the degree,&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{align*}
+\mathbf{E}[c_i \mid k_i] &amp;amp;= \sum_d \mathbf{E}[\frac{2 m_i}{d (d - 1)} \mid k_i = d] \mathbf{P}(k_i = d) \\
+                    &amp;amp;= \sum_d \frac{2}{d (d - 1)} \mathbf{E}[m_i \mid k_i = d] \mathbf{P}(k_i = d) \\
+                    &amp;amp;= p \sum_d \mathbf{P}(k_i = d) \\
+                    &amp;amp;= p \\
+\end{align*}
+$$&lt;/div&gt;
+&lt;p&gt;Where we have used the fact that the expected value of a &lt;span class="math"&gt;\(Bin(\frac{d
+(d - 1)}{2}, p)\)&lt;/span&gt; random variable is &lt;span class="math"&gt;\(p \frac{d (d - 1)}{2}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We finish by observing that&lt;/p&gt;
+&lt;div class="math"&gt;$$ \mathbf{E}[c_i] = \mathbf{E}[\mathbf{E}[c_i \mid k_i]] = p. $$&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;In light of this proof, we can see that the aforementioned mistake did
+indeed work, but only because &lt;span class="math"&gt;\(m_i\)&lt;/span&gt; is &lt;span class="math"&gt;\(k_i\)&lt;/span&gt;-measurable and we happened to
+choose the same value (in this case, &lt;span class="math"&gt;\(\langle k \rangle\)&lt;/span&gt;) for both the
+denominator and the value we were conditioning on in the numerator.&lt;/p&gt;
+&lt;p&gt;Being able to find this argument (I'm sure there's a number of other,
+possibly simpler, ones), made me remember why I love math in the first
+place.  &lt;em&gt;It just works.&lt;/em&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</summary><category term="math"></category><category term="networks"></category></entry><entry><title>Today I thought about brain networks</title><link href="/blog/brainnets.html" rel="alternate"></link><published>2016-09-08T00:00:00-04:00</published><author><name>Leo Torres</name></author><id>tag:,2016-09-08:blog/brainnets.html</id><summary type="html">&lt;p&gt;Today was my second day in grad school.  After being assigned a couple
 papers, and asked a few times where I see myself in five years (after I
 graduate), I have had to deal with the fact that there is no official
 Neuroscience (brain networks) group at my program yet.&lt;/p&gt;
