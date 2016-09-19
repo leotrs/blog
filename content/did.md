@@ -3,4 +3,4 @@ Subtitle: Resume
 Slug: did
 
 
-[Resume]({attach}/static/resume.pdf)
+[Resume]({attach}/static/Leonardo Torres - resume.pdf)
