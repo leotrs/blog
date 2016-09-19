@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 import os
 
-AUTHOR = 'Leo Torres'
+AUTHOR = 'leotrs'
 SITENAME = 'Leo Torres'
 SITEURL = ''
 SIDEBAR_DIGEST = 'Grad student, human being.'

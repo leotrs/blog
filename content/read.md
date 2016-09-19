@@ -36,6 +36,10 @@ Slug: read
 4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
    Computation.** Science 346.6209 (2014): 551-52.
 
+5. Rogowitz, Bernice E., Lloyd Treinish A., and Steve Bryson. **How Not to
+   Lie with Visualization.** Computers in Physics Comput. Phys. 10.3
+   (1996): 268.
+
 2. Rubinov, Mikail, and Olaf Sporns. **Complex Network Measures of Brain
    Connectivity: Uses and Interpretations.** *NeuroImage* 52.3 (2010):
    1059-069.
