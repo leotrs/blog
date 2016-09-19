@@ -11,9 +11,8 @@ home.
 
 All that has changed is that I have gone from this:
 
-![](https://pbs.twimg.com/media/BMddQ56CYAINrq1.jpg)
+![I have no idea what I'm doing](https://pbs.twimg.com/media/BMddQ56CYAINrq1.jpg)
 
 to this:
 
-![](http://memesvault.com/wp-content/uploads/I-Have-No-Idea-What-Im-Doing-Dog-18.jpg)
-
+![I really have no idea what I'm doing](http://memesvault.com/wp-content/uploads/I-Have-No-Idea-What-Im-Doing-Dog-18.jpg)
