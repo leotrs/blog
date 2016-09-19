@@ -17,6 +17,6 @@ certainly incomplete list of things I read)*.
 
 
 If that's *still* not enough for you, I guess you can
-[write](mailto:leo@leotorr.es) to me, review my
+[write](mailto:leo@leotrs.com) to me, review my
 [code](https://www.github.com/leotrs), or
 [follow](https://www.twitter.com/leorrot) me, or whatever.
