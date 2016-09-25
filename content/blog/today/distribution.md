@@ -84,3 +84,12 @@ $$
 Which is the formula that appears on page $511$ of the
 [original paper](https://www3.nd.edu/~networks/Publication%20Categories/03%20Journal%20Articles/Physics/EmergenceRandom_Science%20286,%20509-512%20(1999).pdf).
 Perfect!
+
+---------------
+
+The amazing thing about this formula is that it doesn't depend on $N$ or
+$t$, neither size nor time.  This means that, assuming, for example, that
+the WWW follows a growth process similar to that of the BA model, the
+degree distribution of the WWW today will be the same as that of the WWW in
+ten (or a hundred!) years. I believe the technical term for this is
+*amaze-balls*.
