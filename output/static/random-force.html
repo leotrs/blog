@@ -234,6 +234,7 @@
      /*** START THE VISUALIZATION ***/
 
      function draw(graph) {
+         var color = d3.scaleOrdinal(d3.schemeCategory20);
          var chart = d3.select(".chart");
 
          d3.select(".links").remove();
@@ -256,6 +257,7 @@
                           .data(graph.nodes)
                           .enter().append('circle')
                           .attr("r", node_radius)
+                          .attr("fill", function(d) { return color(d.x); })
                           .attr("cx", function(d) { return d.x; })
                           .attr("cy", function(d) { return d.y; });
      }
