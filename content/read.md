@@ -4,6 +4,10 @@ Slug: read
 
 ## Papers
 
+1. Alstott, Jeff, Pietro Panzarasa, Mikail Rubinov, Edward T. Bullmore, and
+   Petra E. Vértes. **A Unifying Framework for Measuring Weighted Rich
+   Clubs.** Sci. Rep. Scientific Reports 4 (2014): 7258.
+
 1. Anscombe, F. J. **Graphs in Statistical Analysis**. The American
    Statistician 27.1 (1973): 17.
 
@@ -11,12 +15,26 @@ Slug: read
    Random Networks.** *Science* 286.5439 (1999):
    509-12.
 
+2. Barnes, Josh, and Piet Hut. **A Hierarchical O(N Log N)
+   Force-calculation Algorithm.** Nature 324.6096 (1986): 446-49.
+
 2. Benson, A. R., D. Gleich F., and J. Leskovec. **Higher-order
    Organization of Complex Networks.** Science 353.6295 (2016): 163-66.
 
 2. Benzi, Michele, and Christine Klymko. **On the Limiting Behavior of
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
+
+3. Colizza, V., A. Flammini, M. A. Serrano, and A. Vespignani. **Detecting
+   Rich-club Ordering in Complex Networks.** Nature Physics 2.2 (2006):
+   110-15.
+
+3. Eades, Peter. **A Heuristic for Graph Drawing**. Congressus Numerantium,
+   42.11 (1984): 149–160. 
+
+3. Gansner, Emden, and Yifan Hu. **Efficient, Proximity-Preserving Node
+   Overlap Removal.** Journal of Graph Algorithms and Applications 14.1
+   (2010): 53-74.
 
 3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
    for Networks**. KDD'16 (2016).
@@ -26,12 +44,21 @@ Slug: read
    Li. **RolX: Structural Role Extraction & Mining in Large Graphs.** KDD
    '12 (2012).
 
+4. Henry, N., J.-D. Fekete, and M.j. Mcguffin. **NodeTrix: A Hybrid
+   Visualization of Social Networks.** IEEE Transactions on Visualization
+   and Computer Graphics 13.6 (2007): 1302-309.
+
 4. Henderson, Keith, Brian Gallagher, Lei Li, Leman Akoglu, Tina
    Eliassi-Rad, Hanghang Tong, and Christos Faloutsos. **It's Who You Know:
    Graph Mining Using Recursive Structural Features**.  KDD'11 (2011).
 
 3. Kim, Beom Jun. **Performance of Networks of Artificial Neurons: The Role
    of Clustering.** Physical Review E Phys. Rev. E 69.4 (2004).
+
+4. Lum, P. Y., G. Singh, A. Lehman, T. Ishkanov, M. Vejdemo-Johansson,
+   M. Alagappan, J. Carlsson, and G. Carlsson. **Extracting Insights from
+   the Shape of Complex Data Using Topology.** Sci. Rep. Scientific Reports
+   3 (2013).
 
 4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
    Computation.** Science 346.6209 (2014): 551-52.
@@ -40,14 +67,31 @@ Slug: read
    Lie with Visualization.** Computers in Physics Comput. Phys. 10.3
    (1996): 268.
 
+6. Rossi, Ryan A., Brian Gallagher, Jennifer Neville, and Keith
+   Henderson. **Modeling Dynamic Behavior in Large Evolving Graphs.**
+   Proceedings of the Sixth ACM International Conference on Web Search and
+   Data Mining - WSDM '13 (2013).
+
 2. Rubinov, Mikail, and Olaf Sporns. **Complex Network Measures of Brain
    Connectivity: Uses and Interpretations.** *NeuroImage* 52.3 (2010):
    1059-069.
+
+3. Sakai, Ryo, Raf Winand, Toni Verbeiren, Andrew Vande Moere, and Jan
+   Aerts. **Dendsort: Modular Leaf Ordering Methods for Dendrogram
+   Representations in R.** F1000Research (2014).
 
 3. Shih, Chi-Tin, Olaf Sporns, Shou-Li Yuan, Ta-Shun Su, Yen-Jen Lin,
    Chao-Chun Chuang, Ting-Yuan Wang, Chung-Chuang Lo, Ralph J. Greenspan,
    and Ann-Shyn Chiang. **Connectomics-Based Analysis of Information Flow
    in the Drosophila Brain.** Current Biology 25.10 (2015): 1249-258.
+
+4. Soundarajan, Sucheta, et al. **Generating Graph Snapshots from Streaming
+   Edge Data.** Proceedings of the 25th International Conference Companion
+   on World Wide Web. International World Wide Web Conferences Steering
+   Committee, 2016.
+
+5. Stumpf, M. P. H., and M. A. Porter. **Critical Truths About Power
+   Laws.** Science 335.6069 (2012): 665-66.
 
 3. Thagard, Paul, and Terrence C. Stewart. **The AHA! Experience:
    Creativity Through Emergent Binding in Neural Networks.** Cognitive
