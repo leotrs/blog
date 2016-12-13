@@ -4,12 +4,23 @@ Slug: read
 
 ## Papers
 
+1. Ahmed, Nesreen K., Ryan A. Rossi, Theodore L. Willke, and Rong
+   Zhou. **Revisiting Role Discovery in Networks from Node to Edge Roles.**
+   (2016).
+
 1. Alstott, Jeff, Pietro Panzarasa, Mikail Rubinov, Edward T. Bullmore, and
    Petra E. Vértes. **A Unifying Framework for Measuring Weighted Rich
    Clubs.** Sci. Rep. Scientific Reports 4 (2014): 7258.
+   
+2. Alon, Uri. **Network Motifs: Theory and Experimental Approaches.**
+   Nature Reviews Genetics 8.6 (2007): 450-61.
 
 1. Anscombe, F. J. **Graphs in Statistical Analysis**. The American
    Statistician 27.1 (1973): 17.
+
+2. Arockiasamy, Albert, Aristides Gionis, and Nikolaj Tatti. **A
+   Combinatorial Approach to Role Discovery.** IEEE International
+   Conference on Data Mining (2016).
 
 1. Barabási, Albert-László, and Réka Albert. **Emergence of Scaling in
    Random Networks.** *Science* 286.5439 (1999):
@@ -25,6 +36,10 @@ Slug: read
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
 
+3. Borgatti, Stephen P., and Martin G. Everett. **Two Algorithms for
+   Computing Regular Equivalence.** Social Networks 15.4 (1993):
+   361-76.
+
 3. Colizza, V., A. Flammini, M. A. Serrano, and A. Vespignani. **Detecting
    Rich-club Ordering in Complex Networks.** Nature Physics 2.2 (2006):
    110-15.
@@ -38,6 +53,14 @@ Slug: read
 
 3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
    for Networks**. KDD'16 (2016).
+
+4. Guimerà, Roger, Marta Sales-Pardo, and Luís A. Nunes
+   Amaral. **Modularity from Fluctuations in Random Graphs and Complex
+   Networks.** Physical Review E 70.2 (2004).
+
+5. Hachul, Stefan, and Michael Jünger. **Drawing Large Graphs with a
+   Potential-Field-Based Multilevel Algorithm.** Graph Drawing Lecture
+   Notes in Computer Science (2005): 285-95.
 
 3. Henderson, Keith, Brian Gallagher, Tina Eliassi-Rad, Hanghang Tong,
    Sugato Basu, Leman Akoglu, Danai Koutra, Christos Faloutsos, and Lei
@@ -63,6 +86,9 @@ Slug: read
 4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
    Computation.** Science 346.6209 (2014): 551-52.
 
+5. Milo, R, et al. **Network Motifs: Simple Building Blocks of Complex
+   Networks.** Science 298.5594 (2002): 824-27.
+
 5. Rogowitz, Bernice E., Lloyd Treinish A., and Steve Bryson. **How Not to
    Lie with Visualization.** Computers in Physics Comput. Phys. 10.3
    (1996): 268.
@@ -85,6 +111,10 @@ Slug: read
    and Ann-Shyn Chiang. **Connectomics-Based Analysis of Information Flow
    in the Drosophila Brain.** Current Biology 25.10 (2015): 1249-258.
 
+4. Solaimani, Mohiuddin, Sayeed Salam, Latifur Khan, Patrick T. Brandt, and
+   Vito D'Orazio. **Automatic Political Actor Recommendation in
+   Real-Time.** (2016).
+
 4. Soundarajan, Sucheta, et al. **Generating Graph Snapshots from Streaming
    Edge Data.** Proceedings of the 25th International Conference Companion
    on World Wide Web. International World Wide Web Conferences Steering
@@ -100,6 +130,10 @@ Slug: read
 4. Torres, J.j., M.a. Muñoz, J. Marro, and P.l. Garrido. **Influence of
    Topology on the Performance of a Neural Network.** Neurocomputing 58-60
    (2004): 229-34.
+
+5. Tsiaras, Vassilis, Sofia Triantafilou, and Ioannis G. Tollis. **DAGmaps:
+   Space Filling Visualization of Directed Acyclic Graphs.** Journal of
+   Graph Algorithms and Applications 13.3 (2009): 319-47.
 
 10. Turing, A. M. **Computing Machinery And Intelligence.** Mind LIX.236
     (1950): 433-60.
