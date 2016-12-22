@@ -199,6 +199,9 @@ Slug: read
 5. Holland, John H. **Emergence: From Chaos to Order**. Reading, MA:
    Addison-Wesley, 1998.
 
+6. Ito, Joichi, and Jeff Howe. **Whiplash: How to Survive Our Faster
+   Future**. New York, NY: Grand Central, 2016.
+
 5. Joyner, David. **Adventures in Group Theory: Rubik's Cube, Merlin's
    Machine, and Other Mathematical Toys**. Baltimore: Johns Hopkins
    UP, 2002.
@@ -274,6 +277,8 @@ Slug: read
    Voyager, 1997.
 
 6. Galbraith, Robert. **The Cuckoo's Calling**. London: Sphere, 2014.
+
+7. Haldeman, Joe. **The Forever War**. London: Millennium, 1999. 
 
 7. Heinlein, Robert A. **Stranger in a Strange Land**. New York:
    G.P. Putnam's, 1961.
