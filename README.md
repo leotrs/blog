@@ -1,6 +1,6 @@
 This is my blog.
 
-It lives at [www.leotrs.com]().
+It lives at [http://www.leotrs.com]().
 
 If you want to clone and run it locally, you would want to do `make serve`
 from the root directory and then just browse `localhost:8000`.  But I have
