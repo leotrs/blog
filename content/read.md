@@ -8,10 +8,19 @@ Slug: read
    Zhou. **Revisiting Role Discovery in Networks from Node to Edge Roles.**
    (2016).
 
+2. Albin, Nathan, et al. **Modulus on Graphs as a Generalization of
+   Standard Graph Theoretic Quantities.** Conformal Geometry and Dynamics
+   of the American Mathematical Society, vol. 19, no. 13, Apr. 2015,
+   pp. 298–317.
+
+2. Allen, Benjamin, Gabor Lippner, Yu-Ting Chen, Babak Fotouhi, Naghmeh
+   Momeni, Shing-Tung Yau, and Martin A. Nowak. **Evolutionary Dynamics on
+   Any Population Structure.** Nature 544.7649 (2017): 227-30.
+
 1. Alstott, Jeff, Pietro Panzarasa, Mikail Rubinov, Edward T. Bullmore, and
    Petra E. Vértes. **A Unifying Framework for Measuring Weighted Rich
    Clubs.** Sci. Rep. Scientific Reports 4 (2014): 7258.
-   
+
 2. Alon, Uri. **Network Motifs: Theory and Experimental Approaches.**
    Nature Reviews Genetics 8.6 (2007): 450-61.
 
@@ -43,8 +52,19 @@ Slug: read
 2. Bassett, Danielle S., and Olaf Sporns. **Network Neuroscience.** Nature
    Neuroscience 20.3 (2017): 353-64.
 
+3. Bassett, Danielle S., Nicholas F. Wymbs, Mason A. Porter, Peter
+   J. Mucha, and Scott T. Grafton. **Cross-linked Structure of Network
+   Evolution.** Chaos 24 (2014).
+
 2. Barnes, Josh, and Piet Hut. **A Hierarchical O(N Log N)
    Force-calculation Algorithm.** Nature 324.6096 (1986): 446-49.
+
+3. Bauer, Roman, and Marcus Kaiser. **Nonlinear Growth: an Origin of Hub
+   Organization in Complex Networks.** Royal Society Open Science, vol. 4,
+   no. 3, 2017, p. 160691.
+
+4. Baxter, Gareth J., et al. **Cycles and Clustering in Multiplex
+   Networks.** Physical Review E, vol. 94, no. 6, 2016.
 
 2. Benson, A. R., D. Gleich F., and J. Leskovec. **Higher-order
    Organization of Complex Networks.** Science 353.6295 (2016): 163-66.
@@ -53,6 +73,13 @@ Slug: read
    Parameter-Dependent Network Centrality Measures**. SIAM. J. Matrix
    Anal. & Appl. 36.2 (2015): 686-706.
 
+3. Betzel, Richard F., and Danielle S. Bassett. **Multi-Scale Brain
+   Networks.** NeuroImage, 2016.
+
+3. Bianconi, Ginestra, and Andrea Capocci. **Number of Loops of Sizehin
+   Growing Scale-Free Networks.** Physical Review Letters, vol. 90, no. 7,
+   2003.
+
 3. Borgatti, Stephen P., and Martin G. Everett. **Two Algorithms for
    Computing Regular Equivalence.** Social Networks 15.4 (1993):
    361-76.
@@ -60,19 +87,37 @@ Slug: read
 4. Camacho, J., and A. Arenas. **Food-web Topology: Universal Scaling in
    Food-web Structure?** Nature 435.7044 (2005).
 
+5. Chomsky, Noam. **The Language Capacity: Architecture and Evolution.**
+   Psychonomic Bulletin & Review, vol. 24, no. 1, Jan. 2016, pp. 200–203.
+
 4. Chowdhury, Samir, and Facundo Memoli. **Distances between Directed
    Networks and Applications.**" 2016 IEEE International Conference on
    Acoustics, Speech and Signal Processing (ICASSP) (2016).
 
 5. Clauset, Aaron, Cosma Rohilla Shalizi, and M. E. J. Newman. **Power-Law
    Distributions in Empirical Data.** SIAM Review 51.4 (2009): 661-703.
-   
+
 3. Colizza, V., A. Flammini, M. A. Serrano, and A. Vespignani. **Detecting
    Rich-club Ordering in Complex Networks.** Nature Physics 2.2 (2006):
    110-15.
 
+4. Courtney, Owen T., and Ginestra Bianconi. **Weighted Growing Simplicial
+   Complexes.** Physical Review E, vol. 95, no. 6, Dec. 2017.
+
+4. Damicelli, Fabrizio, Claus C. Hilgetag, Marc-Thorsten Hütt, and Arnaud
+   Messé. **Modular Topology Emerges from Plasticity in a Minimalistic
+   Excitable Network Model.** Chaos: An Interdisciplinary Journal of
+   Nonlinear Science 27.4 (2017): 047406.
+
+4. De Arruda, Henrique F., Filipi N. Silva, Cesar H. Comin, Diego
+   R. Amancio, and Luciano Da F. Costa. **Connecting Network Science and
+   Information Theory.** ArXiv. Web. <https://arxiv.org/abs/1704.03091>.
+
+5. Débarre, F., et al. **Social Evolution in Structured Populations.**
+   Nature Communications, vol. 5, June 2014.
+
 3. Eades, Peter. **A Heuristic for Graph Drawing**. Congressus Numerantium,
-   42.11 (1984): 149–160. 
+   42.11 (1984): 149–160.
 
 4. Fagiolo, Giorgio. **Clustering in Complex Directed Networks.** Physical
    Review E 76.2 (2007).
@@ -80,6 +125,18 @@ Slug: read
 3. Gansner, Emden, and Yifan Hu. **Efficient, Proximity-Preserving Node
    Overlap Removal.** Journal of Graph Algorithms and Applications 14.1
    (2010): 53-74.
+
+4. Giscard, Pierre-Louis, and Richard C Wilson. **Loop-Centrality in
+   Complex Networks.** arxiv.org/abs/1707.00890.
+
+4. Giscard, Pierre-Louis, Nils Kriege, and Richard C. Wilson. **A General
+   Purpose Algorithm for Counting Simple Cycles and Simple Paths of Any
+   Length.** (2016): ArXiv. <https://arxiv.org/pdf/1612.05531.pdf>.
+
+5. Giusti, Chad, Eva Pastalkova, Carina Curto, and Vladimir
+   Itskov. **Clique Topology Reveals Intrinsic Geometric Structure in
+   Neural Correlations.** Proceedings of the National Academy of
+   Sciences 112.44 (2015): 13455-3460.
 
 3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
    for Networks**. KDD'16 (2016).
@@ -113,6 +170,10 @@ Slug: read
    Eliassi-Rad, Hanghang Tong, and Christos Faloutsos. **It's Who You Know:
    Graph Mining Using Recursive Structural Features**.  KDD'11 (2011).
 
+5. Hobbs, William R., and Moira K. Burke. **Connective Recovery in Social
+   Networks after the Death of a Friend.** Nature Human Behaviour, vol. 1,
+   no. 5, 2017, p. 0092.
+
 5. Hoffmann, Felix Z. and Triesch, Jochen. **Nonrandom network connectivity
    comes in pairs** Network Neuroscience 1:1, 31-41 (2017).
 
@@ -123,22 +184,55 @@ Slug: read
 5. Jordan, M. I., and T. M. Mitchell. **Machine Learning: Trends,
    Perspectives, and Prospects.** Science 349.6245 (2015): 255-60.
 
+6. Kaiser, Marcus. **Mechanisms of Connectome Development.** Trends in
+   Cognitive Sciences, vol. 21, no. 9, 2017, pp. 703–717.
+
+6. Karimi, Mehdi, and Amir H. Banihashemi. **A Message-passing Algorithm for
+   Counting Short Cycles in a Graph.** IEEE Information Theory Workshop 2010
+   (ITW 2010) (2010).
+
+7. Kearns, Michael, et al. **Behavioral Experiments on a Network Formation
+   Game.** Proceedings of the 13th ACM Conference on Electronic Commerce -
+   EC '12, 2012.
+
 3. Kim, Beom Jun. **Performance of Networks of Artificial Neurons: The Role
    of Clustering.** Physical Review E Phys. Rev. E 69.4 (2004).
+
+4. Kim, Hyun-Joo, and Jin Min Kim. **Cyclic Topology in Complex Networks.**
+   Physical Review E, vol. 72, no. 3, Sept. 2005.
 
 4. Krioukov, Dmitri. **Brain Theory.** Frontiers in Computational
    Neuroscience 8 (2014).
 
+5. Krioukov, Dmitri, Maksim Kitsak, Robert S. Sinkovits, David Rideout,
+   David Meyer, and Marián Boguñá. **Network Cosmology.** Scientific
+   Reports 2 (2012).
+
 4. Krapivsky, P. L., and S. Redner. **Network Growth by Copying.** Physical
    Review E 71.3 (2005).
+
+5. Lim, Seonhee. **Minimal Volume Entropy for Graphs.** Transactions of the
+   American Mathematical Society, vol. 360, no. 10, 2008, pp. 5089–5100.
+
+5. Liu, Yang-Yu, Jean-Jacques Slotine, and Albert-László
+   Barabási. **Controllability of Complex Networks.** Nature 473.7346
+   (2011): 167-73.
 
 4. Lum, P. Y., G. Singh, A. Lehman, T. Ishkanov, M. Vejdemo-Johansson,
    M. Alagappan, J. Carlsson, and G. Carlsson. **Extracting Insights from
    the Shape of Complex Data Using Topology.** Sci. Rep. Scientific Reports
    3 (2013).
 
+5. Marceau, Vincent, et al. **Adaptive Networks: Coevolution of Disease and
+   Topology.** Physical Review E, vol. 82, no. 3, 2010.
+
 4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
    Computation.** Science 346.6209 (2014): 551-52.
+
+5. Mcgregor, Andrew, and Daniel Stubbs. **Sketching Earth-Mover Distance on
+   Graph Metrics.** Approximation, Randomization, and Combinatorial
+   Optimization. Algorithms and Techniques Lecture Notes in Computer
+   Science, 2013, pp. 274–286.
 
 5. Mika, S. **Kernel PCA and De-Noising in Feature Spaces.** (1999): Web. 4
    May 2017. <https://alex.smola.org/papers/1999/MikSchSmoMuletal99.pdf>.
@@ -152,8 +246,19 @@ Slug: read
 7. Newman, M. E. J., and M. Girvan. **Finding and Evaluating Community
    Structure in Networks.** Physical Review E 69.2 (2004).
 
+8. Norman, R. L. **A Matrix Method for Location of Cycles of a Directed
+   Graph.** AIChE Journal 11.3 (1965): 450-52.
+
+9. Papadopoulos, Fragkiskos, et al. **Popularity versus Similarity in
+   Growing Networks.** Nature, vol. 489, no. 7417, Dec. 2012, pp. 537–540.
+
 8. Paton, Keith. **An Algorithm for Finding a Fundamental Set of Cycles of
    a Graph.** Communications of the ACM 12.9 (1969): 514-18.
+
+9. Petri, Giovanni, et al. **Networks and Cycles: A Persistent Homology
+   Approach to Complex Networks.** Proceedings of the European Conference
+   on Complex Systems 2012 Springer Proceedings in Complexity, 2013,
+   pp. 93–99.
 
 7. Price, D. J. De Solla. **Networks of Scientific Papers.**
    Science 149.3683 (1965): 510-15.
@@ -166,6 +271,14 @@ Slug: read
    Henderson. **Modeling Dynamic Behavior in Large Evolving Graphs.**
    Proceedings of the Sixth ACM International Conference on Web Search and
    Data Mining - WSDM '13 (2013).
+
+7. Rozenfeld, Hernán D, et al. **Statistics of Cycles: How Loopy Is Your
+   Network?** Journal of Physics A: Mathematical and General, vol. 38,
+   no. 21, Oct. 2005, pp. 4589–4595.
+
+7. Rubido, Nicolás, Celso Grebogi, and Murilo S. Baptista. **Understanding
+   Information Transmission in Complex Networks.**
+   ArXiv. Web. <https://arxiv.org/abs/1705.05287>.
 
 7. Soundarajan, Sucheta, Tina Eliassi-Rad, and Brian Gallagher. **A Guide
    to Selecting a Network Similarity Method.** Proceedings of the 2014 SIAM
@@ -192,6 +305,9 @@ Slug: read
    Representations of Network Data**, IEEE Trans. Signal Process.,
    submitted (2016).
 
+7. Saucan, Emil, et al. **Discrete Curvatures and Network Analysis.**
+   www.mis.mpg.de/de/publications/preprints/2017/2017-34.html.
+
 5. Sheather, Simon J. **Density Estimation.** Statistical Science 19.4
    (2004): 588-97.
 
@@ -208,6 +324,34 @@ Slug: read
    Edge Data.** Proceedings of the 25th International Conference Companion
    on World Wide Web. International World Wide Web Conferences Steering
    Committee, 2016.
+
+5. Santos, F. C., and J. M. Pacheco. **Scale-Free Networks Provide a
+   Unifying Framework for the Emergence of Cooperation.** Physical Review
+   Letters 95.9 (2005).
+
+6. Sandhu, Romeil, et al. **Graph Curvature for Differentiating Cancer
+   Networks.** Scientific Reports, vol. 5, no. 1, 2015.
+
+6. Sayama, Hiroki. **Graph Product Multilayer Networks: Spectral Properties
+   and Applications.** Journal of Complex Networks, Feb. 2017.
+
+6. Scholtes, Ingo. **When Is a Network a Network? Multi-Order Graphical
+   Model Selection in Pathways and Temporal Networks.**
+   ArXiv. Web. <https://arxiv.org/abs/1702.05499>.
+
+7. Scholtes, Ingo, et al. **Higher-Order Aggregate Networks in the Analysis
+   of Temporal Networks: Path Structures and Centralities.** The European
+   Physical Journal B, vol. 89, no. 3, 2016.
+
+8. Seshadhri, C., et al. **Community Structure and Scale-Free Collections of
+   Erdos-Renyi Graphs.** Physical Review E, vol. 85, no. 5, Oct. 2012.
+
+8. Shakeri, Heman, et al. **Network Clustering and Community Detection
+   Using Modulus of Families of Loops.** Physical Review E, vol. 95, no. 1,
+   2017.
+
+9. Steels, Luc. **Human Language Is a Culturally Evolving System.**
+   Psychonomic Bulletin & Review, vol. 24, no. 1, 2016, pp. 190–193.
 
 5. Stumpf, M. P. H., and M. A. Porter. **Critical Truths About Power
    Laws.** Science 335.6069 (2012): 665-66.
@@ -231,6 +375,10 @@ Slug: read
     Entscheidungsproblem.** Annual Review in Automatic Programming (1960):
     230-64.
 
+10. Ugander, Johan, et al. **Subgraph Frequencies: Mapping the Empirical
+	and Extremal Geography of Large Graph Collections** Proceedings of the
+	22nd International Conference on World Wide Web - WWW '13, 2013.
+
 11. Watts, Duncan J., and Steven H. Strogatz. **Collective Dynamics of
     "small-world" Networks.** Nature 393.6684 (1998): 440-42.
 
@@ -241,9 +389,25 @@ Slug: read
     (2011). AMS. Web. 4
     May 2017. <http://www.ams.org/notices/201101/rtx110100036p.pdf>.
 
+14. Wu, Zhihao, et al. **Emergent Complex Network Geometry.** Scientific
+    Reports, vol. 5, no. 1, 2015.
+
+14. Xu, J., T. L. Wickramarathne, and N. V. Chawla. **Representing
+    Higher-order Dependencies in Networks.** Science Advances 2.5 (2016).
+
+7. Yang, Jaewon, and Jure Leskovec. **Overlapping Communities Explain
+   Core–Periphery Organization of Networks.** Proceedings of the IEEE,
+   vol. 102, no. 12, 2014, pp. 1892–1902.
+
+15. Yin, Hao, et al. **Local Higher-Order Graph Clustering.**
+    stanford.edu/~arbenson/papers/local-higher-order-kdd-2017.pdf.
+
+8. Young, Jean-Gabriel, et al. **Construction of and Efficient Sampling
+   from the Simplicial Configuration Model.** 29 May 2017,
+   arxiv.org/abs/1705.10298.
+
 13. Yuste, Rafael. **From the Neuron Doctrine to Neural Networks.** Nature
     Reviews Neuroscience 16.8 (2015): 487-97.
-
 
 
 ------------------------------------
@@ -335,7 +499,6 @@ Slug: read
    Cambridge U, 1994.
 
 
-
 ------------------------------------
 
 ## Fiction
@@ -377,7 +540,7 @@ Slug: read
 
 6. Galbraith, Robert. **The Cuckoo's Calling**. London: Sphere, 2014.
 
-7. Haldeman, Joe. **The Forever War**. London: Millennium, 1999. 
+7. Haldeman, Joe. **The Forever War**. London: Millennium, 1999.
 
 7. Heinlein, Robert A. **Stranger in a Strange Land**. New York:
    G.P. Putnam's, 1961.
