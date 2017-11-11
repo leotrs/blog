@@ -1,5 +1,5 @@
 Title: Practice the fundamentals
-Date: 06-11-2017
+Date: 11-06-2017
 Tags: gradschool, rules
 Summary: "I have no time" is a lame excuse
 Slug: practice
