@@ -95,6 +95,10 @@ Slug: read
 4. Camacho, J., and A. Arenas. **Food-web Topology: Universal Scaling in
    Food-web Structure?** Nature 435.7044 (2005).
 
+5. Chen, Beifang, et al. **Graph Homotopy and Graham Homotopy.** Discrete
+   Mathematics, vol. 241, no. 1-3, 2001, pp. 153–170.,
+   doi:10.1016/s0012-365x(01)00115-7.
+
 5. Chomsky, Noam. **The Language Capacity: Architecture and Evolution.**
    Psychonomic Bulletin & Review, vol. 24, no. 1, Jan. 2016, pp. 200–203.
 
@@ -129,6 +133,10 @@ Slug: read
 5. Débarre, F., et al. **Social Evolution in Structured Populations.**
    Nature Communications, vol. 5, June 2014.
 
+6. Durfee, Christina, and Kimball Martin. **Distinguishing Graphs with Zeta
+   Functions and Generalized Spectra.** Linear Algebra and Its
+   Applications, vol. 481, 2015, pp. 54–82., doi:10.1016/j.laa.2015.04.028
+
 3. Eades, Peter. **A Heuristic for Graph Drawing**. Congressus Numerantium,
    42.11 (1984): 149–160.
 
@@ -149,6 +157,10 @@ Slug: read
 3. Gansner, Emden, and Yifan Hu. **Efficient, Proximity-Preserving Node
    Overlap Removal.** Journal of Graph Algorithms and Applications 14.1
    (2010): 53-74.
+
+4. Garlaschelli, Diego, et al. **Complex Networks and Symmetry I: A
+   Review.** Symmetry, vol. 2, no. 3, 2010, pp. 1683–1709.,
+   doi:10.3390/sym2031683.
 
 4. Giscard, Pierre-Louis, and Richard C Wilson. **Loop-Centrality in
    Complex Networks.** arxiv.org/abs/1707.00890.
@@ -247,6 +259,10 @@ Slug: read
 4. Krapivsky, P. L., and S. Redner. **Network Growth by Copying.** Physical
    Review E 71.3 (2005).
 
+5. Krzakala, F., et al. **Spectral Redemption in Clustering Sparse
+   Networks.** Proceedings of the National Academy of Sciences, vol. 110,
+   no. 52, 2013, pp. 20935–20940., doi:10.1073/pnas.1312486110.
+
 5. Lim, Seonhee. **Minimal Volume Entropy for Graphs.** Transactions of the
    American Mathematical Society, vol. 360, no. 10, 2008, pp. 5089–5100.
 
@@ -295,6 +311,10 @@ Slug: read
 9. Papadopoulos, Fragkiskos, et al. **Popularity versus Similarity in
    Growing Networks.** Nature, vol. 489, no. 7417, Dec. 2012, pp. 537–540.
 
+10. Park, Juyong, and M. E. J. Newman. **Statistical Mechanics of
+    Networks.** Physical Review E, vol. 70, no. 6, July 2004,
+    doi:10.1103/physreve.70.066117.
+
 8. Paton, Keith. **An Algorithm for Finding a Fundamental Set of Cycles of
    a Graph.** Communications of the ACM 12.9 (1969): 514-18.
 
@@ -303,8 +323,24 @@ Slug: read
    on Complex Systems 2012 Springer Proceedings in Complexity, 2013,
    pp. 93–99.
 
+10. Pfitzner, René, et al. **Betweenness Preference: Quantifying
+    Correlations in the Topological Dynamics of Temporal Networks.**
+    Physical Review Letters, vol. 110, no. 19, Oct. 2013,
+    doi:10.1103/physrevlett.110.198701.
+
 7. Price, D. J. De Solla. **Networks of Scientific Papers.**
    Science 149.3683 (1965): 510-15.
+
+8. Price, Michael E. **Entropy and Selection: Life as an Adaptation for
+   Universe Replication.** Complexity, vol. 2017, 2017, pp. 1–4.,
+   doi:10.1155/2017/4745379.
+
+8. Prokopenko, Mikhail. **Complexity, Criticality and Computation.**
+   Entropy, vol. 19, no. 8, Apr. 2017, p. 403., doi:10.3390/e19080403.
+
+9. Ren, Peng, et al. **Graph Characterization via Ihara Coefficients.**
+   IEEE Transactions on Neural Networks, vol. 22, no. 2, 2011,
+   pp. 233–245., doi:10.1109/tnn.2010.2091969.
 
 5. Rogowitz, Bernice E., Lloyd Treinish A., and Steve Bryson. **How Not to
    Lie with Visualization.** Computers in Physics Comput. Phys. 10.3
