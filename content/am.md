@@ -7,15 +7,15 @@ Slug: am
 </div>
 
 
-Leo is interested in the intersection of Network Science, Complexity
-Science, and Neuroscience. By using different approaches from Computer
-Science, like graph mining and machine learning, he is trying to uncover
-the underlying principles governing the interplay between structure and
-function of dynamical networks. Leo has a B.S in Mathematics from
-Pontificia Universidad Católica del Perú, and is a self-taught programmer,
-having attended the [Recurse Center](https://www.recurse.com), a
-programmers retreat in NYC, to focus on algorithm design and high-quality
-code writing standards.
+I am interested in the intersection of Network Science, Complexity Science,
+and Mathematics. By using different approaches from Computer Science, like
+graph mining and machine learning, and different fields of Mathematics,
+such as metric geometry and algebraic topology, I study the underlying
+principles governing the interplay between structure and function of
+networks. Leo has a B.S in Mathematics from Pontificia Universidad Católica
+del Perú, and is a self-taught programmer, having attended the
+[Recurse Center](https://www.recurse.com), a programmers retreat in NYC, to
+focus on algorithm design and high-quality code writing standards.
 
 ----
 
