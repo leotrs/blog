@@ -88,6 +88,10 @@ Slug: read
    Growing Scale-Free Networks.** Physical Review Letters, vol. 90, no. 7,
    2003.
 
+4. Bianconi, Ginestra, and Christoph Rahmede. **Emergent Hyperbolic Network
+   Geometry.** Scientific Reports, vol. 7, 2017, p. 41974.,
+   doi:10.1038/srep41974.
+
 3. Borgatti, Stephen P., and Martin G. Everett. **Two Algorithms for
    Computing Regular Equivalence.** Social Networks 15.4 (1993):
    361-76.
@@ -162,6 +166,10 @@ Slug: read
    Review.** Symmetry, vol. 2, no. 3, 2010, pp. 1683–1709.,
    doi:10.3390/sym2031683.
 
+5. Gasparovic, Ellen, et al. **A Complete Characterization of the
+   1-Dimensional Intrinsic Cech Persistence Diagrams for Metric Graphs**. 7
+   July 2017, arxiv.org/abs/1702.07379.
+
 4. Giscard, Pierre-Louis, and Richard C Wilson. **Loop-Centrality in
    Complex Networks.** arxiv.org/abs/1707.00890.
 
@@ -173,6 +181,10 @@ Slug: read
    Itskov. **Clique Topology Reveals Intrinsic Geometric Structure in
    Neural Correlations.** Proceedings of the National Academy of
    Sciences 112.44 (2015): 13455-3460.
+
+6. Goyal, Palash, and Emilio Ferrara. **Graph Embedding Techniques,
+   Applications, and Performance: A Survey.** Knowledge-Based Systems,
+   vol. 151, 2018, pp. 78–94., doi:10.1016/j.knosys.2018.03.022.
 
 3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
    for Networks**. KDD'16 (2016).
@@ -249,6 +261,10 @@ Slug: read
 4. Kim, Hyun-Joo, and Jin Min Kim. **Cyclic Topology in Complex Networks.**
    Physical Review E, vol. 72, no. 3, Sept. 2005.
 
+5. Koutra, Danai, et al. **DeltaCon: A Principled Massive-Graph Similarity
+   Function.** Proceedings of the 2013 SIAM International Conference on
+   Data Mining, 2013, pp. 162–170., doi:10.1137/1.9781611972832.18.
+
 4. Krioukov, Dmitri. **Brain Theory.** Frontiers in Computational
    Neuroscience 8 (2014).
 
@@ -262,6 +278,11 @@ Slug: read
 5. Krzakala, F., et al. **Spectral Redemption in Clustering Sparse
    Networks.** Proceedings of the National Academy of Sciences, vol. 110,
    no. 52, 2013, pp. 20935–20940., doi:10.1073/pnas.1312486110.
+
+6. Levy, Omver and Goldberg, Yoan. **Neural word embedding as implicit
+   matrix factorization.** In Proceedings of the 27th International
+   Conference on Neural Information Processing Systems - Volume 2
+   (NIPS'14). MIT Press, Cambridge, MA, USA, 2177-2185.
 
 5. Lim, Seonhee. **Minimal Volume Entropy for Graphs.** Transactions of the
    American Mathematical Society, vol. 360, no. 10, 2008, pp. 5089–5100.
@@ -281,6 +302,9 @@ Slug: read
 4. Marcus, G., A. Marblestone, and T. Dean. **The Atoms of Neural
    Computation.** Science 346.6209 (2014): 551-52.
 
+5. Martin, Travis, et al. **Localization and Centrality in Networks.**
+   Physical Review E, vol. 90, no. 5, 2014, doi:10.1103/physreve.90.052808.
+
 5. Mcgregor, Andrew, and Daniel Stubbs. **Sketching Earth-Mover Distance on
    Graph Metrics.** Approximation, Randomization, and Combinatorial
    Optimization. Algorithms and Techniques Lecture Notes in Computer
@@ -295,12 +319,21 @@ Slug: read
 6. Mitchell, Tom M. **The Discipline of Machine Learning.** CMU, Web. 14
    Jan. 2017. <https://www.cs.cmu.edu/~tom/pubs/MachineLearning.pdf>.
 
+7. Monnig, Nathan D., and FranÃ§ois G. Meyer. **The Resistance Perturbation
+   Distance: A Metric for the Analysis of Dynamic Networks.** Discrete
+   Applied Mathematics, vol. 236, 2018, pp. 347–386.,
+   doi:10.1016/j.dam.2017.10.007.
+
 7. Myerson, Roger B. *+Nash Equilibrium and the History of Economic
    Theory.** Journal of Economic Literature, vol. 37, no. 3, 1999,
    pp. 1067–1082., doi:10.1257/jel.37.3.1067.
 
 7. Newman, M. E. J., and M. Girvan. **Finding and Evaluating Community
    Structure in Networks.** Physical Review E 69.2 (2004).
+
+8. Nikolentzos, Giannis, et al. **Matching Node Embeddings for Graph
+   Similarity.** Proceedings of the Thirty-First AAAI Conference on
+   Artificial Intelligence, 2017.
 
 8. Norman, R. L. **A Matrix Method for Location of Cycles of a Directed
    Graph.** AIChE Journal 11.3 (1965): 450-52.
@@ -337,6 +370,11 @@ Slug: read
 
 8. Prokopenko, Mikhail. **Complexity, Criticality and Computation.**
    Entropy, vol. 19, no. 8, Apr. 2017, p. 403., doi:10.3390/e19080403.
+
+9. Rasetti, Mario, and Emanuela Merelli. **Topological Field Theory of
+   Data: Mining Data Beyond Complex Networks.** Advances in Disordered
+   Systems, Random Processes and Some Applications, pp. 1–42.,
+   doi:10.1017/9781316403877.002.
 
 9. Ren, Peng, et al. **Graph Characterization via Ihara Coefficients.**
    IEEE Transactions on Neural Networks, vol. 22, no. 2, 2011,
@@ -384,6 +422,11 @@ Slug: read
    IEEE Transactions on Knowledge and Data Engineering 27.4 (2015):
    1112-131.
 
+6. Rowbottom, Darrell P. **Kuhn vs. Popper on Criticism and Dogmatism in
+   Science: a Resolution at the Group Level.** Studies in History and
+   Philosophy of Science Part A, vol. 42, no. 1, 2011, pp. 117–124.,
+   doi:10.1016/j.shpsa.2010.11.031.
+
 6. S. Segarra, G. Carlsson, F. Memoli and A. Ribeiro, **Metric
    Representations of Network Data**, IEEE Trans. Signal Process.,
    submitted (2016).
@@ -402,6 +445,10 @@ Slug: read
 4. Silverman, B. W. **Density Estimation for Statistics and Data
    Analysis.** (2002): Caltech. Web. 4
    May 2017. <https://ned.ipac.caltech.edu/level5/March02/Silverman/paper.pdf>.
+
+5. Silva, Vin De, and Mikael Vejdemo-Johansson. **Persistent Cohomology and
+   Circular Coordinates.** Proceedings of the 25th Annual Symposium on
+   Computational Geometry - SCG '09, 2009, doi:10.1145/1542362.1542406.
 
 4. Soundarajan, Sucheta, et al. **Generating Graph Snapshots from Streaming
    Edge Data.** Proceedings of the 25th International Conference Companion
@@ -491,6 +538,11 @@ Slug: read
 
 1. Yuste, Rafael. **From the Neuron Doctrine to Neural Networks.** Nature
    Reviews Neuroscience 16.8 (2015): 487-97.
+
+2. Zimmerman, Benjamin J., et al. **Dissociating Tinnitus Patients from
+   Healthy Controls Using Resting 2 State Cyclicity Analysis and
+   Clustering.** Network Neuroscience, 2018, pp. 1–36.,
+   doi:10.1162/netn_a_00053.
 
 1. Zuev, Konstantin, et al. **Exponential Random Simplicial Complexes.**
    Journal of Physics A: Mathematical and Theoretical, vol. 48, no. 46,
