@@ -324,7 +324,7 @@ Slug: read
    Applied Mathematics, vol. 236, 2018, pp. 347–386.,
    doi:10.1016/j.dam.2017.10.007.
 
-7. Myerson, Roger B. *+Nash Equilibrium and the History of Economic
+7. Myerson, Roger B. **Nash Equilibrium and the History of Economic
    Theory.** Journal of Economic Literature, vol. 37, no. 3, 1999,
    pp. 1067–1082., doi:10.1257/jel.37.3.1067.
 

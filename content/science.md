@@ -10,7 +10,7 @@ Slug: science
 
 ## Oral presentations
 
-1. **A Bridge Between Homotopy Theory and Network Science** [slides]  
+1. **A Bridge Between Homotopy Theory and Network Science** [[slides]]({attach}/static/siamns18.pdf)  
   Leo Torres, P. Suárez Serrato, T. Eliassi-Rad  
   SIAM Workshop on Network Science 2018 (NS'18)  
   Portland, Oregon, USA, July 2018
