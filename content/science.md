@@ -6,7 +6,7 @@ Slug: science
 
 1. Leo Torres, P. Suárez Serrato, and T. Eliassi-Rad, **Graph Distance from
    the Topological View of Non-Backtracking Cycles**,
-   [[preprint]]({attach}/static/arxiv-graph-distance-topological.pdf),
+   [[preprint]](https://arxiv.org/abs/1807.09592),
    arXiv:1807.09592 [cs.SI], (2018).
    [[updated version]]({attach}/static/graph-distance-topological.pdf)
 
