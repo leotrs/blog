@@ -7,17 +7,27 @@ Slug: am
 </div>
 
 
-I am interested in the intersection of Network Science, Complexity Science,
-and Mathematics. By using different approaches from Computer Science, like
-graph mining and machine learning, and different fields of Mathematics,
-such as metric geometry and algebraic topology, I study the underlying
-principles governing the interplay between structure and function of
-networks. Leo has a B.S in Mathematics from Pontificia Universidad Católica
-del Perú, and is a self-taught programmer, having attended the
-[Recurse Center](https://www.recurse.com), a programmers retreat in NYC, to
-focus on algorithm design and high-quality code writing standards.
+I am broadly interested in the intersection of Network Science, Complexity
+Science, and Mathematics.  In my research, I hold in high regard both
+understanding (through models and theory), and computing (through learning
+and mining).  Thus, I study the principles underlying complex networks by
+using different fields of mathematics, such as differential and metric
+geometry, and algebraic topology; and different computational approaches
+such as graph mining and machine learning.  Currently, the main objective
+of my research is to introduce novel mathematical tools to the network
+science toolbox, and design efficient algorithms around them to uncover
+previously unknown features of networks.  I strongly adhere to the belief
+that *code is science*, and thus I put especial emphasis on high-quality
+code writing standards.
 
-----
+I have a B.S. in Mathematics from
+[*Pontificia Universidad Católica del Perú*](http://www.pucp.edu.pe/), and
+I am a self-taught programmer.  I have taught mathematics (analysis and
+calculus, in Perú) and Spanish (in the U.S.A.) at the undergraduate level.
+I was a Research Programmer at
+[Wolfram Research South America](https://www.wolfram.com/).  I have
+attended the [Recurse Center](https://www.recurse.com), a programmers
+retreat, to focus on algorithm design and code writing standards.
 
-I spend a lot of my time staring at an empty whiteboard or typing semicolons
-and whitespace on a text editor.
+I spend a lot of my time staring at an empty whiteboard or typing
+semicolons and whitespace on a text editor.
