@@ -4,6 +4,11 @@ Slug: read
 
 ## Papers
 
+1. Abu-El-Haija, Sami, Bryan Perozzi, and Rami Al-Rfou. **Learning edge
+   representations via low-rank asymmetric projections.** Proceedings of
+   the 2017 ACM on Conference on Information and Knowledge
+   Management. ACM, 2017.
+
 1. Ahmed, Nesreen K., Ryan A. Rossi, Theodore L. Willke, and Rong
    Zhou. **Revisiting Role Discovery in Networks from Node to Edge Roles.**
    (2016).
@@ -41,6 +46,14 @@ Slug: read
 3. Asta, D.M. and Shalizi, C.R. **Geometric network comparisons.** In
    Proceedings of the Thirty-First Conference on Uncertainty in Artificial
    Intelligence (UAI'15), 102-110 (2015).
+
+4. Avena-Koenigsberger, Andrea, et al. **Path ensembles and a tradeoff
+   between communication efficiency and resilience in the human
+   connectome.** Brain Structure and Function 222.1 (2017): 603-618.
+
+4. Bagrow, James P., and Erik M. Bollt. **An information-theoretic,
+   all-scales approach to comparing networks.** arXiv preprint
+   arXiv:1804.03665 (2018).
 
 3. Bak, Per, Chao Tang, and Kurt Wiesenfeld. **Self-organized
    Criticality.** Physical Review A 38.1 (1988): 364-74.
@@ -134,8 +147,18 @@ Slug: read
    R. Amancio, and Luciano Da F. Costa. **Connecting Network Science and
    Information Theory.** ArXiv. Web. <https://arxiv.org/abs/1704.03091>.
 
+5. De Domenico, Manlio, et al. **Mathematical formulation of multilayer
+   networks.** Physical Review X 3.4 (2013): 041022.
+
 5. Débarre, F., et al. **Social Evolution in Structured Populations.**
    Nature Communications, vol. 5, June 2014.
+
+6. Deo, Narsingh, Gurpur Prabhu, and Mukkai S. Krishnamoorthy. **Algorithms
+   for generating fundamental cycles in a graph.** ACM Transactions on
+   Mathematical Software (TOMS) 8.1 (1982): 26-42.
+
+6. Devriendt, Karel, and Piet Van Mieghem. **The Simplex Geometry of
+   Graphs.** arXiv preprint arXiv:1807.06475 (2018).
 
 6. Durfee, Christina, and Kimball Martin. **Distinguishing Graphs with Zeta
    Functions and Generalized Spectra.** Linear Algebra and Its
@@ -184,7 +207,7 @@ Slug: read
 
 6. Goyal, Palash, and Emilio Ferrara. **Graph Embedding Techniques,
    Applications, and Performance: A Survey.** Knowledge-Based Systems,
-   vol. 151, 2018, pp. 78–94., doi:10.1016/j.knosys.2018.03.022.
+   vol. 151, 2018, pp. 78–94.
 
 3. Grover, Aditya, and Jure Leskovec. **Node2vec: Scalable Feature Learning
    for Networks**. KDD'16 (2016).
@@ -243,6 +266,10 @@ Slug: read
 
 5. Jordan, M. I., and T. M. Mitchell. **Machine Learning: Trends,
    Perspectives, and Prospects.** Science 349.6245 (2015): 255-60.
+
+6. Jurman, Giuseppe, et al. **The HIM glocal metric and kernel for network
+   comparison and classification.** Data Science and Advanced Analytics
+   (DSAA), 2015. 36678 2015. IEEE International Conference on. IEEE, 2015.
 
 6. Kaiser, Marcus. **Mechanisms of Connectome Development.** Trends in
    Cognitive Sciences, vol. 21, no. 9, 2017, pp. 703–717.
@@ -356,10 +383,15 @@ Slug: read
    on Complex Systems 2012 Springer Proceedings in Complexity, 2013,
    pp. 93–99.
 
-10. Pfitzner, René, et al. **Betweenness Preference: Quantifying
-    Correlations in the Topological Dynamics of Temporal Networks.**
-    Physical Review Letters, vol. 110, no. 19, Oct. 2013,
-    doi:10.1103/physrevlett.110.198701.
+1. Pfitzner, René, et al. **Betweenness Preference: Quantifying
+   Correlations in the Topological Dynamics of Temporal Networks.**
+   Physical Review Letters, vol. 110, no. 19, Oct. 2013,
+   doi:10.1103/physrevlett.110.198701.
+
+2. Pinar, Ali, C. Seshadhri, and Vaidyanathan Vishal. **Escape: Efficiently
+   counting all 5-vertex subgraphs.** Proceedings of the 26th International
+   Conference on World Wide Web. International World Wide Web Conferences
+   Steering Committee, 2017.
 
 7. Price, D. J. De Solla. **Networks of Scientific Papers.**
    Science 149.3683 (1965): 510-15.
@@ -442,6 +474,9 @@ Slug: read
    and Ann-Shyn Chiang. **Connectomics-Based Analysis of Information Flow
    in the Drosophila Brain.** Current Biology 25.10 (2015): 1249-258.
 
+4. da Silva, Diamantino C., et al. **Complex network view of evolving
+   manifolds.** Physical Review E 97.3 (2018): 032316.
+
 4. Silverman, B. W. **Density Estimation for Statistics and Data
    Analysis.** (2002): Caltech. Web. 4
    May 2017. <https://ned.ipac.caltech.edu/level5/March02/Silverman/paper.pdf>.
@@ -490,9 +525,13 @@ Slug: read
    Creativity Through Emergent Binding in Neural Networks.** Cognitive
    Science 35.1 (2010): 1-33.
 
-4. Torres, J.j., M.a. Muñoz, J. Marro, and P.l. Garrido. **Influence of
+4. Torres, J.J., M.a. Muñoz, J. Marro, and P.l. Garrido. **Influence of
    Topology on the Performance of a Neural Network.** Neurocomputing 58-60
    (2004): 229-34.
+
+5. Torres, Leo, Pablo Suarez-Serrato, and Tina Eliassi-Rad. **Graph
+   Distance from the Topological View of Non-backtracking Cycles.** arXiv
+   preprint arXiv:1807.09592 (2018).
 
 5. Tsiaras, Vassilis, Sofia Triantafilou, and Ioannis G. Tollis. **DAGmaps:
    Space Filling Visualization of Directed Acyclic Graphs.** Journal of
@@ -539,6 +578,10 @@ Slug: read
 1. Yuste, Rafael. **From the Neuron Doctrine to Neural Networks.** Nature
    Reviews Neuroscience 16.8 (2015): 487-97.
 
+2. Zhang, Jie, Yan Wang, and Jie Tang. **Spectral Network Embedding: A Fast
+   and Scalable Method via Sparsity.** arXiv preprint arXiv:1806.02623
+   (2018).
+
 2. Zimmerman, Benjamin J., et al. **Dissociating Tinnitus Patients from
    Healthy Controls Using Resting 2 State Cyclicity Analysis and
    Clustering.** Network Neuroscience, 2018, pp. 1–36.,
@@ -553,6 +596,8 @@ Slug: read
 
 ## Non-fiction
 
+2. Aoun, Joseph E. **Robot-Proof: Higher Education in the Age of Artificial
+   Intelligence**. Cambridge, MA: The MIT Press. 2017.
 
 5. Barabási, Albert-László. **Linked: The New Science of
    Networks**. Cambridge, MA: Perseus, 2002.
@@ -589,6 +634,9 @@ Slug: read
 8. Hawkins, Jeff, and Sandra Blakeslee. **On Intelligence**. New York:
    Times, 2004.
 
+9. Heaton, Luke. **A Brief History of Mathematical Thought**. Oxford:
+   Oxford University Press. 2017.
+
 3. Hidalgo, César A. **Why Information Grows: The Evolution of Order, from
    Atoms to Economies**. 2015.
 
@@ -619,6 +667,9 @@ Slug: read
 7. Nowak, Martin A. **Evolutionary Dynamics: Exploring the Equations of
    Life.** Cambridge: Belknap of Harvard UP, 2006.
 
+8. Pearl, Judea and Mackenzie, Dana. **The Book of Why. The New Science of
+   Cause and Effect**. New York: Basic Books. 2018.
+
 7. Pólya, George. **How to Solve It: A New Aspect of Mathematical Method.**
    Princeton: Princeton UP, 1945.
 
@@ -638,6 +689,8 @@ Slug: read
 
 5. Velleman, Daniel J. **How to Prove It: A Structured Approach**. Cambridge:
    Cambridge U, 1994.
+
+6. White, E. B. **Here Is New York**. 1949.
 
 
 ------------------------------------
@@ -697,7 +750,11 @@ Slug: read
 
 11. Le Guin, Ursula K. **The Dispossessed**. Harper Perennial, 2014.
 
+12. Orwell, George, **Nineteen Eighty-Four**. 1949.
+
 8. Pohl, Frederik. **The Meeting**. 1972.
+
+9. Pohl, Frederik. **Gateway**. 1977.
 
 7. Rowling, J. K. **Harry Potter and the Chamber of Secrets.** London:
    Bloomsbury, 1998.
@@ -720,7 +777,11 @@ Slug: read
 6. Rowling, J. K. **Harry Potter and the Sorcerer's Stone**. London:
    Bloomsbury, 1997.
 
+7. Sawyer, Robert J. **Hominids**. New York: Tor. 2002.
+
 7. Tolkien, J. R. R. **The Hobbit, Or, There and Back Again**. Boston:
    Houghton Mifflin, 1966.
 
 9. Tolkien, J. R. R. **The Lord of the Rings**. 1967.
+
+
