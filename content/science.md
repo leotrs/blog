@@ -13,7 +13,13 @@ Slug: science
 
 ## Oral presentations
 
-1. **A Bridge Between Homotopy Theory and Network Science** [[slides]]({attach}/static/siamns18.pdf)  
+1. **Graph Distance from the Topological View of Non-Backtracking Cycles** [[slides]]()({attach}/static/netsci18.pdf)
+   Leo Torres, P. Suárez Serrato, T. Eliassi-Rad  
+   Student Research Symposium of the Network Science Institute__
+   Boston, Massachusetts, USA, November 2018
+
+
+2. **A Bridge Between Homotopy Theory and Network Science** [[slides]]({attach}/static/siamns18.pdf)  
   Leo Torres, P. Suárez Serrato, T. Eliassi-Rad  
   SIAM Workshop on Network Science 2018 (NS'18)  
   Portland, Oregon, USA, July 2018
