@@ -4,6 +4,11 @@ Slug: science
 
 ## Research papers
 
+1. Leo Torres, K. S. Chan, and T. Eliassi-Rad **Geometric Laplacian
+   Eigenmap Embedding**, [[preprint]](https://arxiv.org/abs/1905.09763),
+   arXiv:1905.09763 [cs.LG], (2019).
+
+
 1. Leo Torres, P. Suárez Serrato, and T. Eliassi-Rad, **Graph Distance from
    the Topological View of Non-Backtracking Cycles**,
    [[preprint]](https://arxiv.org/abs/1807.09592),

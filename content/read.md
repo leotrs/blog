@@ -631,6 +631,9 @@ Slug: read
 8. Gell-Mann, Murray. **The Quark and the Jaguar: Adventures in the Simple
    and the Complex**. New York: W.H. Freeman, 1994.
 
+9. Gintis, H. **The Bounds of Reason: Game Theory and the Unification of
+   the Behavioral Sciences**. Princeton University Press, 2014.
+
 8. Hawkins, Jeff, and Sandra Blakeslee. **On Intelligence**. New York:
    Times, 2004.
 
@@ -676,6 +679,8 @@ Slug: read
 8. Ramachandran, V. S. **The Tell-tale Brain: A Neuroscientist's Quest for
    What Makes Us Human**. New York: W.W. Norton, 2011.
 
+9. Singh, Sunil. **Pi of Life**. RI, 2017.
+
 9. Smith, John Maynard, and Eörs Szathmáry. **The Origins of Life: From the
    Birth of Life to the Origin of Language**. Oxford: Oxford UP, 1999.
 
@@ -692,10 +697,16 @@ Slug: read
 
 6. White, E. B. **Here Is New York**. 1949.
 
+7. Wilkes, J. **Burn Math Class: And Reinvent Mathematics for
+   Yourself**. Basic Books, 2016.
+
 
 ------------------------------------
 
 ## Fiction
+
+8. Asimov, Isaac, and Robert Silverberg. **Nightfall**. New York:
+   Doubleday, 1990.
 
 1. Asimov, Isaac. **I, Robot**. 1973.
 
@@ -710,9 +721,6 @@ Slug: read
    Doubleday, 1952.
 
 7. Asimov, Isaac. **Foundation's Edge**. Garden City, NY: Doubleday, 1982.
-
-8. Asimov, Isaac, and Robert Silverberg. **Nightfall**. New York:
-   Doubleday, 1990.
 
 5. Asimov, Isaac. **Prelude to Foundation**. New York:
    Doubleday, 1988.
@@ -734,6 +742,9 @@ Slug: read
 
 6. Galbraith, Robert. **The Cuckoo's Calling**. London: Sphere, 2014.
 
+10. García Márquez, Gabriel. **El Amor En Los Tiempos Del Colera.** Madrid:
+    Mondadori, 1989.
+
 7. Haldeman, Joe. **The Forever War**. London: Millennium, 1999.
 
 7. Heinlein, Robert A. **Stranger in a Strange Land**. New York:
@@ -745,8 +756,17 @@ Slug: read
 
 9. Huxley, Aldous. **Brave New World**. New York: Harper & Bros., 1946.
 
-10. García Márquez, Gabriel. **El Amor En Los Tiempos Del Colera.** Madrid:
-    Mondadori, 1989.
+9. Jemisin, N. K. **The Fifth Season**. Orbit, 2015.
+
+9. Jemisin, N. K. **The Obelisk Gate**. Orbit, 2016.
+
+9. Jemisin, N. K. **The Stone Sky**. Orbit, 2017.
+
+9. Leckie, A. **Ancillary Justice**. Orbit, 2013.
+
+9. Leckie, A. **Ancillary Sword**. Orbit, 2014.
+
+9. Leckie, A. **Ancillary Mercy**. Orbit, 2015.
 
 11. Le Guin, Ursula K. **The Dispossessed**. Harper Perennial, 2014.
 
