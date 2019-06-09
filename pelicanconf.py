@@ -67,15 +67,20 @@ DISPLAY_PAGES_ON_MENU = False
 DISPLAY_TAGS_INLINE = True
 DISPLAY_CATEGORIES_INLINE = True
 HIDE_SIDEBAR = False
-HIDE_SIDEBAR_ON = ('index.html', 'am.html', 'science.html', 'did.html', 'read.html')
+HIDE_SIDEBAR_ON = ('index.html',
+                   # 'am.html',
+                   # 'science.html',
+                   # 'did.html',
+                   'read.html',
+                   'do.html')
 INDEX_SAVE_AS = 'do.html'
 BANNER = 'images/banner.png'
 BANNER_ALL_PAGES = True
 BANNER_SUBTITLE = 'Grad student, human being'
 PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
-MENUITEMS = (('Who I am', '/am.html'),
-             ('What I work on', '/science.html'),
-             ('What I did', '/did.html'),
+MENUITEMS = (# ('Who I am', '/am.html'),
+             # ('What I work on', '/science.html'),
+             # ('What I did', '/did.html'),
              ('What I read', '/read.html'),
              ('What I do', '/do.html'))
