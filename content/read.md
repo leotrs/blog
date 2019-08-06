@@ -670,6 +670,9 @@ Slug: read
 7. Nowak, Martin A. **Evolutionary Dynamics: Exploring the Equations of
    Life.** Cambridge: Belknap of Harvard UP, 2006.
 
+8. Ording, Philip. **99 Variations on a proof**. Princeton University
+   Press, 2019.
+
 8. Pearl, Judea and Mackenzie, Dana. **The Book of Why. The New Science of
    Cause and Effect**. New York: Basic Books. 2018.
 
@@ -678,6 +681,9 @@ Slug: read
 
 8. Ramachandran, V. S. **The Tell-tale Brain: A Neuroscientist's Quest for
    What Makes Us Human**. New York: W.W. Norton, 2011.
+
+9. Silberman, Steve. **NeuroTribes: The Legacy of Autism and the Future of
+   Neurodiversity**. Avery, 2015.
 
 9. Singh, Sunil. **Pi of Life**. RI, 2017.
 
@@ -694,6 +700,9 @@ Slug: read
 
 5. Velleman, Daniel J. **How to Prove It: A Structured Approach**. Cambridge:
    Cambridge U, 1994.
+
+6. Wagner, Roi. **Making and breaking mathematical sense**. Princeton
+   University Press, 2017.
 
 6. White, E. B. **Here Is New York**. 1949.
 
@@ -753,6 +762,8 @@ Slug: read
 8. Herbert, Frank. **Dune**. Philadelphia: Chilton, 1965.
 
 9. Herbert, Frank. **Dune Messiah**. New York: Putnam, 1969.
+
+10. Huang, S. L. **Zero Sum Game**  Tor Books, 2018.
 
 9. Huxley, Aldous. **Brave New World**. New York: Harper & Bros., 1946.
 
