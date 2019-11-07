@@ -135,16 +135,16 @@ mean, <code>clone --bare</code>? <code>filter-branch</code>? <code>push --tags</
 follows is the trail I followed to understand the script I had just ran on
 a number of my repos.</p>
 <p>I ended up doing something along these lines:</p>
-<div class="highlight"><pre><span></span>git filter-branch --env-filter &#39;&lt;script&gt;&#39; --tag-name-filter cat -- --branches --tags
+<div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">filter</span><span class="o">-</span><span class="n">branch</span> <span class="c1">--env-filter &#39;&lt;script&gt;&#39; --tag-name-filter cat -- --branches --tags</span>
 </pre></div>
 
 
 <p>Here it is dissected word by word.</p>
 <h3>git clone --bare</h3>
 <p>The relevant section of the man page reads</p>
-<div class="highlight"><pre><span></span><span class="x">--bare</span>
-<span class="x">[...] instead of creating &lt;directory&gt; and placing the administrative</span>
-<span class="x">files in &lt;directory&gt;/.git, make the &lt;directory&gt; itself the </span><span class="p">$</span><span class="nv">GIT_DIR</span><span class="x"> [...]</span>
+<div class="highlight"><pre><span></span><span class="c1">--bare</span>
+<span class="p">[...]</span> <span class="k">instead</span> <span class="k">of</span> <span class="n">creating</span> <span class="o">&lt;</span><span class="n">directory</span><span class="o">&gt;</span> <span class="k">and</span> <span class="k">placing</span> <span class="n">the</span> <span class="n">administrative</span>
+<span class="n">files</span> <span class="k">in</span> <span class="o">&lt;</span><span class="n">directory</span><span class="o">&gt;/</span><span class="p">.</span><span class="n">git</span><span class="p">,</span> <span class="n">make</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">directory</span><span class="o">&gt;</span> <span class="n">itself</span> <span class="n">the</span> <span class="err">$</span><span class="n">GIT_DIR</span> <span class="p">[...]</span>
 </pre></div>
 
 
@@ -153,24 +153,24 @@ the actual working tree.  That makes sense, as I'm not going to modify
 files or make commits.</p>
 <h3>git filter-branch</h3>
 <p>This bad boy seems to be doing all the work.  Let's read the manual.</p>
-<div class="highlight"><pre><span></span>NAME
-       git-filter-branch - Rewrite branches
+<div class="highlight"><pre><span></span><span class="n">NAME</span>
+       <span class="n">git</span><span class="o">-</span><span class="n">filter</span><span class="o">-</span><span class="n">branch</span> <span class="o">-</span> <span class="n">Rewrite</span> <span class="n">branches</span>
 </pre></div>
 
 
 <p>Good.  Rewriting is what I'm trying to do.</p>
-<div class="highlight"><pre><span></span>DESCRIPTION
-   Lets you rewrite Git revision history by rewriting the branches
-   mentioned in the &lt;rev-list options&gt;. [...] can modify [...] information
-   about each commit.
+<div class="highlight"><pre><span></span><span class="n">DESCRIPTION</span>
+   <span class="n">Lets</span> <span class="n">you</span> <span class="n">rewrite</span> <span class="n">Git</span> <span class="n">revision</span> <span class="n">history</span> <span class="k">by</span> <span class="n">rewriting</span> <span class="n">the</span> <span class="n">branches</span>
+   <span class="n">mentioned</span> <span class="k">in</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">rev</span><span class="o">-</span><span class="n">list</span> <span class="k">options</span><span class="o">&gt;</span><span class="p">.</span> <span class="p">[...]</span> <span class="n">can</span> <span class="k">modify</span> <span class="p">[...]</span> <span class="n">information</span>
+   <span class="n">about</span> <span class="k">each</span> <span class="k">commit</span><span class="p">.</span>
 </pre></div>
 
 
 <p>Still good.</p>
-<div class="highlight"><pre><span></span>WARNING! The rewritten history will have different object names for all the
-       objects and will not converge with the original branch. You will not
-       be able to easily push and distribute the rewritten branch on top of
-       the original branch. [...]
+<div class="highlight"><pre><span></span><span class="nv">WARNING</span><span class="o">!</span> <span class="nv">The</span> <span class="nv">rewritten</span> <span class="nv">history</span> <span class="nv">will</span> <span class="nv">have</span> <span class="nv">different</span> <span class="nv">object</span> <span class="nv">names</span> <span class="k">for</span> <span class="nv">all</span> <span class="nv">the</span>
+       <span class="nv">objects</span> <span class="nv">and</span> <span class="nv">will</span> <span class="nv">not</span> <span class="nv">converge</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">original</span> <span class="nv">branch</span>. <span class="nv">You</span> <span class="nv">will</span> <span class="nv">not</span>
+       <span class="nv">be</span> <span class="nv">able</span> <span class="nv">to</span> <span class="nv">easily</span> <span class="nv">push</span> <span class="nv">and</span> <span class="nv">distribute</span> <span class="nv">the</span> <span class="nv">rewritten</span> <span class="nv">branch</span> <span class="nv">on</span> <span class="nv">top</span> <span class="nv">of</span>
+       <span class="nv">the</span> <span class="nv">original</span> <span class="nv">branch</span>. [...]
 </pre></div>
 
 
@@ -183,11 +183,11 @@ files or make commits.</p>
 
 <p>Woops.</p>
 <h3>--env-filter</h3>
-<div class="highlight"><pre><span></span>--env-filter &lt;command&gt;
-     This filter may be used if you only need to modify the
-     environment in which the commit will be performed. Specifically,
-     you might want to rewrite the author/committer name/email/time
-     environment variables [...]
+<div class="highlight"><pre><span></span><span class="o">--</span><span class="nv">env</span><span class="o">-</span><span class="nv">filter</span> <span class="o">&lt;</span><span class="nv">command</span><span class="o">&gt;</span>
+     <span class="nv">This</span> <span class="nv">filter</span> <span class="nv">may</span> <span class="nv">be</span> <span class="nv">used</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">only</span> <span class="nv">need</span> <span class="nv">to</span> <span class="nv">modify</span> <span class="nv">the</span>
+     <span class="nv">environment</span> <span class="nv">in</span> <span class="nv">which</span> <span class="nv">the</span> <span class="nv">commit</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">performed</span>. <span class="nv">Specifically</span>,
+     <span class="nv">you</span> <span class="nv">might</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">rewrite</span> <span class="nv">the</span> <span class="nv">author</span><span class="o">/</span><span class="nv">committer</span> <span class="nv">name</span><span class="o">/</span><span class="nv">email</span><span class="o">/</span><span class="nv">time</span>
+     <span class="nv">environment</span> <span class="nv">variables</span> [...]
 </pre></div>
 
 
@@ -217,14 +217,14 @@ the commits themselves).</p>
 <p>Seems simple enough.  It looks like it's going to be run inside a new
 environment for each commit.</p>
 <p>And sure enough,</p>
-<div class="highlight"><pre><span></span><span class="x">Filters</span>
-<span class="x">  [..] The &lt;command&gt; argument is always evaluated in the shell context</span>
-<span class="x">  using the eval command (with the notable exception of the commit filter,</span>
-<span class="x">  for technical reasons). Prior to that, the </span><span class="p">$</span><span class="nv">GIT_COMMIT</span><span class="x"> environment</span>
-<span class="x">  variable will be set to contain the id of the commit being</span>
-<span class="x">  rewritten. Also, GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL, GIT_AUTHOR_DATE,</span>
-<span class="x">  GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL, and GIT_COMMITTER_DATE are taken</span>
-<span class="x">  from the current commit and exported to the environment,</span>
+<div class="highlight"><pre><span></span><span class="nv">Filters</span>
+  [..] <span class="nv">The</span> <span class="o">&lt;</span><span class="nv">command</span><span class="o">&gt;</span> <span class="nv">argument</span> <span class="nv">is</span> <span class="nv">always</span> <span class="nv">evaluated</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">shell</span> <span class="nv">context</span>
+  <span class="nv">using</span> <span class="nv">the</span> <span class="nv">eval</span> <span class="nv">command</span> <span class="ss">(</span><span class="nv">with</span> <span class="nv">the</span> <span class="nv">notable</span> <span class="nv">exception</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">commit</span> <span class="nv">filter</span>,
+  <span class="k">for</span> <span class="nv">technical</span> <span class="nv">reasons</span><span class="ss">)</span>. <span class="nv">Prior</span> <span class="nv">to</span> <span class="nv">that</span>, <span class="nv">the</span> $<span class="nv">GIT_COMMIT</span> <span class="nv">environment</span>
+  <span class="nv">variable</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">set</span> <span class="nv">to</span> <span class="nv">contain</span> <span class="nv">the</span> <span class="nv">id</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">commit</span> <span class="nv">being</span>
+  <span class="nv">rewritten</span>. <span class="nv">Also</span>, <span class="nv">GIT_AUTHOR_NAME</span>, <span class="nv">GIT_AUTHOR_EMAIL</span>, <span class="nv">GIT_AUTHOR_DATE</span>,
+  <span class="nv">GIT_COMMITTER_NAME</span>, <span class="nv">GIT_COMMITTER_EMAIL</span>, <span class="nv">and</span> <span class="nv">GIT_COMMITTER_DATE</span> <span class="nv">are</span> <span class="nv">taken</span>
+  <span class="nv">from</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">commit</span> <span class="nv">and</span> <span class="nv">exported</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">environment</span>,
 </pre></div>
 
 
@@ -235,10 +235,10 @@ that tags are way of aliasing specific commits.  By default, every commit
 is only referred to by its SHA-1, so it makes sense to give friendlier
 names to the commits one might want to go back to at some point.</p>
 <p>But why do I need to filter the tags?</p>
-<div class="highlight"><pre><span></span>--tag-name-filter &lt;command&gt;
-    When passed, it will be called for every tag ref that points to a
-    rewritten object. [...] The original tags are not deleted, but can be
-    overwritten; use &quot;--tag-name-filter cat&quot; to simply update the tags.
+<div class="highlight"><pre><span></span><span class="o">--</span><span class="nv">tag</span><span class="o">-</span><span class="nv">name</span><span class="o">-</span><span class="nv">filter</span> <span class="o">&lt;</span><span class="nv">command</span><span class="o">&gt;</span>
+    <span class="nv">When</span> <span class="nv">passed</span>, <span class="nv">it</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">called</span> <span class="k">for</span> <span class="nv">every</span> <span class="nv">tag</span> <span class="nv">ref</span> <span class="nv">that</span> <span class="nv">points</span> <span class="nv">to</span> <span class="nv">a</span>
+    <span class="nv">rewritten</span> <span class="nv">object</span>. [...] <span class="nv">The</span> <span class="nv">original</span> <span class="nv">tags</span> <span class="nv">are</span> <span class="nv">not</span> <span class="nv">deleted</span>, <span class="nv">but</span> <span class="nv">can</span> <span class="nv">be</span>
+    <span class="nv">overwritten</span><span class="c1">; use &quot;--tag-name-filter cat&quot; to simply update the tags.</span>
 </pre></div>
 
 

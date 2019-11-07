@@ -9,8 +9,8 @@ Diego Torres (or Leo Torres (or Leo))). You can
 [code](https://www.github.com/leotrs),
 [follow](https://www.twitter.com/_leotrs) me, [read](read.html) what I
 read, or [read](do.html) what I write. Below is a short bio, and further
-below is my CV which can also be found in PDF format
-[here]({attach}/static/resume.pdf).
+below is my CV and list of publications, which can also be found in PDF
+format [here]({attach}/static/resume.pdf).
 
 
 ------------------------------------------------------------------------

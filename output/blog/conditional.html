@@ -146,7 +146,7 @@ is a bit more complicated than expected (heh — "expected").</p>
 <p>But if the reader is interested, here is the most correct way I
 found to do this.  (You can find the same explanation in the linked
 <strong>erdos</strong> page section on expansion questions.)</p>
-<hr />
+<hr>
 <p>The clustering coefficient of node <span class="math">\(i\)</span> is equal to the number of edges
 etween its neighbors, which we call <span class="math">\(m_i\)</span>, divided by the total number
 of possible edges between them.  Thus, if <span class="math">\(k_i\)</span> is <span class="math">\(i\)</span>'s degree, we
@@ -169,7 +169,7 @@ $$</div>
 (d - 1)}{2}, p)\)</span> random variable is <span class="math">\(p \frac{d (d - 1)}{2}\)</span>.</p>
 <p>We finish by observing that</p>
 <div class="math">$$ \mathbf{E}[c_i] = \mathbf{E}[\mathbf{E}[c_i \mid k_i]] = p. $$</div>
-<hr />
+<hr>
 <p>In light of this proof, we can see that the aforementioned mistake did
 indeed work, but only because <span class="math">\(m_i\)</span> is <span class="math">\(k_i\)</span>-measurable and we happened to
 choose the same value (in this case, <span class="math">\(\langle k \rangle\)</span>) for both the
@@ -189,15 +189,16 @@ place.  <em>It just works.</em></p>
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -211,6 +212,8 @@ place.  <em>It just works.</em></p>
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -231,6 +234,8 @@ place.  <em>It just works.</em></p>
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>

@@ -125,21 +125,21 @@ example, to match a previously captured group again.</p>
 <p>I came across this when I was trying to match as many contiguous
 repetitions of any letter, <em>but only the same letter</em>. This is what I came
 up with:</p>
-<div class="highlight"><pre><span></span>r&#39;((.)\2*)&#39;
+<div class="highlight"><pre><span></span><span class="n">r</span><span class="s1">&#39;((.)\2*)&#39;</span>
 </pre></div>
 
 
 <p>I will try to explain what this regex does character by character, but I'll
 let <a href="https://regex101.com">regex101</a> do it for me:</p>
-<div class="highlight"><pre><span></span>/((.)\2*)/
-1st Capturing group ((.)\2*)
+<div class="highlight"><pre><span></span><span class="o">/</span><span class="p">((.)</span><span class="err">\</span><span class="mi">2</span><span class="o">*</span><span class="p">)</span><span class="o">/</span><span class="w"></span>
+<span class="mi">1</span><span class="n">st</span><span class="w"> </span><span class="n">Capturing</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="p">((.)</span><span class="err">\</span><span class="mi">2</span><span class="o">*</span><span class="p">)</span><span class="w"></span>
 
-  2nd Capturing group (.)
-    . matches any character (except newline)
+<span class="w">  </span><span class="mi">2</span><span class="n">nd</span><span class="w"> </span><span class="n">Capturing</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="p">(.)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="p">(</span><span class="ow">except</span><span class="w"> </span><span class="n">newline</span><span class="p">)</span><span class="w"></span>
 
-  \2* matches the same text as most recently matched by the 2nd capturing group
-    Quantifier: * Between zero and unlimited times, as many times as
-    possible, giving back as needed [greedy]
+<span class="w">  </span><span class="err">\</span><span class="mi">2</span><span class="o">*</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="nc">text</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">recently</span><span class="w"> </span><span class="n">matched</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="mi">2</span><span class="n">nd</span><span class="w"> </span><span class="n">capturing</span><span class="w"> </span><span class="k">group</span><span class="w"></span>
+<span class="w">    </span><span class="nl">Quantifier</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="ow">Between</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">unlimited</span><span class="w"> </span><span class="n">times</span><span class="p">,</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">as</span><span class="w"></span>
+<span class="w">    </span><span class="n">possible</span><span class="p">,</span><span class="w"> </span><span class="n">giving</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="o">[</span><span class="n">greedy</span><span class="o">]</span><span class="w"></span>
 </pre></div>
 
 

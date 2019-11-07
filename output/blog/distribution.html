@@ -127,7 +127,7 @@ the
 of scale-free networks.  In front of Barabási himself.  So, I was nervous.</p>
 <p>This is a write-up of more or less what I said.  I think I did a pretty
 good job.</p>
-<hr />
+<hr>
 <p>Let <span class="math">\(X\)</span> be a node chosen uniformly at random in a BA network with <span class="math">\(N\)</span>
 nodes, where at each time-step we add a new node to the network, with <span class="math">\(m\)</span>
 links connecting to nodes chosen proportionately to their degree (this is
@@ -178,7 +178,7 @@ $$</div>
 <p>Which is the formula that appears on page <span class="math">\(511\)</span> of the
 <a href="https://www3.nd.edu/~networks/Publication%20Categories/03%20Journal%20Articles/Physics/EmergenceRandom_Science%20286,%20509-512%20(1999).pdf">original paper</a>.
 Perfect!</p>
-<hr />
+<hr>
 <p>The amazing thing about this formula is that it doesn't depend on <span class="math">\(N\)</span> or
 <span class="math">\(t\)</span>, neither size nor time.  This means that, assuming, for example, that
 the WWW follows a growth process similar to that of the BA model, the
@@ -197,15 +197,16 @@ ten (or a hundred!) years. I believe the technical term for this is
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -219,6 +220,8 @@ ten (or a hundred!) years. I believe the technical term for this is
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -239,6 +242,8 @@ ten (or a hundred!) years. I believe the technical term for this is
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
