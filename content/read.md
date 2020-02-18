@@ -690,10 +690,16 @@ Slug: read
 9. Smith, John Maynard, and Eörs Szathmáry. **The Origins of Life: From the
    Birth of Life to the Origin of Language**. Oxford: Oxford UP, 1999.
 
+9. Raymond M. Smullyan. **What Is the Name of This Book?: The Riddle of
+   Dracula and Other Logical Puzzles**, 1978.
+
 6. Sporns, Olaf. **Networks of the Brain**. Cambridge, MA: MIT, 2011.
 
 7. Sporns, Olaf. **Discovering the Human Connectome**. Cambridge, MA:
    MIT, 2012.
+
+7. Su, Francis. **Mathematics for Human Flourishing**. Yale University
+   Press, 2020.
 
 4. Thagard, Paul. **Mind: Introduction to Cognitive Science**. Cambridge, MA:
    MIT, 2005.
@@ -781,6 +787,8 @@ Slug: read
 
 11. Le Guin, Ursula K. **The Dispossessed**. Harper Perennial, 2014.
 
+10. Le Guin, Ursula K. **The Left Hand of Darkness**. Hachette UK, 2012.
+
 12. Orwell, George, **Nineteen Eighty-Four**. 1949.
 
 8. Pohl, Frederik. **The Meeting**. 1972.
@@ -810,9 +818,8 @@ Slug: read
 
 7. Sawyer, Robert J. **Hominids**. New York: Tor. 2002.
 
-7. Tolkien, J. R. R. **The Hobbit, Or, There and Back Again**. Boston:
-   Houghton Mifflin, 1966.
+7. Simmons, Dan. **Hyperion**. 1989.
+
+7. Tolkien, J. R. R. **The Hobbit, Or, There and Back Again**. 1966.
 
 9. Tolkien, J. R. R. **The Lord of the Rings**. 1967.
-
-

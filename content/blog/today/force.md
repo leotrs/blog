@@ -49,7 +49,7 @@ the force-directed layout, but of course we weren't allowed to use it
 because we are PhD students and we have to know how to build wheels before
 we can use them. (It's not exactly *reinventing the wheel*...)
 
-Anyhoo, [here]({filename}/static/random-force.html) is my thingy.
+Anyhoo, [here]({static}/static/random-force.html) is my thingy.
 
 Yes, it's far from optimal, and yes, it freezes for a bit, and yes, it does
 take some time for the whole thing to converge to its final state (keep

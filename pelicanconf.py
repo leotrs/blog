@@ -69,7 +69,7 @@ DISPLAY_CATEGORIES_INLINE = True
 HIDE_SIDEBAR = False
 HIDE_SIDEBAR_ON = ('index.html',
                    # 'am.html',
-                   # 'science.html',
+                   'science.html',
                    # 'did.html',
                    'read.html',
                    'do.html')
@@ -80,7 +80,7 @@ BANNER_SUBTITLE = 'Grad student, human being'
 PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
 MENUITEMS = (# ('Who I am', '/am.html'),
-             # ('What I work on', '/science.html'),
+             ('What I work on', '/science.html'),
              # ('What I did', '/did.html'),
              ('What I read', '/read.html'),
              ('What I do', '/do.html'))
