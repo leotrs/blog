@@ -6,7 +6,7 @@ import os
 AUTHOR = 'leotrs'
 SITENAME = 'Leo Torres'
 SITEURL = ''
-SIDEBAR_DIGEST = 'Grad student, human being.'
+SIDEBAR_DIGEST = 'PhD candidate, human being.'
 
 PATH = 'content'
 THEME_PATH = '../pelican/pelican-themes/'
@@ -76,7 +76,7 @@ HIDE_SIDEBAR_ON = ('index.html',
 INDEX_SAVE_AS = 'do.html'
 BANNER = 'images/banner.png'
 BANNER_ALL_PAGES = True
-BANNER_SUBTITLE = 'Grad student, human being'
+BANNER_SUBTITLE = 'PhD candidate, human being'
 PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
 MENUITEMS = (# ('Who I am', '/am.html'),
