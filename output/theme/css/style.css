@@ -245,3 +245,44 @@ figure.floatcenter, .align-center {
 body {
     line-height: 24px;
 }
+
+#sidebar .list-group {
+    background-color: transparent;
+    margin: auto;
+}
+
+#sidebar .list-group-item {
+    padding: inherit;
+}
+
+#sidebar li.list-group-item {
+    padding: 5px 15px 5px 15px;
+}
+
+#sidebar li.list-group-item {
+    padding: 5px 15px 5px 15px;
+}
+
+#sidebar .well-sm {
+    width: max-content;
+}
+
+.my-pic {
+    float: left;
+    padding-right: 10px;
+}
+
+.project-pic {
+    padding-right: 10px;
+
+}
+
+.project-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.h1 {
+    margin-top: 1.5em;
+}

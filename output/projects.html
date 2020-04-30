@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Projects - Leo Torres</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://leotrs.com/projects.html">
+
+        <meta name="author" content="leotrs" />
+        <meta name="description" content="Graph Distances Distances between graphs have been considered extensively in the network science literature, though the available methods vary greatly in the features they use for comparison, their interpretability, computational costs, and their discriminatory power. This proliferation of methods reflects the fact that complex networks represent a wide variety of …" />
+
+    <meta property="og:site_name" content="Leo Torres" />
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Projects"/>
+    <meta property="og:url" content="http://leotrs.com/projects.html"/>
+    <meta property="og:description" content="Graph Distances Distances between graphs have been considered extensively in the network science literature, though the available methods vary greatly in the features they use for comparison, their interpretability, computational costs, and their discriminatory power. This proliferation of methods reflects the fact that complex networks represent a wide variety of …" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://leotrs.com/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://leotrs.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://leotrs.com/theme/css/pygments/solarizedlight.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://leotrs.com/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://leotrs.com/" class="navbar-brand">
+Leo Torres            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li class="active"><a href="/projects.html">Projects</a></li>
+                    <li><a href="/science.html">Publications</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<style>
+	#banner{
+	    background-image:url("http://leotrs.com/images/banner.png");
+	}
+</style>
+
+<div id="banner">
+	<div class="container">
+		<div class="copy">
+			<h1>Leo Torres</h1>
+				<p class="intro">PhD candidate, human being</p>
+		</div>
+	</div>
+</div><!-- End Banner -->
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-sm-9">
+    <section id="content" class="body">
+      <!--            <h1 class="entry-title" style="display: inline; ">Projects</h1>
+ -->
+        
+        <div class="entry-content">
+            <h1>Graph Distances</h1>
+<div class="project-pic">
+<img class="project-img"
+    alt="Schematic of the distance between two graphs."
+    src="../images/distance.jpg"
+    height="300"/>
+</div>
+
+<p>Distances between graphs have been considered extensively in the network
+science literature, though the available methods vary greatly in the
+features they use for comparison, their interpretability, computational
+costs, and their discriminatory power.  This proliferation of methods
+reflects the fact that complex networks represent a wide variety of systems
+whose structure is difficult to encapsulate in a single distance score.</p>
+<p>I'm particularly interested in graph distance algorithms that are i)
+rigorously principled in the metric structure of graphs and that ii) are
+computationally efficient and iii) interpretable in terms of features of
+interest to network scientists. </p>
+<p><strong>Related publications:</strong></p>
+<ul>
+<li>
+<p>Leo Torres, P. Suárez-Serrato and T. Eliassi-Rad. <strong>Non-backtracking
+  Cycles: Length Spectrum Theory and Graph Mining Applications</strong>. Appl Netw
+  Sci (2019) 4: 41. <a href="https://doi.org/10.1007/s41109-019-0147-y">[link]</a></p>
+</li>
+<li>
+<p><strong>netrd</strong> is a multi-purpose library with dozens of state-of-the-art
+  implementations of algorithms for simulating dynamics on networks,
+  measuring the distance between networks, and reconstructing networks from
+  temporal data. <a href="https://github.com/netsiphd/netrd">[link]</a></p>
+</li>
+</ul>
+<hr>
+<h1>Non-backtracking Matrix</h1>
+<div class="project-pic">
+<img class="project-img"
+    alt="Schematic of the non-backtracking matrix."
+    src="../images/nbm.jpg"
+    height="300" />
+</div>
+
+<p>Spectral graph theory has numerous applications to network science and
+graph mining. The cornerstone idea of spectral graph theory is to represent
+the graph using a matrix, and then use the eigenvalues of this matrix to
+understand the structure of the graph. Traditionally, it focuses on using
+the adjacency matrix, the Laplacian matrix, and the random walk
+matrix. Much less studied is the so-called non-backtracking matrix, which
+has found applications to community detection, graph distance, graph
+embedding, network robustness, centrality, random walks, etc.</p>
+<p>My interest in the non-backtracking matrix comes from, among other things,
+the fact that it is not normal (and thus not symmetric). Since standard
+methods in spectral graph theory apply only to symmetric matrices, the
+study of the non-backtracking matrix requires the development of entirely
+new linear algebraic techniques.</p>
+<p><strong>Related publications:</strong></p>
+<ul>
+<li>
+<p>Leo Torres, K. S. Chan, H. Tong and T. Eliassi-Rad. <strong>Node Immunization
+  with Non-backtracking Eigenvalues</strong>. Preprint. arXiv:2002.12309 (2020)
+  <a href="https://arxiv.org/abs/2002.12309">[link]</a></p>
+</li>
+<li>
+<p>Leo Torres, P. Suárez-Serrato and T. Eliassi-Rad. <strong>Non-backtracking
+  Cycles: Length Spectrum Theory and Graph Mining Applications</strong>. Appl Netw
+  Sci (2019) 4: 41. <a href="https://doi.org/10.1007/s41109-019-0147-y">[link]</a></p>
+</li>
+</ul>
+<hr>
+<h1>Graph Embeddings</h1>
+<div class="project-pic">
+<img class="project-img"
+    alt="Schematic of graph embedding."
+    src="../images/embedding.jpg"
+    height="300" />
+</div>
+
+<p>Embedding (a.k.a. dimensionality reduction or representation learning) is a
+fundamental task in machine learning.  In graph mining, the goal of a graph
+embedding algorithm is to find a feature vector for each node in a
+graph. These vectors can then be fed into a downstream machine learning
+algorithm such as link prediction or node classiffication. Link prediction
+is of particular importance to network scientists as it is tightly related
+to the study of growth mechanisms. </p>
+<p>I'm particularly interested in graph embedding algorithms that try not only
+to optimize a certain objective function, but that propose a different way
+of encoding the graph's structure in the geometry of the embedding
+space. Accordingly, I care about algorithm efficiency just as much as I
+care about the interpretability of the results.</p>
+<p><strong>Related publications:</strong></p>
+<ul>
+<li>
+<p>Leo Torres, K. S. Chan, and T. Eliassi-Rad. <strong>GLEE: Geometric Laplacian
+  Eigenmap Embedding</strong>. Journal of Complex Networks, Volume 8, Issue 2,
+  April 2020,
+  cnaa007. <a href="https://academic.oup.com/comnet/article/8/2/cnaa007/5775302?guestAccessKey=a6a1e399-bc7d-48db-82ad-5a3beabd81bf">[link]</a></p>
+</li>
+<li>
+<p>Leo Torres, P. Suárez-Serrato and T. Eliassi-Rad. <strong>Non-backtracking
+  Cycles: Length Spectrum Theory and Graph Mining Applications</strong>. Appl Netw
+  Sci (2019) 4: 41. <a href="https://doi.org/10.1007/s41109-019-0147-y">[link]</a></p>
+</li>
+</ul>
+<hr>
+<h1>COVID-19</h1>
+<p>As many other scientists, I put my research skills in the service of
+fighting the COVID-19 pandemic. In particular, I am helping the research
+efforts at the <a href="https://www.networkscienceinstitute.org/covid-19">Network Science
+Institute</a> and the <a href="http://mobs-lab.org/">MOBS
+Lab</a> by using network science methods to analyze
+mobility data and the spread of the epidemic.</p>
+<p><strong>Related publications:</strong></p>
+<ul>
+<li>B. Klein, T. LaRock, S. McCabe, Leo Torres, F. Privitera, B. Lake,
+  M. U. G. Kraemer, J. S. Brownstein, D. Lazer, T. Eliassi-Rad,
+  S. V. Scarpino, M- Chinazzi, and A. Vespignani. <strong>Assessing changes in
+  commuting and individual mobility in major metropolitan areas in the
+  United States during the COVID-19 outbreak</strong>. Technical
+  Report. <a href="https://www.mobs-lab.org/uploads/6/7/8/7/6787877/assessing_mobility_changes_in_the_united_states_during_the_covid_19_outbreak.pdf">[link]</a></li>
+</ul>
+        </div>
+    </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <!-- <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4> -->
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:leo@leotrs.com"><i class="fa fa-envelope-square fa-lg"></i> email</a></li>
+                <li class="list-group-item"><a href="https://www.github.com/leotrs"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="https://www.twitter.com/_leotrs"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en"><i class="fa fa-check-square fa-lg"></i> scholar</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+        <!-- <hr /> -->
+        <!-- <li class="list-group-item"> -->
+        <!-- <div class="rc-scout"></div> -->
+        <!-- </li> -->
+
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+        <div class="col-xs-10">
+            <div class="rc-scout"></div>
+            &copy; 2017 leotrs
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://leotrs.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://leotrs.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://leotrs.com/theme/js/respond.min.js"></script>
+
+    <script src="http://leotrs.com/theme/js/bodypadding.js"></script>
+
+<script async defer src="https://www.recurse-scout.com/loader.js?t=8ee529bb51c0ad21d73b98a45a13d144"></script>
+</body>
+</html>

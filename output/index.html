@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Home Page - Leo Torres</title>
+    <title>Home - Leo Torres</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,13 +12,13 @@
 <link rel="canonical" href="http://leotrs.com/">
 
         <meta name="author" content="leotrs" />
-        <meta name="description" content="This is the personal website of Diego Leonardo Torres Navarrete (or Diego Torres (or Leo Torres (or Leo))). You can write to me, review my code, follow me, read my papers, read what I read, or read my blog (discontinued). Below is a short bio, and here is my CV …" />
+        <meta name="description" content="This is the personal website of Diego Leonardo Torres Navarrete (or Diego Torres (or Leo Torres (or Leo))). Below is a short bio, here is a succinct list of my research interests, here is a list of my publications, and here is my CV. I am a PhD candidate at …" />
 
     <meta property="og:site_name" content="Leo Torres" />
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="Home Page"/>
+    <meta property="og:title" content="Home"/>
     <meta property="og:url" content="http://leotrs.com/"/>
-    <meta property="og:description" content="This is the personal website of Diego Leonardo Torres Navarrete (or Diego Torres (or Leo Torres (or Leo))). You can write to me, review my code, follow me, read my papers, read what I read, or read my blog (discontinued). Below is a short bio, and here is my CV …" />
+    <meta property="og:description" content="This is the personal website of Diego Leonardo Torres Navarrete (or Diego Torres (or Leo Torres (or Leo))). Below is a short bio, here is a succinct list of my research interests, here is a list of my publications, and here is my CV. I am a PhD candidate at …" />
 
 
     <!-- Bootstrap -->
@@ -49,9 +49,8 @@ Leo Torres            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                    <li><a href="/science.html">What I work on</a></li>
-                    <li><a href="/read.html">What I read</a></li>
-                    <li><a href="/do.html">What I do</a></li>
+                    <li><a href="/projects.html">Projects</a></li>
+                    <li><a href="/science.html">Publications</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -78,21 +77,19 @@ Leo Torres            </a>
     <div class="row">
 
 
-        <div class="col-lg-12">
+        <div class="col-sm-9">
     <section id="content" class="body">
-        <h1 class="entry-title" style="display: inline; ">Home Page</h1>
+      <!--            <h1 class="entry-title" style="display: inline; ">Home</h1>
+ -->
         
         <div class="entry-content">
             <p>This is the personal website of <strong>Diego Leonardo Torres Navarrete</strong> (or
-Diego Torres (or Leo Torres (or Leo))). You can
-<a href="mailto:leo@leotrs.com">write</a> to me, review my
-<a href="https://www.github.com/leotrs">code</a>,
-<a href="https://www.twitter.com/_leotrs">follow</a> me, read my <a href="science.html">papers</a>,
-<a href="read.html">read</a> what I read, or read my <a href="do.html">blog</a>
-(discontinued). Below is a short bio, and
+Diego Torres (or Leo Torres (or Leo))). Below is a short bio,
+<a href="projects.html">here</a> is a succinct list of my research interests,
+<a href="science.html">here</a> is a list of my publications, and
 <a href="http://leotrs.com/static/resume.pdf">here</a> is my CV.</p>
 <hr>
-<div class="my-pic" style="float:left; padding-right: 10px; ">
+<div class="my-pic">
 <img alt="This is a picture of me."
      src="../images/pic.jpg"
      height="200"
@@ -104,12 +101,10 @@ Institute</a> at <a href="https://www.northeastern.edu/">Northeastern
 University</a>, under the advisement of <a href="http://eliassi.org/">Tina
 Eliassi-Rad</a>. I am broadly interested in the
 intersection of Network Science, Complexity Science, and Mathematics.  I
-specialize in introducing novel mathematical and computational tools to the
-network science toolbox. Some of my particular interests are differential
-geometry, metric geometry, algebraic topology, spectral linear algebra,
-graph mining, representation learning, machine learning.  I strongly adhere
-to the belief that <em>code is science</em>, and thus I put especial emphasis on
-high-quality code writing standards.</p>
+specialize in applying spectral methods to solve machine learning or data
+mining tasks on networks. I strongly adhere to the belief that <em>code is
+science</em>, and thus I put especial emphasis on high-quality code writing
+standards.</p>
 <p>I have a B.S. in Mathematics from
 <a href="http://www.pucp.edu.pe/"><em>Pontificia Universidad Católica del Perú</em></a>, and
 I am a self-taught programmer.  I have taught mathematics (analysis and
@@ -118,10 +113,37 @@ I was a Research Programmer at
 <a href="https://www.wolfram.com/">Wolfram Research South America</a>.  I have
 attended the <a href="https://www.recurse.com">Recurse Center</a>, a programmers
 retreat, to focus on algorithm design and code writing standards.</p>
-<p>I spend a lot of my time staring at an empty whiteboard or typing
-semicolons and whitespace on a text editor.</p>
+<p>I spend a lot of my time staring at empty whiteboards and typing whitespace
+on text editors.</p>
         </div>
     </section>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <!-- <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4> -->
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:leo@leotrs.com"><i class="fa fa-envelope-square fa-lg"></i> email</a></li>
+                <li class="list-group-item"><a href="https://www.github.com/leotrs"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="https://www.twitter.com/_leotrs"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en"><i class="fa fa-check-square fa-lg"></i> scholar</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+        <!-- <hr /> -->
+        <!-- <li class="list-group-item"> -->
+        <!-- <div class="rc-scout"></div> -->
+        <!-- </li> -->
+
+    </ul>
+</section>            </aside>
         </div>
     </div>
 </div>

@@ -28,9 +28,11 @@ PAGE_EXCLUDES = ['images', 'static']
 STATIC_PATHS = ['images', 'static']
 
 # Social links
-# SOCIAL = (('email', 'mailto:leo@leotrs.com'),
-#           ('github', 'https://www.github.com/leotrs'),
-#           ('twitter', 'https://www.twitter.com/leorrot'))
+SOCIAL = (('email', 'mailto:leo@leotrs.com', 'envelope'),
+          ('github', 'https://www.github.com/leotrs'),
+          ('twitter', 'https://www.twitter.com/_leotrs'),
+          ('scholar', 'https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en', 'check')
+)
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -61,26 +63,32 @@ JINJA2CONTENT_TEMPLATES = ['static']
 # bootstrap3 theme tweaks
 CATEGORIES_URL = 'do.html'
 TAGS_URL = 'do.html'
-DISPLAY_CATEGORIES_ON_SIDEBAR = True
+DISPLAY_CATEGORIES_ON_SIDEBAR = False
 DISPLAY_CATEGORIES_ON_MENU = False
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_TAGS_INLINE = True
+DISPLAY_TAGS_ON_SIDEBAR = False
 DISPLAY_CATEGORIES_INLINE = True
+DISPLAY_RECENT_POSTS_ON_SIDEBAR = False
 HIDE_SIDEBAR = False
-HIDE_SIDEBAR_ON = ('index.html',
+#HIDE_SIDEBAR_ON = ('index.html',
                    # 'am.html',
-                   'science.html',
+                   # 'science.html',
                    # 'did.html',
-                   'read.html',
-                   'do.html')
+                   # 'read.html',
+                   # 'do.html'
+                   #)
 INDEX_SAVE_AS = 'do.html'
 BANNER = 'images/banner.png'
 BANNER_ALL_PAGES = True
 BANNER_SUBTITLE = 'PhD candidate, human being'
 PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
-MENUITEMS = (# ('Who I am', '/am.html'),
-             ('What I work on', '/science.html'),
-             # ('What I did', '/did.html'),
-             ('What I read', '/read.html'),
-             ('What I do', '/do.html'))
+MENUITEMS = (
+    # ('Who I am', '/am.html'),
+    ('Projects', '/projects.html'),
+    ('Publications', '/science.html'),
+    # ('What I did', '/did.html'),
+    # ('What I read', '/read.html'),
+    # ('What I do', '/do.html')
+)
