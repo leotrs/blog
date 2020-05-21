@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+from datetime import date
 import os
 
 AUTHOR = 'leotrs'
 SITENAME = 'Leo Torres'
 SITEURL = ''
 SIDEBAR_DIGEST = 'PhD candidate, human being.'
+CURRENTYEAR = date.today().year
 
 PATH = 'content'
 THEME_PATH = '../pelican/pelican-themes/'

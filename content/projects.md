@@ -123,9 +123,17 @@ mobility data and the spread of the epidemic.
 
 **Related publications:**
 
-+ B. Klein, T. LaRock, S. McCabe, Leo Torres, F. Privitera, B. Lake,
++ B. Klein, T. LaRock, S. McCabe, L. Torres, L. Friedland, F. Privitera,
+  B. Lake, M. U. G. Kraemer, J. S. Brownstein, D. Lazer, T. Eliassi-Rad,
+  S. V. Scarpino, A. Vespignani, and M- Chinazzi. **Reshaping a nation:
+  Mobility, commuting, and contact patterns during the COVID-19 outbreak.**
+  Technical report
+  (2020). [[link]](https://www.mobs-lab.org/uploads/6/7/8/7/6787877/covid19mobility_report2.pdf)
+
++ B. Klein, T. LaRock, S. McCabe, L. Torres, F. Privitera, B. Lake,
   M. U. G. Kraemer, J. S. Brownstein, D. Lazer, T. Eliassi-Rad,
   S. V. Scarpino, M- Chinazzi, and A. Vespignani. **Assessing changes in
   commuting and individual mobility in major metropolitan areas in the
   United States during the COVID-19 outbreak**. Technical
-  Report. [[link]](https://www.mobs-lab.org/uploads/6/7/8/7/6787877/assessing_mobility_changes_in_the_united_states_during_the_covid_19_outbreak.pdf)
+  report (2020). [[link]](https://www.mobs-lab.org/uploads/6/7/8/7/6787877/assessing_mobility_changes_in_the_united_states_during_the_covid_19_outbreak.pdf)
+
