@@ -7,7 +7,7 @@ import os
 AUTHOR = 'leotrs'
 SITENAME = 'Leo Torres'
 SITEURL = ''
-SIDEBAR_DIGEST = 'PhD candidate, human being.'
+SIDEBAR_DIGEST = 'Network Scientist'
 CURRENTYEAR = date.today().year
 
 PATH = 'content'
@@ -33,7 +33,8 @@ STATIC_PATHS = ['images', 'static']
 SOCIAL = (('email', 'mailto:leo@leotrs.com', 'envelope'),
           ('github', 'https://www.github.com/leotrs'),
           ('twitter', 'https://www.twitter.com/_leotrs'),
-          ('scholar', 'https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en', 'check')
+          ('scholar', 'https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en', 'check'),
+          ('resume', 'static/resume.pdf', 'file-text'),
 )
 
 # Feed generation is usually not desired when developing
@@ -81,9 +82,9 @@ HIDE_SIDEBAR = False
                    # 'do.html'
                    #)
 INDEX_SAVE_AS = 'do.html'
-BANNER = 'images/banner.png'
+BANNER = 'images/banner_small.png'
 BANNER_ALL_PAGES = True
-BANNER_SUBTITLE = 'PhD candidate, human being'
+BANNER_SUBTITLE = 'Network Scientist'
 PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
 MENUITEMS = (

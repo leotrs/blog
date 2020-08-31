@@ -269,11 +269,6 @@ body {
     width: max-content;
 }
 
-.my-pic {
-    float: left;
-    padding-right: 10px;
-}
-
 .project-pic {
     padding-right: 10px;
 
@@ -287,4 +282,61 @@ body {
 
 .h1 {
     margin-top: 1.5em;
+}
+
+#pic-col {
+    align-self: center;
+}
+
+
+/* Make sure the image doesn't overflow the column */
+.my-pic {
+    max-width: 100%;
+    height: auto;
+}
+
+/* This is so that the left and right columns in the landing page become
+   centered when the viewport becomes small.  Inspired in
+   https://stackoverflow.com/a/25536523/14157230 */
+.text-left-not-xs, .text-left-not-sm, .text-left-not-md, .text-left-not-lg {
+    text-align: left;
+}
+.text-center-not-xs, .text-center-not-sm, .text-center-not-md, .text-center-not-lg {
+    text-align: center;
+}
+.text-right-not-xs, .text-right-not-sm, .text-right-not-md, .text-right-not-lg {
+    text-align: right;
+}
+.text-justify-not-xs, .text-justify-not-sm, .text-justify-not-md, .text-justify-not-lg {
+    text-align: justify;
+}
+.display-flex-not-s {
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    .text-left-not-xs, .text-center-not-xs, .text-right-not-xs, .text-justify-not-xs {
+        text-align: inherit;
+    }
+    .text-left-xs {
+        text-align: left;
+    }
+    .text-center-xs {
+        text-align: center;
+    }
+    .text-right-xs {
+        text-align: right;
+    }
+    .text-justify-xs {
+        text-align: justify;
+    }
+    .block-center-xs {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 767px) {
+    .display-flex-not-s {
+        display: block;
+    }    
 }
