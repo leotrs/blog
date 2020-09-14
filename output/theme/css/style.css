@@ -178,7 +178,7 @@ figure.floatcenter, .align-center {
     background-size: cover;
     background-color: #C4C4C4;
     margin: 0 0 20px;
-    padding: 70px 0; /*controls padding around inner text*/
+    padding: 40px 0; /*controls padding around inner text*/
     position: relative;
 }
 

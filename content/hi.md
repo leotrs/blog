@@ -21,3 +21,6 @@ South America](https://www.wolfram.com/).  I have attended the [Recurse
 Center](https://www.recurse.com), a programmers retreat, to focus on algorithm
 design and code writing standards.  I spend a lot of my time staring at empty
 whiteboards and typing whitespace on text editors.
+
+Here's some of my [research interests](/projects.html) and my
+[publications](/science.html).

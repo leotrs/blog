@@ -89,6 +89,7 @@ PYGMENTS_STYLE = 'solarizedlight'
 DISPLAY_ARTICLE_INFO_ON_INDEX = True
 MENUITEMS = (
     # ('Who I am', '/am.html'),
+    ('Home', '/index.html'),
     ('Projects', '/projects.html'),
     ('Publications', '/science.html'),
     # ('What I did', '/did.html'),
