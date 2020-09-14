@@ -11,7 +11,7 @@ Eliassi-Rad](http://eliassi.org/).  I am broadly interested in the intersection
 of Network Science, Complexity Science, and Mathematics.  I specialize in
 applying spectral methods to solve machine learning or data mining tasks on
 networks.  I strongly adhere to the belief that *code is science*, and thus I
-put especial emphasis on high-quality code writing standards.
+put special emphasis on high-quality code writing standards.
 
 I have a B.S. in Mathematics from [*Pontificia Universidad Católica del
 Perú*](http://www.pucp.edu.pe/), and I am a self-taught programmer.  I have
