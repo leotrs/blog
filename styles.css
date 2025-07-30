@@ -46,7 +46,7 @@ body {
 
 /* Navigation */
 nav {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: var(--space-md);
   display: flex;
@@ -64,10 +64,17 @@ nav {
 .nav-links a {
   color: var(--dark-gray);
   text-decoration: none;
-  transition: color 0.2s;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+  color: var(--navy);
+  background-color: var(--light-bg);
+  transform: translateY(-1px);
+}
+
 .nav-links a.active {
   color: var(--navy);
 }
@@ -483,7 +490,7 @@ section {
 }
 
 .contact-links a {
-  color: var(--coral);
+  color: var(--dark-gray);
   text-decoration: none;
   font-weight: 500;
 }
