@@ -110,6 +110,32 @@
         height: 12px;
         transform: rotate(45deg);
         cursor: pointer;
+        position: relative;
+      }
+
+      .diamond::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-45deg);
+        background-color: var(--charcoal);
+        color: var(--white);
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.15s, visibility 0.15s;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .diamond:hover::after {
+        opacity: 1;
+        visibility: visible;
       }
 
       /* Engineer active state - third diamond filled */
@@ -491,9 +517,9 @@
             <a href="#skills" class="nav-link" onclick="showPage('skills', this)">Skills</a>
           </div>
           <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='researcher.html'" title="Researcher"></div>
-            <div class="diamond" onclick="window.location.href='leader.html'" title="Leader"></div>
-            <div class="diamond" onclick="window.location.href='engineer.html'" title="Engineer"></div>
+            <div class="diamond" onclick="window.location.href='researcher.html'" data-tooltip="Researcher"></div>
+            <div class="diamond" onclick="window.location.href='leader.html'" data-tooltip="Leader"></div>
+            <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
           </div>
         </nav>
       </header>
@@ -792,6 +818,7 @@
       if (initialLink) {
         showPage(initialPage, initialLink);
       }
+
     </script>
   </body>
 </html>
