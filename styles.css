@@ -3,6 +3,7 @@
   --navy: #1a365d;
   --gold: #f59e0b;
   --coral: #e53e3e;
+  --plum: #6b5b95;
   --light-bg: #f8fafc;
   --medium-gray: #6b7280;
   --dark-gray: #4b5563;
@@ -513,7 +514,7 @@ section {
 }
 
 .footer-diamonds .diamond:nth-child(1) {
-  background-color: var(--navy);
+  background-color: var(--plum);
 }
 
 .footer-diamonds .diamond:nth-child(2) {
