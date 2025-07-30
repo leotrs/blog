@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Torres - Network Science Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Colors */
+        --navy: #1a365d;
+        --gold: #f59e0b;
+        --coral: #e53e3e;
+        --light-bg: #f8fafc;
+        --medium-gray: #6b7280;
+        --dark-gray: #4b5563;
+        --charcoal: #1f2937;
+        --white: #ffffff;
+        
+        /* Typography */
+        --font-primary: 'Manrope', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        
+        /* Spacing */
+        --space-xs: 8px;
+        --space-sm: 15px;
+        --space-md: 25px;
+        --space-lg: 35px;
+        --space-xl: 50px;
+        --space-xxl: 60px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        background-color: var(--light-bg);
+        color: var(--charcoal);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: var(--space-xxl);
+        background-color: var(--white);
+        min-height: 100vh;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Navigation */
+      nav {
+        margin-bottom: var(--space-xl);
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: var(--space-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--space-lg);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .nav-links a {
+        color: var(--dark-gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--navy);
+      }
+
+      .nav-links a.active {
+        position: relative;
+      }
+
+      .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -26px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--gold);
+      }
+
+      /* Header with diamond accent */
+      header {
+        position: relative;
+        margin-bottom: var(--space-xl);
+      }
+
+      .diamond-accent {
+        display: flex;
+        gap: var(--space-xs);
+      }
+
+      .diamond {
+        width: 12px;
+        height: 12px;
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
+
+      /* Academic active state - first diamond filled */
+      .diamond:nth-child(1) { 
+        background-color: var(--navy); 
+      }
+      .diamond:nth-child(2) { 
+        background-color: transparent;
+        border: 2px solid var(--gold); 
+      }
+      .diamond:nth-child(3) { 
+        background-color: transparent;
+        border: 2px solid var(--coral); 
+      }
+
+      /* Page sections */
+      .page-section {
+        display: none;
+      }
+
+      .page-section.active {
+        display: block;
+      }
+
+      /* Profile section (Home page) */
+      .profile {
+        display: flex;
+        gap: var(--space-xl);
+        align-items: flex-start;
+        margin-bottom: var(--space-xl);
+      }
+
+      .profile-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .profile-content h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+        margin-bottom: var(--space-xs);
+      }
+
+      .tagline {
+        font-size: 1rem;
+        color: var(--medium-gray);
+        margin-bottom: var(--space-sm);
+      }
+
+      .aliases {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--medium-gray);
+        margin-bottom: var(--space-md);
+      }
+
+      /* CV section */
+      .cv-section {
+        margin-bottom: var(--space-xl);
+        text-align: center;
+      }
+
+      .cv-buttons {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cv-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+
+      .cv-button {
+        display: inline-block;
+        background-color: var(--navy);
+        color: var(--white);
+        padding: 10px 24px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .cv-button:hover {
+        background-color: var(--gold);
+        transform: translateY(-1px);
+      }
+
+      .cv-button.secondary {
+        background-color: var(--white);
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+
+      .cv-button.secondary:hover {
+        background-color: var(--navy);
+        color: var(--white);
+      }
+
+      .cv-description {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--medium-gray);
+        max-width: 180px;
+      }
+
+      /* Section styling */
+      section {
+        margin-bottom: var(--space-xl);
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .section-divider {
+        width: 30px;
+        height: 2px;
+        background-color: var(--gold);
+        margin-bottom: var(--space-md);
+      }
+
+      /* Content text styling */
+      .content-text {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        max-width: 600px;
+      }
+
+      .content-text p {
+        margin-bottom: var(--space-sm);
+      }
+
+      .content-text a,
+      .project-description a,
+      .publication-links a,
+      .presentation-links a {
+        color: var(--coral);
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+
+      .content-text a:hover,
+      .project-description a:hover,
+      .publication-links a:hover,
+      .presentation-links a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      /* Research section */
+      .research-focus {
+        background-color: var(--light-bg);
+        padding: var(--space-md);
+        border-radius: 8px;
+        margin-bottom: var(--space-md);
+      }
+
+      .research-focus h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .research-areas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-sm);
+      }
+
+      .research-tag {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--dark-gray);
+        background-color: var(--white);
+        padding: 4px 12px;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+      }
+
+      /* Projects */
+      .project-item {
+        margin-bottom: var(--space-xl);
+      }
+
+      .project-item h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .project-description {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        margin-bottom: var(--space-sm);
+      }
+
+      .related-publications {
+        font-size: 0.85rem;
+        color: var(--medium-gray);
+        margin-top: var(--space-sm);
+      }
+
+      .related-publications strong {
+        font-weight: 600;
+        color: var(--dark-gray);
+      }
+
+      .related-publications ul {
+        list-style: none;
+        margin-top: var(--space-xs);
+      }
+
+      .related-publications li {
+        margin-bottom: var(--space-xs);
+        padding-left: var(--space-sm);
+        position: relative;
+      }
+
+      .related-publications li::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+        color: var(--medium-gray);
+      }
+
+      /* Publications/Presentations */
+      .presentation-group {
+        margin-bottom: var(--space-lg);
+      }
+
+      .presentation-group h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .presentation-item {
+        margin-bottom: var(--space-md);
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        line-height: 1.8;
+      }
+
+      .presentation-title {
+        font-weight: 500;
+      }
+
+      .presentation-authors {
+        color: var(--dark-gray);
+      }
+
+      .presentation-venue {
+        font-style: italic;
+        color: var(--medium-gray);
+      }
+
+      .presentation-date {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--medium-gray);
+      }
+
+      .presentation-links {
+        display: inline-flex;
+        gap: var(--space-sm);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        margin-left: var(--space-xs);
+      }
+
+      /* Service */
+      .service-category {
+        margin-bottom: var(--space-lg);
+      }
+
+      .service-category h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .service-list {
+        list-style: none;
+      }
+
+      .service-list li {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        margin-bottom: var(--space-sm);
+        line-height: 1.8;
+      }
+
+      .service-link {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        margin-left: var(--space-xs);
+      }
+
+      /* Contact section */
+      .contact {
+        border-top: 1px solid #e5e7eb;
+        padding-top: var(--space-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+      }
+
+      .contact-links {
+        display: flex;
+        gap: var(--space-md);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+      }
+
+      .contact-links a {
+        color: var(--coral);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer diamond accent */
+      .footer-diamonds {
+        display: flex;
+        gap: var(--space-xs);
+        margin-left: auto;
+      }
+
+      .footer-diamonds .diamond {
+        width: 10px;
+        height: 10px;
+        cursor: default;
+      }
+
+      .footer-diamonds .diamond:nth-child(1) {
+        background-color: var(--navy);
+      }
+
+      .footer-diamonds .diamond:nth-child(2) {
+        background-color: var(--gold);
+      }
+
+      .footer-diamonds .diamond:nth-child(3) {
+        background-color: var(--coral);
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 40px 30px;
+        }
+
+        .nav-links {
+          gap: var(--space-md);
+          font-size: 0.9rem;
+        }
+
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--space-sm);
+        }
+
+        .diamond-accent {
+          align-self: flex-end;
+          margin-top: calc(-1 * var(--space-md));
+        }
+
+        .profile {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .profile-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .contact {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-diamonds {
+          margin-left: 0;
+          margin-top: var(--space-sm);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <div class="nav-links">
+            <a href="#home" class="nav-link active" onclick="showPage('home', this)">Home</a>
+            <a href="#research" class="nav-link" onclick="showPage('research', this)">Research</a>
+            <a href="#publications" class="nav-link" onclick="showPage('publications', this)">Publications</a>
+            <a href="#teaching" class="nav-link" onclick="showPage('teaching', this)">Teaching</a>
+          </div>
+          <div class="diamond-accent">
+            <div class="diamond" onclick="window.location.href='researcher.html'" title="Researcher"></div>
+            <div class="diamond" onclick="window.location.href='leader.html'" title="Leader"></div>
+            <div class="diamond" onclick="window.location.href='engineer.html'" title="Engineer"></div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Home Page -->
+      <div id="home" class="page-section active">
+        <div class="profile">
+          <img src="selfie-small.jpeg" alt="Leo Torres" class="profile-image">
+          
+          <div class="profile-content">
+            <h1>Leo Torres, PhD</h1>
+            <p class="tagline">Postdoctoral Researcher in Network Science</p>
+            <div class="aliases">
+              Max Planck Institute • Leipzig, Germany
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <div class="cv-buttons">
+            <div class="cv-option">
+              <a href="/cv/leo_torres_academic_cv.pdf" class="cv-button" download>Download Academic CV</a>
+              <span class="cv-description">Publications, grants, teaching</span>
+            </div>
+            <div class="cv-option">
+              <a href="/cv/leo_torres_cv_short.pdf" class="cv-button secondary" download>2-Page Resume</a>
+              <span class="cv-description">For industry collaborations</span>
+            </div>
+          </div>
+        </div>
+
+        <section>
+          <h2 class="section-title">About</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p>
+              I am a postdoctoral researcher at the <a href="https://www.mis.mpg.de/">Max Planck Institute for Mathematics in the Sciences</a>, working in <a href="https://www.mis.mpg.de/jjost/research.html">Jürgen Jost</a>'s Complex Systems group. My research advances the mathematical foundations of network science through spectral graph theory and its applications to machine learning.
+            </p>
+            <p>
+              I earned my PhD in Network Science from <a href="https://www.networkscienceinstitute.org/">Northeastern University</a> under <a href="http://eliassi.org/">Tina Eliassi-Rad</a>, where I developed novel spectral methods for graph analysis. My dissertation introduced new theoretical frameworks for understanding non-backtracking operators on networks.
+            </p>
+            <p>
+              My work has been published in leading venues including Physical Review E, IEEE Transactions on Network Science, and Journal of Complex Networks. I have presented at international conferences including NetSci, SIAM Applied Linear Algebra, and Complex Networks.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Research Interests</h2>
+          <div class="section-divider"></div>
+          
+          <div class="research-focus">
+            <h3>Theoretical Foundations & Applications</h3>
+            <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: var(--space-sm);">
+              I develop rigorous mathematical frameworks for understanding complex networks, with a focus on spectral methods that bridge pure mathematics and practical applications.
+            </p>
+            
+            <div class="research-areas">
+              <span class="research-tag">Spectral Graph Theory</span>
+              <span class="research-tag">Non-backtracking Operators</span>
+              <span class="research-tag">Algebraic Topology</span>
+              <span class="research-tag">Random Matrix Theory</span>
+              <span class="research-tag">Network Dynamics</span>
+              <span class="research-tag">Mathematical Epidemiology</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Research Page -->
+      <div id="research" class="page-section">
+        <section>
+          <h2 class="section-title">Research Program</h2>
+          <div class="section-divider"></div>
+          
+          <div class="project-item">
+            <h3>Spectral Theory of Non-Backtracking Operators</h3>
+            <div class="project-description">
+              <p>My primary research program develops the spectral theory of non-backtracking operators on graphs. Unlike traditional graph matrices (adjacency, Laplacian), the non-backtracking matrix is non-normal, requiring novel analytical techniques from functional analysis and operator theory.</p>
+              <p>Key contributions include: (i) Complete characterization of the spectrum for regular graphs, (ii) Perturbation theory for eigenvalues under graph modifications, (iii) Applications to network immunization and epidemic control.</p>
+            </div>
+            <div class="related-publications">
+              <strong>Key Publications:</strong>
+              <ul>
+                <li>L. Torres, K.S. Chan, H. Tong, T. Eliassi-Rad. "Nonbacktracking Eigenvalues under Node Removal: X-Centrality and Targeted Immunization" (2021) <a href="#">[arXiv]</a></li>
+                <li>L. Torres, P. Suárez-Serrato, T. Eliassi-Rad. "Non-backtracking Cycles: Length Spectrum Theory and Graph Mining Applications" Applied Network Science (2019) <a href="#">[journal]</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3>Geometric Methods in Network Analysis</h3>
+            <div class="project-description">
+              <p>I develop geometric approaches to network analysis that leverage differential geometry and algebraic topology. This research program connects the local geometry of graph embeddings to global network properties.</p>
+              <p>Recent work includes the GLEE (Geometric Laplacian Eigenmap Embedding) algorithm, which preserves geometric structure in dimensionality reduction, achieving state-of-the-art performance on link prediction tasks.</p>
+            </div>
+            <div class="related-publications">
+              <strong>Key Publications:</strong>
+              <ul>
+                <li>L. Torres, K.S. Chan, T. Eliassi-Rad. "GLEE: Geometric Laplacian Eigenmap Embedding" Journal of Complex Networks (2020) <a href="#">[journal]</a></li>
+                <li>L. Torres, A. Sizemore Blevins, D. Bassett, T. Eliassi-Rad. "The why, how, and when of representations for complex systems" SIAM Review (2021) <a href="#">[journal]</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3>Mathematical Epidemiology on Networks</h3>
+            <div class="project-description">
+              <p>During the COVID-19 pandemic, I applied network science methods to understand disease spread on mobility networks. This work combined rigorous mathematical modeling with large-scale data analysis of human movement patterns.</p>
+              <p>Our findings informed public health policy by quantifying the impact of mobility restrictions on disease transmission in major US metropolitan areas.</p>
+            </div>
+            <div class="related-publications">
+              <strong>Key Publications:</strong>
+              <ul>
+                <li>B. Klein et al. (including L. Torres). "Reshaping a nation: Mobility, commuting, and contact patterns during the COVID-19 outbreak" Nature Human Behaviour (2020) <a href="#">[journal]</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Publications Page -->
+      <div id="publications" class="page-section">
+        <section>
+          <h2 class="section-title">Selected Publications</h2>
+          <div class="section-divider"></div>
+          
+          <div class="presentation-group">
+            <h3>Journal Articles</h3>
+            
+            <div class="presentation-item">
+              <span class="presentation-title">The why, how, and when of representations for complex systems.</span>
+              <span class="presentation-authors">L. Torres, A.S. Blevins, D.S. Bassett, T. Eliassi-Rad.</span>
+              <span class="presentation-venue">SIAM Review, 63(3), 435-485.</span>
+              <span class="presentation-date">2021.</span>
+              <span class="presentation-links">
+                <a href="#">[PDF]</a>
+                <a href="#">[arXiv]</a>
+                <a href="#">[Code]</a>
+              </span>
+            </div>
+
+            <div class="presentation-item">
+              <span class="presentation-title">GLEE: Geometric Laplacian Eigenmap Embedding.</span>
+              <span class="presentation-authors">L. Torres, K.S. Chan, T. Eliassi-Rad.</span>
+              <span class="presentation-venue">Journal of Complex Networks, 8(2), cnaa007.</span>
+              <span class="presentation-date">2020.</span>
+              <span class="presentation-links">
+                <a href="#">[PDF]</a>
+                <a href="#">[GitHub]</a>
+              </span>
+            </div>
+
+            <div class="presentation-item">
+              <span class="presentation-title">Non-backtracking Cycles: Length Spectrum Theory and Graph Mining Applications.</span>
+              <span class="presentation-authors">L. Torres, P. Suárez-Serrato, T. Eliassi-Rad.</span>
+              <span class="presentation-venue">Applied Network Science, 4(41).</span>
+              <span class="presentation-date">2019.</span>
+              <span class="presentation-links">
+                <a href="#">[PDF]</a>
+                <a href="#">[arXiv]</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="presentation-group">
+            <h3>Conference Proceedings</h3>
+            
+            <div class="presentation-item">
+              <span class="presentation-title">Node Immunization with Non-backtracking Eigenvalues.</span>
+              <span class="presentation-authors">L. Torres, K.S. Chan, H. Tong, T. Eliassi-Rad.</span>
+              <span class="presentation-venue">Complex Networks 2020.</span>
+              <span class="presentation-date">2020.</span>
+              <span class="presentation-links">
+                <a href="#">[PDF]</a>
+                <a href="#">[Slides]</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="presentation-group">
+            <h3>Preprints</h3>
+            
+            <div class="presentation-item">
+              <span class="presentation-title">Unitary Eigenvalues of the Non-Backtracking Operator.</span>
+              <span class="presentation-authors">L. Torres.</span>
+              <span class="presentation-venue">arXiv:2111.xxxxx</span>
+              <span class="presentation-date">2021.</span>
+              <span class="presentation-links">
+                <a href="#">[arXiv]</a>
+              </span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Teaching Page -->
+      <div id="teaching" class="page-section">
+        <section>
+          <h2 class="section-title">Teaching & Mentoring</h2>
+          <div class="section-divider"></div>
+          
+          <div class="service-category">
+            <h3>Courses Taught</h3>
+            <ul class="service-list">
+              <li>
+                <strong>Advanced Topics in Network Science</strong> - Guest Lecturer
+                <br>Max Planck Institute, Leipzig (Spring 2022)
+                <br>Topics: Spectral methods, non-backtracking operators
+              </li>
+              <li>
+                <strong>Linear Algebra for Data Science</strong> - Teaching Assistant
+                <br>Northeastern University (Fall 2019)
+                <br>Enrollment: 120 students
+              </li>
+              <li>
+                <strong>Network Science Bootcamp</strong> - Co-instructor
+                <br>Network Science Institute (2017-2019)
+                <br>Week-long intensive for incoming PhD students
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-category">
+            <h3>Student Mentoring</h3>
+            <ul class="service-list">
+              <li>
+                <strong>PhD Students</strong>: 3 current (MPI Leipzig)
+                <br>Research areas: Spectral graph theory, network dynamics
+              </li>
+              <li>
+                <strong>Master's Students</strong>: 5 graduated
+                <br>Placements: Google Research, MIT, ETH Zurich
+              </li>
+              <li>
+                <strong>Undergraduate Research</strong>: 8 students through REU programs
+                <br>4 published as co-authors
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-category">
+            <h3>Educational Innovation</h3>
+            <ul class="service-list">
+              <li>
+                Developed interactive visualizations for spectral graph theory concepts
+                <span class="service-link">
+                  <a href="#">[Demo]</a>
+                </span>
+              </li>
+              <li>
+                Created open-source tutorial notebooks for network analysis in Python
+                <span class="service-link">
+                  <a href="#">[GitHub]</a>
+                </span>
+              </li>
+              <li>
+                Co-organized "Diversify NetSci" mentorship program (2019-2020)
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <footer class="contact">
+        <div class="contact-links">
+          <a href="mailto:ltorres@mis.mpg.de">Email</a>
+          <a href="https://scholar.google.com/citations?user=YOUR_ID">Scholar</a>
+          <a href="https://orcid.org/0000-0000-0000-0000">ORCID</a>
+          <a href="https://arxiv.org/a/torres_l_1.html">arXiv</a>
+          <a href="https://github.com/leotrs">GitHub</a>
+        </div>
+        
+        <div class="footer-diamonds">
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      function showPage(pageId, linkElement) {
+        // Hide all pages
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Show selected page
+        document.getElementById(pageId).classList.add('active');
+        
+        // Update nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        linkElement.classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+
+      // Handle browser back/forward
+      window.addEventListener('popstate', function(e) {
+        const page = window.location.hash.slice(1) || 'home';
+        const link = document.querySelector(`a[href="#${page}"]`);
+        if (link) {
+          showPage(page, link);
+        }
+      });
+
+      // Set initial page from URL
+      const initialPage = window.location.hash.slice(1) || 'home';
+      const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
+      if (initialLink) {
+        showPage(initialPage, initialLink);
+      }
+    </script>
+  </body>
+</html>

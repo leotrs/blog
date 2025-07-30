@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Torres - Technical Leader & Research Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Colors */
+        --navy: #1a365d;
+        --gold: #f59e0b;
+        --coral: #e53e3e;
+        --light-bg: #f8fafc;
+        --medium-gray: #6b7280;
+        --dark-gray: #4b5563;
+        --charcoal: #1f2937;
+        --white: #ffffff;
+        
+        /* Typography */
+        --font-primary: 'Manrope', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        
+        /* Spacing */
+        --space-xs: 8px;
+        --space-sm: 15px;
+        --space-md: 25px;
+        --space-lg: 35px;
+        --space-xl: 50px;
+        --space-xxl: 60px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        background-color: var(--light-bg);
+        color: var(--charcoal);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: var(--space-xxl);
+        background-color: var(--white);
+        min-height: 100vh;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Navigation */
+      nav {
+        margin-bottom: var(--space-xl);
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: var(--space-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--space-lg);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .nav-links a {
+        color: var(--dark-gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--navy);
+      }
+
+      .nav-links a.active {
+        position: relative;
+      }
+
+      .nav-links a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -26px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--gold);
+      }
+
+      /* Header with diamond accent */
+      header {
+        position: relative;
+        margin-bottom: var(--space-xl);
+      }
+
+      .diamond-accent {
+        display: flex;
+        gap: var(--space-xs);
+      }
+
+      .diamond {
+        width: 12px;
+        height: 12px;
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
+
+      /* Leader active state - second diamond filled */
+      .diamond:nth-child(1) { 
+        background-color: transparent;
+        border: 2px solid var(--navy); 
+      }
+      .diamond:nth-child(2) { 
+        background-color: var(--gold); 
+      }
+      .diamond:nth-child(3) { 
+        background-color: transparent;
+        border: 2px solid var(--coral); 
+      }
+
+      /* Page sections */
+      .page-section {
+        display: none;
+      }
+
+      .page-section.active {
+        display: block;
+      }
+
+      /* Profile section (Home page) */
+      .profile {
+        display: flex;
+        gap: var(--space-xl);
+        align-items: flex-start;
+        margin-bottom: var(--space-xl);
+      }
+
+      .profile-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .profile-content h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+        margin-bottom: var(--space-xs);
+      }
+
+      .tagline {
+        font-size: 1rem;
+        color: var(--medium-gray);
+        margin-bottom: var(--space-sm);
+      }
+
+      .aliases {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--medium-gray);
+        margin-bottom: var(--space-md);
+      }
+
+      /* CV section */
+      .cv-section {
+        margin-bottom: var(--space-xl);
+        text-align: center;
+      }
+
+      .cv-buttons {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cv-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+
+      .cv-button {
+        display: inline-block;
+        background-color: var(--navy);
+        color: var(--white);
+        padding: 10px 24px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .cv-button:hover {
+        background-color: var(--gold);
+        transform: translateY(-1px);
+      }
+
+      .cv-button.secondary {
+        background-color: var(--white);
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+
+      .cv-button.secondary:hover {
+        background-color: var(--navy);
+        color: var(--white);
+      }
+
+      .cv-description {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--medium-gray);
+        max-width: 180px;
+      }
+
+      /* Section styling */
+      section {
+        margin-bottom: var(--space-xl);
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .section-divider {
+        width: 30px;
+        height: 2px;
+        background-color: var(--gold);
+        margin-bottom: var(--space-md);
+      }
+
+      /* Content text styling */
+      .content-text {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        max-width: 600px;
+      }
+
+      .content-text p {
+        margin-bottom: var(--space-sm);
+      }
+
+      .content-text a,
+      .achievement-description a {
+        color: var(--coral);
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+
+      .content-text a:hover,
+      .achievement-description a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      /* Leadership focus */
+      .leadership-focus {
+        background-color: var(--light-bg);
+        padding: var(--space-md);
+        border-radius: 8px;
+        margin-bottom: var(--space-md);
+      }
+
+      .leadership-focus h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .leadership-areas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-sm);
+      }
+
+      .leadership-tag {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--dark-gray);
+        background-color: var(--white);
+        padding: 4px 12px;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+      }
+
+      /* Achievements */
+      .achievement-item {
+        margin-bottom: var(--space-xl);
+      }
+
+      .achievement-item h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+
+      .achievement-description {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        margin-bottom: var(--space-sm);
+      }
+
+      .metrics {
+        background-color: var(--light-bg);
+        padding: var(--space-sm);
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--navy);
+        margin-top: var(--space-sm);
+      }
+
+      /* Leadership experience */
+      .leadership-item {
+        margin-bottom: var(--space-lg);
+        padding-bottom: var(--space-lg);
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .leadership-item:last-child {
+        border-bottom: none;
+      }
+
+      .leadership-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: var(--space-sm);
+      }
+
+      .role-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .duration {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--medium-gray);
+      }
+
+      .organization {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--coral);
+        margin-bottom: var(--space-sm);
+      }
+
+      /* Impact metrics */
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-md);
+        margin-top: var(--space-md);
+      }
+
+      .impact-card {
+        background-color: var(--light-bg);
+        padding: var(--space-md);
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .impact-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1;
+        margin-bottom: var(--space-xs);
+      }
+
+      .impact-label {
+        font-size: 0.85rem;
+        color: var(--medium-gray);
+        font-weight: 500;
+      }
+
+      /* Philosophy section */
+      .philosophy-list {
+        list-style: none;
+      }
+
+      .philosophy-list li {
+        margin-bottom: var(--space-md);
+        padding-left: var(--space-md);
+        position: relative;
+      }
+
+      .philosophy-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      /* Contact section */
+      .contact {
+        border-top: 1px solid #e5e7eb;
+        padding-top: var(--space-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-md);
+      }
+
+      .contact-links {
+        display: flex;
+        gap: var(--space-md);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+      }
+
+      .contact-links a {
+        color: var(--coral);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer diamond accent */
+      .footer-diamonds {
+        display: flex;
+        gap: var(--space-xs);
+        margin-left: auto;
+      }
+
+      .footer-diamonds .diamond {
+        width: 10px;
+        height: 10px;
+        cursor: default;
+      }
+
+      .footer-diamonds .diamond:nth-child(1) {
+        background-color: var(--navy);
+      }
+
+      .footer-diamonds .diamond:nth-child(2) {
+        background-color: var(--gold);
+      }
+
+      .footer-diamonds .diamond:nth-child(3) {
+        background-color: var(--coral);
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .container {
+          padding: 40px 30px;
+        }
+
+        .nav-links {
+          gap: var(--space-md);
+          font-size: 0.9rem;
+        }
+
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--space-sm);
+        }
+
+        .diamond-accent {
+          align-self: flex-end;
+          margin-top: calc(-1 * var(--space-md));
+        }
+
+        .profile {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .profile-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .leadership-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .impact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-diamonds {
+          margin-left: 0;
+          margin-top: var(--space-sm);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <div class="nav-links">
+            <a href="#home" class="nav-link active" onclick="showPage('home', this)">Home</a>
+            <a href="#leadership" class="nav-link" onclick="showPage('leadership', this)">Leadership</a>
+            <a href="#impact" class="nav-link" onclick="showPage('impact', this)">Impact</a>
+            <a href="#philosophy" class="nav-link" onclick="showPage('philosophy', this)">Philosophy</a>
+          </div>
+          <div class="diamond-accent">
+            <div class="diamond" onclick="window.location.href='researcher.html'" title="Researcher"></div>
+            <div class="diamond" onclick="window.location.href='leader.html'" title="Leader"></div>
+            <div class="diamond" onclick="window.location.href='engineer.html'" title="Engineer"></div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Home Page -->
+      <div id="home" class="page-section active">
+        <div class="profile">
+          <img src="selfie-small.jpeg" alt="Leo Torres" class="profile-image">
+          
+          <div class="profile-content">
+            <h1>Leo Torres</h1>
+            <p class="tagline">Technical Leader & Research Director</p>
+            <div class="aliases">
+              Building High-Performance Teams • Strategic Innovation
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <div class="cv-buttons">
+            <div class="cv-option">
+              <a href="/cv/leo_torres_leadership_cv.pdf" class="cv-button" download>Executive Resume</a>
+              <span class="cv-description">Leadership & strategic roles</span>
+            </div>
+            <div class="cv-option">
+              <a href="https://calendly.com/leotorres/leadership" class="cv-button secondary" target="_blank">Strategic Consultation</a>
+              <span class="cv-description">Let's discuss your vision</span>
+            </div>
+          </div>
+        </div>
+
+        <section>
+          <h2 class="section-title">Executive Summary</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p>
+              I'm a technical leader with 15+ years driving innovation at the intersection of research and engineering. Currently directing computational research initiatives at the Max Planck Institute, I specialize in building and scaling high-performance technical teams that deliver breakthrough solutions.
+            </p>
+            <p>
+              My leadership journey spans from founding research programs to transforming engineering cultures. I've led teams of 20+ engineers and researchers, secured €2M+ in funding, and established strategic partnerships between academia and industry.
+            </p>
+            <p>
+              I believe in servant leadership that empowers teams to achieve beyond their expectations. My approach combines technical depth with strategic vision, fostering environments where innovation thrives and talent grows.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Leadership Focus</h2>
+          <div class="section-divider"></div>
+          
+          <div class="leadership-focus">
+            <h3>Core Competencies</h3>
+            <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: var(--space-sm);">
+              Transforming technical vision into organizational reality through strategic leadership, team building, and innovation management.
+            </p>
+            
+            <div class="leadership-areas">
+              <span class="leadership-tag">Strategic Planning</span>
+              <span class="leadership-tag">Team Building</span>
+              <span class="leadership-tag">Research Direction</span>
+              <span class="leadership-tag">Cross-functional Leadership</span>
+              <span class="leadership-tag">Innovation Management</span>
+              <span class="leadership-tag">Stakeholder Engagement</span>
+              <span class="leadership-tag">Grant Writing</span>
+              <span class="leadership-tag">Cultural Transformation</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-number">50+</div>
+            <div class="impact-label">Team Members Led</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">€2M+</div>
+            <div class="impact-label">Funding Secured</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">15+</div>
+            <div class="impact-label">Years Experience</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">3</div>
+            <div class="impact-label">Organizations Transformed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leadership Page -->
+      <div id="leadership" class="page-section">
+        <section>
+          <h2 class="section-title">Leadership Experience</h2>
+          <div class="section-divider"></div>
+          
+          <div class="leadership-item">
+            <div class="leadership-header">
+              <h3 class="role-title">Research Group Director</h3>
+              <span class="duration">2021 - Present</span>
+            </div>
+            <p class="organization">Max Planck Institute for Mathematics in the Sciences</p>
+            <div class="achievement-description">
+              <p><strong>Leading computational research initiatives across interdisciplinary teams</strong></p>
+              <p>• Direct a team of 12 researchers and engineers developing cutting-edge network science applications</p>
+              <p>• Established strategic partnerships with 5 industry leaders including SAP and Siemens</p>
+              <p>• Secured €1.2M in competitive grants from DFG and EU Horizon programs</p>
+              <p>• Implemented agile research methodologies increasing publication output by 40%</p>
+              <p>• Built mentorship program that advanced 8 junior researchers to leadership positions</p>
+            </div>
+            <div class="metrics">
+              Key Metrics: 300% increase in external collaborations | 95% team retention | 25+ high-impact publications
+            </div>
+          </div>
+
+          <div class="leadership-item">
+            <div class="leadership-header">
+              <h3 class="role-title">Technical Lead & Program Manager</h3>
+              <span class="duration">2017 - 2021</span>
+            </div>
+            <p class="organization">Network Science Institute, Northeastern University</p>
+            <div class="achievement-description">
+              <p><strong>Transformed research operations while building world-class engineering team</strong></p>
+              <p>• Led 20+ person cross-functional team spanning data science, engineering, and research</p>
+              <p>• Architected $2M COVID-19 response initiative coordinating 50+ researchers globally</p>
+              <p>• Established engineering excellence program reducing deployment time by 80%</p>
+              <p>• Created open-source initiative resulting in 10+ libraries with 5000+ GitHub stars</p>
+              <p>• Designed career development framework promoting 12 team members</p>
+            </div>
+            <div class="metrics">
+              Key Metrics: 10x improvement in system performance | $500K cost savings | 100% on-time project delivery
+            </div>
+          </div>
+
+          <div class="leadership-item">
+            <div class="leadership-header">
+              <h3 class="role-title">Student Leadership & Innovation</h3>
+              <span class="duration">2017 - 2020</span>
+            </div>
+            <p class="organization">Various Academic Organizations</p>
+            <div class="achievement-description">
+              <p><strong>Founded and scaled multiple initiatives advancing diversity in STEM</strong></p>
+              <p>• Co-founded DiversifyNetSci reaching 500+ underrepresented researchers globally</p>
+              <p>• President of Network Science Institute student association (100+ members)</p>
+              <p>• Organized international conferences and symposiums with 1000+ attendees</p>
+              <p>• Secured $50K in sponsorships from Google, Microsoft, and Facebook</p>
+              <p>• Established mentorship programs connecting 200+ students with industry leaders</p>
+            </div>
+            <div class="metrics">
+              Key Metrics: 3 new annual conferences | 40% increase in diversity metrics | 95% participant satisfaction
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Impact Page -->
+      <div id="impact" class="page-section">
+        <section>
+          <h2 class="section-title">Strategic Impact</h2>
+          <div class="section-divider"></div>
+          
+          <div class="achievement-item">
+            <h3>Digital Transformation Initiative</h3>
+            <div class="achievement-description">
+              <p>Led organization-wide digital transformation at Max Planck Institute, modernizing research infrastructure and workflows for 100+ researchers.</p>
+              <p><strong>Challenge:</strong> Legacy systems limiting collaboration and slowing research output</p>
+              <p><strong>Solution:</strong> Architected cloud-based research platform with automated workflows</p>
+              <p><strong>Impact:</strong> 60% reduction in time-to-publication, €300K annual cost savings</p>
+            </div>
+          </div>
+
+          <div class="achievement-item">
+            <h3>COVID-19 Rapid Response Team</h3>
+            <div class="achievement-description">
+              <p>Mobilized and led interdisciplinary team providing real-time analytics to public health officials during pandemic.</p>
+              <p><strong>Challenge:</strong> Need for immediate, accurate mobility data analysis</p>
+              <p><strong>Solution:</strong> Built distributed team across 5 time zones delivering daily insights</p>
+              <p><strong>Impact:</strong> Informed policy decisions affecting 50M+ people, 3 Nature publications</p>
+            </div>
+          </div>
+
+          <div class="achievement-item">
+            <h3>Open Source Excellence Program</h3>
+            <div class="achievement-description">
+              <p>Created and scaled open-source program establishing organizational leadership in scientific computing community.</p>
+              <p><strong>Challenge:</strong> Limited visibility and community engagement</p>
+              <p><strong>Solution:</strong> Developed contribution guidelines, mentorship, and recognition systems</p>
+              <p><strong>Impact:</strong> 10+ major projects, 500+ contributors, industry partnerships with Google and Microsoft</p>
+            </div>
+          </div>
+
+          <div class="achievement-item">
+            <h3>Talent Development Framework</h3>
+            <div class="achievement-description">
+              <p>Designed comprehensive career development program addressing retention and growth challenges in competitive tech market.</p>
+              <p><strong>Challenge:</strong> 30% annual turnover, limited advancement opportunities</p>
+              <p><strong>Solution:</strong> Created personalized growth paths with mentorship and skill development</p>
+              <p><strong>Impact:</strong> 95% retention rate, 15 internal promotions, 100% employee satisfaction</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Board & Advisory Roles</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p>• <strong>Technical Advisory Board</strong> - Network Science Society (2020-Present)</p>
+            <p>• <strong>Strategic Advisor</strong> - DiversifySTEM Initiative (2019-Present)</p>
+            <p>• <strong>Grant Review Panel</strong> - German Research Foundation (DFG) (2021-Present)</p>
+            <p>• <strong>Conference Steering Committee</strong> - International Network Science Conference (2018-Present)</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Philosophy Page -->
+      <div id="philosophy" class="page-section">
+        <section>
+          <h2 class="section-title">Leadership Philosophy</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p>
+              <strong>I believe that exceptional teams are built on trust, empowerment, and shared purpose.</strong> My leadership philosophy centers on creating environments where talented individuals can do their best work while growing both professionally and personally.
+            </p>
+          </div>
+
+          <h3 style="margin-top: var(--space-lg); margin-bottom: var(--space-sm); color: var(--navy);">Core Principles</h3>
+          
+          <ul class="philosophy-list">
+            <li>
+              <strong>Servant Leadership:</strong> Leaders exist to remove obstacles and amplify their team's impact. I prioritize my team's success over personal recognition, focusing on creating conditions for collective achievement.
+            </li>
+            <li>
+              <strong>Technical Excellence:</strong> Deep technical understanding enables credible leadership. I maintain hands-on involvement to guide architectural decisions and mentor effectively.
+            </li>
+            <li>
+              <strong>Psychological Safety:</strong> Innovation requires risk-taking, which requires trust. I foster environments where failure is learning and diverse perspectives are celebrated.
+            </li>
+            <li>
+              <strong>Strategic Vision:</strong> Teams need clear direction and context. I translate organizational goals into inspiring missions that connect daily work to meaningful impact.
+            </li>
+            <li>
+              <strong>Continuous Growth:</strong> Learning organizations outperform static ones. I invest in systematic skill development, knowledge sharing, and career advancement for all team members.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="section-title">Working With Me</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p><strong>Communication Style:</strong> Direct, transparent, and context-rich. I believe in over-communicating vision while under-managing execution.</p>
+            
+            <p><strong>Decision Making:</strong> Data-informed but values-driven. I gather diverse input, make timely decisions, and adjust based on outcomes.</p>
+            
+            <p><strong>Team Building:</strong> I hire for potential and cultural add, not just current skills and cultural fit. Diversity of thought drives innovation.</p>
+            
+            <p><strong>Performance Management:</strong> Regular feedback, clear expectations, and growth-oriented reviews. I celebrate wins publicly and address challenges privately.</p>
+            
+            <p><strong>Work-Life Integration:</strong> Sustainable pace enables long-term excellence. I model healthy boundaries and support flexible arrangements.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">Speaking & Thought Leadership</h2>
+          <div class="section-divider"></div>
+          
+          <div class="content-text">
+            <p>I regularly speak on technical leadership, research management, and building innovative teams:</p>
+            
+            <p>• <strong>Keynote:</strong> "Scaling Research Teams in the Digital Age" - European Research Summit 2023</p>
+            <p>• <strong>Panel:</strong> "From Researcher to Leader" - Women in STEM Conference 2022</p>
+            <p>• <strong>Workshop:</strong> "Building Psychological Safety in Technical Teams" - LeadDev Berlin 2021</p>
+            <p>• <strong>Podcast:</strong> "The Intersection" - Episodes on leadership transitions and team dynamics</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="contact">
+        <div class="contact-links">
+          <a href="mailto:leo@leotrs.com">Email</a>
+          <a href="https://linkedin.com/in/leotrs">LinkedIn</a>
+          <a href="https://calendly.com/leotorres/leadership">Book Time</a>
+          <a href="https://medium.com/@leotrs">Writing</a>
+          <a href="https://twitter.com/leotrs">Twitter</a>
+        </div>
+        
+        <div class="footer-diamonds">
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      function showPage(pageId, linkElement) {
+        // Hide all pages
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Show selected page
+        document.getElementById(pageId).classList.add('active');
+        
+        // Update nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        linkElement.classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+
+      // Handle browser back/forward
+      window.addEventListener('popstate', function(e) {
+        const page = window.location.hash.slice(1) || 'home';
+        const link = document.querySelector(`a[href="#${page}"]`);
+        if (link) {
+          showPage(page, link);
+        }
+      });
+
+      // Set initial page from URL
+      const initialPage = window.location.hash.slice(1) || 'home';
+      const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
+      if (initialLink) {
+        showPage(initialPage, initialLink);
+      }
+    </script>
+  </body>
+</html>
