@@ -1,0 +1,282 @@
+%!TEX TS-program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    colorlinks=false,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    pdfborder={0 0 0},
+    pdfhighlight=/O
+}
+
+% Define EXACT brand colors from design system
+\definecolor{navy}{HTML}{1a365d}        % Primary brand color - Name, section titles
+\definecolor{coral}{HTML}{e53e3e}       % Engineer accent color - dividers, bullets  
+\definecolor{charcoal}{HTML}{1f2937}    % Primary text - body content
+\definecolor{darkgray}{HTML}{4b5563}    % Secondary text - descriptions
+\definecolor{mediumgray}{HTML}{6b7280}  % Tertiary text - tagline, metadata
+\definecolor{lightbg}{HTML}{f8fafc}     % Background (not used in print)
+\definecolor{plum}{HTML}{6b5b95}        % Academic accent (for diamonds)
+\definecolor{gold}{HTML}{f59e0b}        % Leadership accent (for diamonds)
+
+% Set fonts - EXACT match to design system
+\setmainfont{Manrope}
+\setmonofont{JetBrains Mono}
+
+% EXACT spacing system from design system (converted to pt)
+\newlength{\spacexs}    \setlength{\spacexs}{6pt}      % 8px -> ~6pt
+\newlength{\spacesm}    \setlength{\spacesm}{11pt}     % 15px -> ~11pt  
+\newlength{\spacemd}    \setlength{\spacemd}{19pt}     % 25px -> ~19pt
+\newlength{\spacelg}    \setlength{\spacelg}{26pt}     % 35px -> ~26pt
+\newlength{\spacexl}    \setlength{\spacexl}{38pt}     % 50px -> ~38pt
+\newlength{\spacexxl}   \setlength{\spacexxl}{45pt}    % 60px -> ~45pt
+
+% EXACT typography scale from design system
+% Name (h1): 2.8rem (44.8px) - Navy, Weight 700
+% Section titles: 1.1rem (17.6px) - Navy, Weight 600
+% Body text: 1rem (16px) - Charcoal, Weight 400, Line-height 1.6
+% Small text: 0.9rem (14.4px) - Dark gray
+% Micro text: 0.8rem (12.8px) - Medium gray
+
+% Use normal margins - the geometry package handles this properly
+
+% Custom commands - further reduced font sizes for strict 2-page layout
+\newcommand{\nameheading}[1]{%
+    {\fontsize{24pt}{28pt}\selectfont\color{navy}\bfseries #1}% Further reduced from 28pt
+}
+
+\newcommand{\taglinetext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{mediumgray} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytextbold}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal}\bfseries #1}% Increased back to 10pt
+}
+
+\newcommand{\smalltext}[1]{%
+    {\fontsize{9pt}{13pt}\selectfont\color{darkgray} #1}% Increased back to 9pt
+}
+
+\newcommand{\microtext}[1]{%
+    {\fontsize{8pt}{11pt}\selectfont\color{mediumgray} #1}% Increased back to 8pt
+}
+
+% Section title - TONS of breathing room with page break protection
+\newcommand{\sectiontitle}[1]{%
+    \needspace{4\baselineskip}% Ensure at least 4 lines available, or force page break
+    \vspace{\spacexl}% Moderate space above sections
+    {\fontsize{12pt}{14pt}\selectfont\color{navy}\bfseries #1}\\*% Section title with no-break
+    \vspace{1pt}% Gap before divider
+    {\color{coral}\rule{20pt}{1pt}}% Divider
+    \vspace{0pt}% NO margin - I control the spacing, not LaTeX
+}
+
+% Coral bullet matching design system
+\newcommand{\coralbullet}{{\color{coral}$\bullet$}\space}
+
+% Job duration in monospace - NO SERIF FONTS IN DESIGN SYSTEM
+\newcommand{\jobduration}[1]{%
+    {\fontspec{JetBrains Mono}\microtext{#1}}
+}
+
+% Company name styling
+\newcommand{\companyname}[1]{%
+    {\color{darkgray}\bfseries #1}
+}
+
+% Tech tag styling (monospace, coral)
+\newcommand{\techtag}[1]{%
+    {\fontspec{JetBrains Mono}\color{coral}\microtext{#1}}
+}
+
+% Set default text properties - increased back to 10pt
+\renewcommand{\normalsize}{\fontsize{10pt}{14pt}\selectfont}
+\color{charcoal}
+
+% Remove paragraph indentation - design system has no indentation
+\setlength{\parindent}{0pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+\begin{document}
+
+% Header section with EXACT spacing
+\begin{center}
+    \nameheading{Leo Torres}\\[\spacexs]
+    \taglinetext{Lead Data Scientist \& Full-Stack Developer}\\[\spacexs]
+    \smalltext{\href{mailto:leo@leotrs.com}{leo@leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[plum] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://leotrs.com}{leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[gold] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://github.com/leotrs}{github.com/leotrs} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[coral] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} Leipzig/Berlin}\\[\spacesm]
+\end{center}
+
+\vspace{-\spacesm}
+
+% Technical Skills Section
+\sectiontitle{Technical Skills}
+\vspace{\spacesm}
+
+\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}
+\raggedcolumns
+\bodytextbold{Languages \& Frameworks}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{\textbf{Python (Expert):} pandas, NumPy, SciPy, FastAPI, NetworkX, scikit-learn}
+    \item[\coralbullet] \bodytext{\textbf{JavaScript (Advanced):} Vue.js, HTMX, Node.js, D3.js}
+    \item[\coralbullet] \bodytext{\textbf{AI \& LLMs:} GPT-4, Claude, RAG systems, vector databases, prompt engineering}
+    \item[\coralbullet] \bodytext{\textbf{Other:} SQL (advanced), Mathematica, C/C++, R, Julia}
+\end{itemize}
+
+\columnbreak
+
+\bodytextbold{Infrastructure \& Tools}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{\textbf{Cloud \& Data:} GCP (BigQuery, Dataflow, Cloud Run), Azure ML Studio}
+    \item[\coralbullet] \bodytext{\textbf{Databases:} BigQuery, PostgreSQL, experience with billion-row datasets}
+    \item[\coralbullet] \bodytext{\textbf{DevOps:} Docker, Airflow, GitHub Actions, Netlify, Fly.io}
+    \item[\coralbullet] \bodytext{\textbf{Development:} Git, pytest, CI/CD, OOP design, performance optimization}
+\end{itemize}
+\end{multicols}
+
+% Experience Section
+\sectiontitle{Experience}
+\vspace{\spacesm}
+
+\bodytext{\textbf{FGS Global - Lead Data Scientist \& Tech Lead}} \hfill \jobduration{May 2023 - Present}\\
+\companyname{Berlin, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=2pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Built LLM-powered pipelines processing 10M+ news articles daily for Fortune 500 clients}
+    \item[\coralbullet] \bodytext{Architected data infrastructure handling 1B+ log entries with sub-second query performance}
+    \item[\coralbullet] \bodytext{Tech lead for flagship internal product, managing team of 6 engineers}
+    \item[\coralbullet] \bodytext{Implemented RAG architecture and vector databases for domain-specific information retrieval}
+    \item[\coralbullet] \bodytext{Reduced processing time by 10x through optimized data pipelines and caching strategies}
+    \item[\coralbullet] \bodytext{Built robust API layer with FastAPI serving multiple internal products}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Max Planck Institute - Postdoctoral Fellow}} \hfill \jobduration{Aug 2021 - May 2023}\\
+\companyname{Leipzig, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Developed spectral graph theory algorithms for complex networks}
+    \item[\coralbullet] \bodytext{Co-led open-source software development for research community}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Yahoo! Research - Research Intern}} \hfill \jobduration{May 2019 - Jul 2019}\\
+\companyname{New York, NY}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Built graph learning models on terabyte-scale social network data}
+    \item[\coralbullet] \bodytext{Developed distributed computing pipelines using PySpark}
+\end{itemize}
+
+% Open Source Projects Section
+\sectiontitle{Open Source Projects}
+\vspace{\spacesm}
+
+\bodytext{\textbf{The Aris Program - Founder \& Lead Developer}} \hfill \jobduration{2025 - Present}\\
+\href{https://aris.pub}{\techtag{aris.pub}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Open-source academic publishing platform with Python, FastAPI, Vue.js}
+    \item[\coralbullet] \bodytext{Real-time collaboration architecture, launching 2025}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{XGI (CompleX Group Interactions) - Co-Lead Developer}} \hfill \jobduration{2021 - Present}\\
+\href{https://xgi.readthedocs.io}{\techtag{xgi.readthedocs.io}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Python library for hypergraph analysis, NumFOCUS affiliated}
+    \item[\coralbullet] \bodytext{\techtag{NumPy} \techtag{pandas} \techtag{pytest} \techtag{GitHub Actions}}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Manim Community Edition - Core Developer}} \hfill \jobduration{May 2020 - May 2021}\\
+\href{https://manim.community}{\techtag{manim.community}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Mathematical animation library popularized by 3Blue1Brown}
+    \item[\coralbullet] \bodytext{Graphics programming, code review, community management}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{netrd - Co-Lead Developer}} \hfill \jobduration{Jan 2019 - Jul 2019}\\
+\href{https://github.com/netsiphd/netrd}{\techtag{github.com/netsiphd/netrd}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{Implemented 40+ algorithms for network reconstruction and comparison}
+    \item[\coralbullet] \bodytext{Led team of 12+ developers, established coding standards}
+    \item[\coralbullet] \bodytext{Published in Journal of Open Source Software (JOSS)}
+\end{itemize}
+
+% Professional Development
+\sectiontitle{Professional Development}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\coralbullet] \bodytext{\textbf{Talk:} ``LLMs: Computation or Measurement?'' - Berlin Data Meetup, 2024 (\href{https://www.youtube.com/watch?v=SklZPLqA4a8&t=1s}{\techtag{YouTube}})}
+    \item[\coralbullet] \bodytext{\textbf{Workshop:} ``Communicating with Data'' - Designed and delivered technical workshop for enterprise clients}
+    \item[\coralbullet] \bodytext{\textbf{Recurse Center:} 12-week programming retreat focused on algorithm design and software craftsmanship (2016)}
+    \item[\coralbullet] \bodytext{\textbf{Publications:} Complete list available on \href{https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en&authuser=1}{\techtag{Google Scholar}}}
+\end{itemize}
+
+% Education
+\sectiontitle{Education}
+\vspace{\spacesm}
+\vspace{0pt}
+
+\bodytext{\textbf{Ph.D. Network Science} - Northeastern University, Boston, MA} \hfill \jobduration{2016-2021}\\
+\smalltext{\textit{Dissertation: Spectral Aspects of Mining Complex Networks}}\\
+\smalltext{\textit{Advisor: Tina Eliassi-Rad}}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{B.Sc. Mathematics} - Pontificia Universidad Católica del Perú, Lima} \hfill \jobduration{2009-2015}\\
+\smalltext{\textit{Top 3\% grades in 75-year history of Sciences Department}}\\
+\smalltext{\textit{Honors Thesis: Small-World Random Graphs Beyond Watts-Strogatz}}
+
+\end{document}
