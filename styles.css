@@ -4,6 +4,7 @@
   --gold: #f59e0b;
   --coral: #e53e3e;
   --plum: #6b5b95;
+  --plum-accent: #8b7bb8;
   --light-bg: #f8fafc;
   --medium-gray: #6b7280;
   --dark-gray: #4b5563;
@@ -91,7 +92,6 @@ nav {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--gold);
 }
 
 /* Header with diamond accent */
@@ -218,7 +218,6 @@ header {
 }
 
 .cv-button:hover {
-  background-color: var(--gold);
   transform: translateY(-1px);
 }
 
@@ -257,7 +256,6 @@ section {
 .section-divider {
   width: 30px;
   height: 2px;
-  background-color: var(--gold);
   margin-bottom: var(--space-md);
 }
 
@@ -277,7 +275,7 @@ section {
 .publication-links a,
 .presentation-links a,
 .achievement-description a {
-  color: var(--coral);
+  color: var(--navy);
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.2s;
@@ -399,7 +397,7 @@ section {
 .organization {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--coral);
+  color: var(--navy);
   margin-bottom: var(--space-sm);
 }
 
@@ -467,7 +465,6 @@ section {
 
 .service-list li::before {
   content: '•';
-  color: var(--gold);
   position: absolute;
   left: 0;
 }

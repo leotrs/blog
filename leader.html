@@ -19,6 +19,75 @@
         background-color: transparent;
         border: 2px solid var(--coral); 
       }
+
+      /* Leader page accent color: gold (10%) */
+      .leadership-focus {
+        background-color: #fefdf8; /* Slightly more visible gold tint */
+        border: 1px solid var(--gold);
+      }
+      
+      .impact-card {
+        background-color: #fefdf8; /* Slightly more visible gold tint */
+        border: 1px solid var(--gold);
+      }
+      
+      .section-divider {
+        background-color: var(--gold);
+      }
+      
+      .cv-button:hover {
+        background-color: var(--gold);
+      }
+      
+      .nav-links a.active::after {
+        background-color: var(--gold);
+      }
+      
+      .service-list li::before {
+        color: var(--gold);
+      }
+      
+      a:not(.nav-link):not(.cv-button):not(.contact-links a) {
+        color: var(--gold) !important;
+      }
+      
+      .leadership-item {
+        border-bottom: none;
+      }
+      
+      .achievement-item {
+        margin-bottom: var(--space-xl);
+      }
+      
+      .achievement-item h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: var(--space-sm);
+      }
+      
+      .philosophy-list {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .philosophy-list li {
+        font-size: 0.9rem;
+        color: var(--dark-gray);
+        margin-bottom: var(--space-md);
+        padding-left: var(--space-sm);
+        position: relative;
+      }
+      
+      .philosophy-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-weight: bold;
+      }
+      
+      
     </style>
   </head>
   <body>
@@ -48,7 +117,7 @@
             <h1>Leo Torres</h1>
             <p class="tagline">Tech Lead Ready for Management Leadership</p>
             <div class="aliases">
-              Technical Leadership • People Development • Strategic Vision • 15+ Years
+              Technical Leadership <span style="color: var(--gold); font-size: 1.2em;">•</span> People Development <span style="color: var(--gold); font-size: 1.2em;">•</span> Strategic Vision <span style="color: var(--gold); font-size: 1.2em;">•</span> 15+ Years
             </div>
           </div>
         </div>
@@ -140,14 +209,14 @@
             <p class="organization">Max Planck Institute for Mathematics in the Sciences</p>
             <div class="achievement-description">
               <p><strong>Technical leadership with strong execution focus, ready for people management expansion</strong></p>
-              <p>• Technical lead for computational research platform serving 100+ researchers</p>
-              <p>• Drive architectural decisions and technical strategy for distributed computing infrastructure</p>
-              <p>• Mentor team members in system design, coding practices, and career development</p>
-              <p>• Coordinate with stakeholders to translate research needs into technical solutions</p>
-              <p>• Established engineering standards, processes, and quality gates improving team velocity</p>
+              <p><span style="color: var(--gold);">•</span> Technical lead for computational research platform serving 100+ researchers</p>
+              <p><span style="color: var(--gold);">•</span> Drive architectural decisions and technical strategy for distributed computing infrastructure</p>
+              <p><span style="color: var(--gold);">•</span> Mentor team members in system design, coding practices, and career development</p>
+              <p><span style="color: var(--gold);">•</span> Coordinate with stakeholders to translate research needs into technical solutions</p>
+              <p><span style="color: var(--gold);">•</span> Established engineering standards, processes, and quality gates improving team velocity</p>
             </div>
             <div class="metrics">
-              Impact: 90% reduction in analysis time | 100% system uptime | Technical mentorship across team
+              Impact: 90% reduction in analysis time <span style="color: var(--gold);">|</span> 100% system uptime <span style="color: var(--gold);">|</span> Technical mentorship across team
             </div>
           </div>
 
@@ -159,14 +228,14 @@
             <p class="organization">Network Science Institute, Northeastern University</p>
             <div class="achievement-description">
               <p><strong>Technical leadership through complex project delivery and collaboration</strong></p>
-              <p>• Led development of critical ML systems with 95% accuracy for graph-based predictions</p>
-              <p>• Collaborated across interdisciplinary teams to deliver research software solutions</p>
-              <p>• Created open-source Python libraries adopted by research community (1000+ GitHub stars)</p>
-              <p>• Mentored graduate students in software engineering and algorithm optimization</p>
-              <p>• Drove technical decision-making for data engineering pipelines processing 50M+ edges daily</p>
+              <p><span style="color: var(--gold);">•</span> Led development of critical ML systems with 95% accuracy for graph-based predictions</p>
+              <p><span style="color: var(--gold);">•</span> Collaborated across interdisciplinary teams to deliver research software solutions</p>
+              <p><span style="color: var(--gold);">•</span> Created open-source Python libraries adopted by research community (1000+ GitHub stars)</p>
+              <p><span style="color: var(--gold);">•</span> Mentored graduate students in software engineering and algorithm optimization</p>
+              <p><span style="color: var(--gold);">•</span> Drove technical decision-making for data engineering pipelines processing 50M+ edges daily</p>
             </div>
             <div class="metrics">
-              Impact: 100x performance improvements achieved | 3 major open-source contributions | Cross-team collaboration excellence
+              Impact: 100x performance improvements achieved <span style="color: var(--gold);">|</span> 3 major open-source contributions <span style="color: var(--gold);">|</span> Cross-team collaboration excellence
             </div>
           </div>
 
@@ -178,14 +247,14 @@
             <p class="organization">Wolfram Research South America</p>
             <div class="achievement-description">
               <p><strong>Early leadership experience in global, distributed team environment</strong></p>
-              <p>• Collaborated with international team across 5 time zones using agile methodologies</p>
-              <p>• Contributed to Mathematica's graph theory package used by thousands of researchers</p>
-              <p>• Developed high-performance algorithms and numerical computation systems</p>
-              <p>• Mentored new team members in Wolfram Language and software development practices</p>
-              <p>• Demonstrated self-direction and initiative in remote, autonomous work environment</p>
+              <p><span style="color: var(--gold);">•</span> Collaborated with international team across 5 time zones using agile methodologies</p>
+              <p><span style="color: var(--gold);">•</span> Contributed to Mathematica's graph theory package used by thousands of researchers</p>
+              <p><span style="color: var(--gold);">•</span> Developed high-performance algorithms and numerical computation systems</p>
+              <p><span style="color: var(--gold);">•</span> Mentored new team members in Wolfram Language and software development practices</p>
+              <p><span style="color: var(--gold);">•</span> Demonstrated self-direction and initiative in remote, autonomous work environment</p>
             </div>
             <div class="metrics">
-              Impact: Global software contribution | Remote team collaboration mastery | Algorithm optimization expertise
+              Impact: Global software contribution <span style="color: var(--gold);">|</span> Remote team collaboration mastery <span style="color: var(--gold);">|</span> Algorithm optimization expertise
             </div>
           </div>
         </section>
@@ -243,10 +312,10 @@
           <div class="section-divider"></div>
           
           <div class="content-text">
-            <p>• <strong>Technical Advisory Board</strong> - Network Science Society (2020-Present)</p>
-            <p>• <strong>Strategic Advisor</strong> - DiversifySTEM Initiative (2019-Present)</p>
-            <p>• <strong>Grant Review Panel</strong> - German Research Foundation (DFG) (2021-Present)</p>
-            <p>• <strong>Conference Steering Committee</strong> - International Network Science Conference (2018-Present)</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Technical Advisory Board</strong> - Network Science Society (2020-Present)</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Strategic Advisor</strong> - DiversifySTEM Initiative (2019-Present)</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Grant Review Panel</strong> - German Research Foundation (DFG) (2021-Present)</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Conference Steering Committee</strong> - International Network Science Conference (2018-Present)</p>
           </div>
         </section>
       </div>
@@ -308,10 +377,10 @@
           <div class="content-text">
             <p>I regularly speak on technical leadership, research management, and building innovative teams:</p>
             
-            <p>• <strong>Keynote:</strong> "Scaling Research Teams in the Digital Age" - European Research Summit 2023</p>
-            <p>• <strong>Panel:</strong> "From Researcher to Leader" - Women in STEM Conference 2022</p>
-            <p>• <strong>Workshop:</strong> "Building Psychological Safety in Technical Teams" - LeadDev Berlin 2021</p>
-            <p>• <strong>Podcast:</strong> "The Intersection" - Episodes on leadership transitions and team dynamics</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Keynote:</strong> "Scaling Research Teams in the Digital Age" - European Research Summit 2023</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Panel:</strong> "From Researcher to Leader" - Women in STEM Conference 2022</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Workshop:</strong> "Building Psychological Safety in Technical Teams" - LeadDev Berlin 2021</p>
+            <p><span style="color: var(--gold);">•</span> <strong>Podcast:</strong> "The Intersection" - Episodes on leadership transitions and team dynamics</p>
           </div>
         </section>
       </div>

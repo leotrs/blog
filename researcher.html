@@ -19,6 +19,33 @@
         background-color: transparent;
         border: 2px solid var(--coral); 
       }
+
+      /* Researcher page accent color: plum (10%) */
+      .research-focus {
+        background-color: #faf9fb; /* Very subtle plum tint */
+        border: 1px solid var(--plum);
+      }
+      
+      .section-divider {
+        background-color: var(--plum-accent);
+      }
+      
+      .cv-button:hover {
+        background-color: var(--plum-accent);
+      }
+      
+      .nav-links a.active::after {
+        background-color: var(--plum-accent);
+      }
+      
+      .service-list li::before {
+        color: var(--plum-accent);
+      }
+      
+      a:not(.nav-link):not(.cv-button):not(.contact-links a) {
+        color: var(--plum-accent) !important;
+      }
+      
       
       /* Researcher-specific content styles */
       .related-publications {
@@ -130,7 +157,7 @@
             <h1>Leo Torres, PhD</h1>
             <p class="tagline">Postdoctoral Researcher in Network Science</p>
             <div class="aliases">
-              Max Planck Institute • Leipzig, Germany
+              Max Planck Institute <span style="color: var(--plum-accent); font-size: 1.2em;">•</span> Leipzig, Germany
             </div>
           </div>
         </div>
