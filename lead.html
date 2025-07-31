@@ -101,9 +101,9 @@
             <a href="#philosophy" class="nav-link" onclick="showPage('philosophy', this); return false;">Philosophy</a>
           </div>
           <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='researcher.html'" data-tooltip="Researcher"></div>
-            <div class="diamond" onclick="window.location.href='leader.html'" data-tooltip="Leader"></div>
-            <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
+            <div class="diamond" onclick="window.location.href='think.html'" data-tooltip="Think"></div>
+            <div class="diamond" onclick="window.location.href='lead.html'" data-tooltip="Lead"></div>
+            <div class="diamond" onclick="window.location.href='make.html'" data-tooltip="Make"></div>
           </div>
         </nav>
       </header>
@@ -388,10 +388,8 @@
       <footer class="contact">
         <div class="contact-links">
           <a href="mailto:leo@leotrs.com">Email</a>
-          <a href="https://linkedin.com/in/leotrs">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/leo-torres-550ba068/">LinkedIn</a>
           <a href="https://calendly.com/leotorres/leadership">Book Time</a>
-          <a href="https://medium.com/@leotrs">Writing</a>
-          <a href="https://twitter.com/leotrs">Twitter</a>
         </div>
         
         <div class="footer-diamonds">
@@ -418,12 +416,15 @@
         });
         linkElement.classList.add('active');
         
+        // Update URL hash
+        window.location.hash = pageId;
+        
         // Scroll to top
         window.scrollTo(0, 0);
       }
 
-      // Handle browser back/forward
-      window.addEventListener('popstate', function(e) {
+      // Handle browser back/forward and direct hash navigation
+      window.addEventListener('hashchange', function() {
         const page = window.location.hash.slice(1) || 'home';
         const link = document.querySelector(`a[href="#${page}"]`);
         if (link) {
@@ -431,12 +432,14 @@
         }
       });
 
-      // Set initial page from URL
-      const initialPage = window.location.hash.slice(1) || 'home';
-      const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
-      if (initialLink) {
-        showPage(initialPage, initialLink);
-      }
+      // Set initial page from URL hash
+      window.addEventListener('DOMContentLoaded', function() {
+        const initialPage = window.location.hash.slice(1) || 'home';
+        const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
+        if (initialLink) {
+          showPage(initialPage, initialLink);
+        }
+      });
 
     </script>
   </body>

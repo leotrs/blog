@@ -525,18 +525,26 @@ section {
 /* Responsive design */
 @media (max-width: 768px) {
   .container {
-    padding: 40px 30px;
+    padding: var(--space-lg) var(--space-md);
+    margin: 0;
   }
 
+  /* Navigation improvements */
   .nav-links {
-    gap: var(--space-md);
-    font-size: 0.9rem;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    padding: 6px 10px;
   }
 
   nav {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
+    margin-bottom: var(--space-md);
   }
 
   .diamond-accent {
@@ -544,29 +552,168 @@ section {
     margin-top: calc(-1 * var(--space-md));
   }
 
+  /* Profile section */
   .profile {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: var(--space-md);
+  }
+
+  .profile-image {
+    width: 140px;
+    height: 140px;
   }
 
   .profile-content h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  .aliases {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  /* CV buttons */
+  .cv-buttons {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .cv-option {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .cv-button {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  /* Research/Leadership areas */
+  .research-areas,
+  .leadership-areas {
+    gap: var(--space-xs);
+  }
+
+  .research-tag,
+  .leadership-tag {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+
+  /* Experience/Leadership headers */
   .experience-header,
   .leadership-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-xs);
   }
 
+  .duration {
+    font-size: 0.75rem;
+  }
+
+  /* Impact grid */
+  .impact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .impact-number {
+    font-size: 1.5rem;
+  }
+
+  .impact-label {
+    font-size: 0.75rem;
+  }
+
+  /* Project and achievement items */
+  .project-item,
+  .achievement-item {
+    margin-bottom: var(--space-lg);
+  }
+
+  .project-tech {
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .project-links {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  /* Lists and content */
+  .service-list li,
+  .philosophy-list li {
+    font-size: 0.85rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .content-text {
+    font-size: 0.85rem;
+  }
+
+  .content-text p {
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Contact section */
   .contact {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .contact-links {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
   .footer-diamonds {
     margin-left: 0;
     margin-top: var(--space-sm);
+  }
+
+  /* Metrics text */
+  .metrics {
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .profile-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .nav-links {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-buttons {
+    gap: var(--space-xs);
+  }
+
+  .aliases {
+    font-size: 0.7rem;
+    line-height: 1.4;
   }
 }
