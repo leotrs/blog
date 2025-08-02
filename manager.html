@@ -105,12 +105,22 @@
     <div class="container">
       <header>
         <nav>
-          <div class="nav-links">
-            <a href="#" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
-            <a href="#leadership" class="nav-link" onclick="showPage('leadership', this); return false;">Leadership</a>
-            <a href="#impact" class="nav-link" onclick="showPage('impact', this); return false;">Impact</a>
-            <a href="#philosophy" class="nav-link" onclick="showPage('philosophy', this); return false;">Philosophy</a>
+          <div class="nav-left">
+            <div class="burger-menu" onclick="toggleBurgerMenu()" id="burger-menu">
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+            </div>
+            <div class="page-title" id="page-title">Home</div>
           </div>
+          
+          <div class="nav-links" id="nav-links">
+            <a href="#" class="nav-link active" onclick="event.preventDefault(); showPage('home', this); return false;">Home</a>
+            <a href="#" class="nav-link" onclick="event.preventDefault(); showPage('leadership', this); return false;">Leadership</a>
+            <a href="#" class="nav-link" onclick="event.preventDefault(); showPage('impact', this); return false;">Impact</a>
+            <a href="#" class="nav-link" onclick="event.preventDefault(); showPage('philosophy', this); return false;">Philosophy</a>
+          </div>
+          
           <div style="display: flex; align-items: center; gap: var(--space-md);">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
               <span class="theme-text">Dark</span>
@@ -470,6 +480,12 @@
         });
         linkElement.classList.add('active');
         
+        // Update page title
+        const pageTitle = document.getElementById('page-title');
+        if (pageTitle) {
+          pageTitle.textContent = linkElement.textContent;
+        }
+        
         // Update URL hash
         window.location.hash = pageId;
         
@@ -544,6 +560,28 @@
       
       // Initialize theme immediately
       initTheme();
+
+      // Burger menu functionality
+      function toggleBurgerMenu() {
+        const burger = document.getElementById('burger-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        burger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      }
+
+      // Close burger menu when clicking nav links
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const burger = document.getElementById('burger-menu');
+            const navLinksContainer = document.getElementById('nav-links');
+            burger.classList.remove('active');
+            navLinksContainer.classList.remove('active');
+          });
+        });
+      });
 
     </script>
   </body>

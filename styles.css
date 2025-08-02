@@ -159,6 +159,61 @@ nav {
   transform: translateY(-1px);
 }
 
+/* Page title in navbar */
+.page-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--medium-gray);
+  display: none;
+}
+
+/* Mobile burger menu */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 4px;
+  width: 24px;
+  height: 18px;
+  position: relative;
+  justify-content: space-between;
+}
+
+.burger-line {
+  width: 20px;
+  height: 2px;
+  background-color: var(--dark-gray);
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 2px;
+}
+
+.burger-line:nth-child(1) {
+  top: 2px;
+}
+
+.burger-line:nth-child(2) {
+  top: 8px;
+}
+
+.burger-line:nth-child(3) {
+  top: 14px;
+}
+
+.burger-menu.active .burger-line:nth-child(1) {
+  top: 8px;
+  transform: rotate(45deg);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+  top: 8px;
+  transform: rotate(-45deg);
+}
+
 /* Header with diamond accent */
 header {
   position: relative;
@@ -597,25 +652,84 @@ section {
 
   /* Navigation improvements */
   .nav-links {
-    gap: var(--space-sm);
-    font-size: 0.85rem;
-    flex-wrap: wrap;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .nav-links a {
-    padding: 6px 10px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  
+  .nav-links a:hover {
+    background-color: var(--light-bg);
+    transform: none;
+  }
+  
+  .nav-links a.active {
+    background-color: var(--navy);
+    color: var(--white);
+  }
+  
+  .nav-links a.active::after {
+    display: none;
   }
 
   nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-sm);
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--space-md);
   }
-
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+  
+  .burger-menu {
+    display: flex;
+  }
+  
+  .page-title {
+    display: block;
+  }
+  
+  .theme-toggle {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
   .diamond-accent {
-    align-self: flex-end;
-    margin-top: calc(-1 * var(--space-md));
+    gap: 4px;
+    align-items: center;
+  }
+  
+  .diamond {
+    width: 12px;
+    height: 12px;
+  }
   }
 
   /* Profile section */
@@ -733,19 +847,21 @@ section {
 
   /* Contact section */
   .contact {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-sm);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-xs);
   }
 
   .contact-links {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: var(--space-sm);
+    font-size: 0.7rem;
   }
 
   .footer-diamonds {
     margin-left: 0;
-    margin-top: var(--space-sm);
+    margin-top: 0;
   }
 
   /* Metrics text */
