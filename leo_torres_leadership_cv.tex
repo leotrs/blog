@@ -1,0 +1,263 @@
+%!TEX TS-program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    colorlinks=false,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    pdfborder={0 0 0},
+    pdfhighlight=/O
+}
+
+% Define EXACT brand colors from design system
+\definecolor{navy}{HTML}{1a365d}        % Primary brand color - Name, section titles
+\definecolor{gold}{HTML}{f59e0b}        % Leadership accent color - dividers, bullets  
+\definecolor{charcoal}{HTML}{1f2937}    % Primary text - body content
+\definecolor{darkgray}{HTML}{4b5563}    % Secondary text - descriptions
+\definecolor{mediumgray}{HTML}{6b7280}  % Tertiary text - tagline, metadata
+\definecolor{lightbg}{HTML}{f8fafc}     % Background (not used in print)
+\definecolor{plum}{HTML}{6b5b95}        % Academic accent (for diamonds)
+\definecolor{coral}{HTML}{e53e3e}       % Engineer accent (for diamonds)
+
+% Set fonts - EXACT match to design system
+\setmainfont{Manrope}
+\setmonofont{JetBrains Mono}
+
+% EXACT spacing system from design system (converted to pt)
+\newlength{\spacexs}    \setlength{\spacexs}{6pt}      % 8px -> ~6pt
+\newlength{\spacesm}    \setlength{\spacesm}{11pt}     % 15px -> ~11pt  
+\newlength{\spacemd}    \setlength{\spacemd}{19pt}     % 25px -> ~19pt
+\newlength{\spacelg}    \setlength{\spacelg}{26pt}     % 35px -> ~26pt
+\newlength{\spacexl}    \setlength{\spacexl}{38pt}     % 50px -> ~38pt
+\newlength{\spacexxl}   \setlength{\spacexxl}{45pt}    % 60px -> ~45pt
+
+% EXACT typography scale from design system
+% Name (h1): 2.8rem (44.8px) - Navy, Weight 700
+% Section titles: 1.1rem (17.6px) - Navy, Weight 600
+% Body text: 1rem (16px) - Charcoal, Weight 400, Line-height 1.6
+% Small text: 0.9rem (14.4px) - Dark gray
+% Micro text: 0.8rem (12.8px) - Medium gray
+
+% Use normal margins - the geometry package handles this properly
+
+% Custom commands - further reduced font sizes for strict 2-page layout
+\newcommand{\nameheading}[1]{%
+    {\fontsize{24pt}{28pt}\selectfont\color{navy}\bfseries #1}% Further reduced from 28pt
+}
+
+\newcommand{\taglinetext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{mediumgray} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytextbold}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal}\bfseries #1}% Increased back to 10pt
+}
+
+\newcommand{\smalltext}[1]{%
+    {\fontsize{9pt}{13pt}\selectfont\color{darkgray} #1}% Increased back to 9pt
+}
+
+\newcommand{\microtext}[1]{%
+    {\fontsize{8pt}{11pt}\selectfont\color{mediumgray} #1}% Increased back to 8pt
+}
+
+% Section title - TONS of breathing room with page break protection
+\newcommand{\sectiontitle}[1]{%
+    \needspace{4\baselineskip}% Ensure at least 4 lines available, or force page break
+    \vspace{\spacexl}% Moderate space above sections
+    {\fontsize{12pt}{14pt}\selectfont\color{navy}\bfseries #1}\\*% Section title with no-break
+    \vspace{1pt}% Gap before divider
+    {\color{gold}\rule{20pt}{1pt}}% Divider - GOLD for leadership
+    \vspace{0pt}% NO margin - I control the spacing, not LaTeX
+}
+
+% Gold bullet matching design system
+\newcommand{\goldbullet}{{\color{gold}$\bullet$}\space}
+
+% Job duration in monospace - NO SERIF FONTS IN DESIGN SYSTEM
+\newcommand{\jobduration}[1]{%
+    {\fontspec{JetBrains Mono}\microtext{#1}}
+}
+
+% Company name styling
+\newcommand{\companyname}[1]{%
+    {\color{darkgray}\bfseries #1}
+}
+
+% Tech tag styling (monospace, gold)
+\newcommand{\techtag}[1]{%
+    {\fontspec{JetBrains Mono}\color{gold}\microtext{#1}}
+}
+
+% Set default text properties - increased back to 10pt
+\renewcommand{\normalsize}{\fontsize{10pt}{14pt}\selectfont}
+\color{charcoal}
+
+% Remove paragraph indentation - design system has no indentation
+\setlength{\parindent}{0pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+\begin{document}
+
+% Header section with EXACT spacing
+\begin{center}
+    \nameheading{Leo Torres}\\[\spacexs]
+    \taglinetext{Tech Lead Ready for Management Leadership}\\[\spacexs]
+    \smalltext{\href{mailto:leo@leotrs.com}{leo@leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[plum] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://leotrs.com}{leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[gold] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://www.linkedin.com/in/leo-torres-550ba068/}{LinkedIn} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[coral] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} Leipzig/Berlin}\\[\spacesm]
+\end{center}
+
+\vspace{-\spacesm}
+
+% Leadership Focus Section
+\sectiontitle{Leadership Focus}
+\vspace{\spacesm}
+
+\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}
+\raggedcolumns
+\bodytextbold{People Management}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{\textbf{Team Management:} Currently managing 5 data scientists and engineers}
+    \item[\goldbullet] \bodytext{\textbf{Technical Leadership:} Leading production ML systems and architecture decisions}
+    \item[\goldbullet] \bodytext{\textbf{Research to Industry:} Bridging academic expertise with business applications}
+    \item[\goldbullet] \bodytext{\textbf{Strategic Vision:} Ready to expand into broader organizational leadership}
+\end{itemize}
+
+\columnbreak
+
+\bodytextbold{Research \& Development}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{\textbf{Academic Research:} PhD in Network Science with publications in top venues}
+    \item[\goldbullet] \bodytext{\textbf{Software Development:} Co-led netrd, XGI, and Manim Community projects}
+    \item[\goldbullet] \bodytext{\textbf{Conference Organization:} Co-organized NetSci satellites and workshops}
+    \item[\goldbullet] \bodytext{\textbf{Transition Focus:} Moving from technical execution to strategic roles}
+\end{itemize}
+\end{multicols}
+
+% Leadership Experience Section
+\sectiontitle{Leadership Experience}
+\vspace{\spacesm}
+
+\bodytext{\textbf{FGS Global - Lead Data Scientist \& Tech Lead}} \hfill \jobduration{May 2023 - Present}\\
+\companyname{Berlin, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=2pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{Lead Data Scientist managing team of 5 data scientists and engineers}
+    \item[\goldbullet] \bodytext{Built LLM-powered data pipelines processing millions of articles daily for Fortune 500 clients}
+    \item[\goldbullet] \bodytext{Technical leadership role combining people management with architecting production systems}
+    \item[\goldbullet] \bodytext{Applied network science methods to large-scale text analysis and information retrieval}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Max Planck Institute - Postdoctoral Fellow}} \hfill \jobduration{Aug 2021 - May 2023}\\
+\companyname{Leipzig, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{Developed spectral theory of non-backtracking operators on graphs}
+    \item[\goldbullet] \bodytext{Applied geometric methods to network analysis and graph embeddings}
+    \item[\goldbullet] \bodytext{Co-led development of open-source software for research community}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Network Science Institute - Graduate Researcher}} \hfill \jobduration{2016 - 2021}\\
+\companyname{Northeastern University, Boston, MA}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{PhD research in spectral graph theory and network analysis methods}
+    \item[\goldbullet] \bodytext{Co-led development of netrd library with team of 12+ researchers}
+    \item[\goldbullet] \bodytext{Published research in SIAM Review, Journal of Complex Networks, Applied Network Science}
+    \item[\goldbullet] \bodytext{President of Network Science Institute graduate student association (2018)}
+\end{itemize}
+
+% Management Philosophy Section
+\sectiontitle{Management Philosophy}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Servant Leadership \& Technical Excellence}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{\textbf{People-First Leadership:} Leaders exist to remove obstacles and amplify team impact}
+    \item[\goldbullet] \bodytext{\textbf{Technical Credibility:} Deep technical understanding enables effective architectural guidance}
+    \item[\goldbullet] \bodytext{\textbf{Psychological Safety:} Innovation requires trust; failure becomes learning opportunity}
+    \item[\goldbullet] \bodytext{\textbf{Clear Vision:} Translate organizational goals into inspiring missions connecting daily work to impact}
+    \item[\goldbullet] \bodytext{\textbf{Continuous Growth:} Invest in systematic skill development and career advancement}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Open Source Leadership Experience}} \hfill \jobduration{2019 - Present}\\
+\href{https://github.com/leotrs}{\techtag{github.com/leotrs}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{Co-led development of netrd project with team of 12+ developers}
+    \item[\goldbullet] \bodytext{Established coding standards, review processes, and community guidelines}
+    \item[\goldbullet] \bodytext{NumFOCUS affiliated project leadership (XGI hypergraph library)}
+    \item[\goldbullet] \bodytext{Mentored contributors through technical challenges and career development}
+\end{itemize}
+
+
+% Professional Development
+\sectiontitle{Professional Development}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\goldbullet] \bodytext{\textbf{Talk:} ``LLMs: Computation or Measurement?'' - Berlin Data Meetup, 2024 (\href{https://www.youtube.com/watch?v=SklZPLqA4a8&t=1s}{\techtag{YouTube}})}
+    \item[\goldbullet] \bodytext{\textbf{Recurse Center:} 12-week programming retreat focused on algorithm design and software craftsmanship (2016)}
+\end{itemize}
+
+% Education
+\sectiontitle{Education}
+\vspace{\spacesm}
+\vspace{0pt}
+
+\bodytext{\textbf{Ph.D. Network Science} - Northeastern University, Boston, MA} \hfill \jobduration{2016-2021}\\
+\smalltext{\textit{Dissertation: Spectral Aspects of Mining Complex Networks}}\\
+\smalltext{\textit{Advisor: Tina Eliassi-Rad}}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{B.Sc. Mathematics} - Pontificia Universidad Católica del Perú, Lima} \hfill \jobduration{2009-2015}\\
+\smalltext{\textit{Top 3\% grades in 75-year history of Sciences Department}}\\
+\smalltext{\textit{Honors Thesis: Small-World Random Graphs Beyond Watts-Strogatz}}
+
+\end{document}

@@ -63,9 +63,9 @@
             <a href="#skills" class="nav-link" onclick="showPage('skills', this); return false;">Skills</a>
           </div>
           <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='think.html'" data-tooltip="Think"></div>
-            <div class="diamond" onclick="window.location.href='lead.html'" data-tooltip="Lead"></div>
-            <div class="diamond" onclick="window.location.href='make.html'" data-tooltip="Make"></div>
+            <div class="diamond" onclick="window.location.href='think.html'" data-tooltip="Scholar"></div>
+            <div class="diamond" onclick="window.location.href='lead.html'" data-tooltip="Manager"></div>
+            <div class="diamond" onclick="window.location.href='make.html'" data-tooltip="Engineer"></div>
           </div>
         </nav>
       </header>
@@ -352,19 +352,23 @@
 
       // Handle browser back/forward and direct hash navigation
       window.addEventListener('hashchange', function() {
-        const page = window.location.hash.slice(1) || 'home';
-        const link = document.querySelector(`a[href="#${page}"]`);
-        if (link) {
-          showPage(page, link);
+        const page = window.location.hash.slice(1);
+        if (page) {
+          const link = document.querySelector(`a[href="#${page}"]`);
+          if (link) {
+            showPage(page, link);
+          }
         }
       });
 
       // Set initial page from URL hash
       window.addEventListener('DOMContentLoaded', function() {
-        const initialPage = window.location.hash.slice(1) || 'home';
-        const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
-        if (initialLink) {
-          showPage(initialPage, initialLink);
+        const initialPage = window.location.hash.slice(1);
+        if (initialPage) {
+          const initialLink = document.querySelector(`a[href="#${initialPage}"]`);
+          if (initialLink) {
+            showPage(initialPage, initialLink);
+          }
         }
       });
 

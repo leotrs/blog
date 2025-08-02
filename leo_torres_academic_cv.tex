@@ -1,0 +1,423 @@
+%!TEX TS-program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    colorlinks=false,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    pdfborder={0 0 0},
+    pdfhighlight=/O
+}
+
+% Define EXACT brand colors from design system
+\definecolor{navy}{HTML}{1a365d}        % Primary brand color - Name, section titles
+\definecolor{plum}{HTML}{6b5b95}        % Academic accent color - dividers, bullets  
+\definecolor{charcoal}{HTML}{1f2937}    % Primary text - body content
+\definecolor{darkgray}{HTML}{4b5563}    % Secondary text - descriptions
+\definecolor{mediumgray}{HTML}{6b7280}  % Tertiary text - tagline, metadata
+\definecolor{lightbg}{HTML}{f8fafc}     % Background (not used in print)
+\definecolor{gold}{HTML}{f59e0b}        % Leadership accent (for diamonds)
+\definecolor{coral}{HTML}{e53e3e}       % Engineer accent (for diamonds)
+
+% Set fonts - EXACT match to design system
+\setmainfont{Manrope}
+\setmonofont{JetBrains Mono}
+
+% EXACT spacing system from design system (converted to pt)
+\newlength{\spacexs}    \setlength{\spacexs}{6pt}      % 8px -> ~6pt
+\newlength{\spacesm}    \setlength{\spacesm}{11pt}     % 15px -> ~11pt  
+\newlength{\spacemd}    \setlength{\spacemd}{19pt}     % 25px -> ~19pt
+\newlength{\spacelg}    \setlength{\spacelg}{26pt}     % 35px -> ~26pt
+\newlength{\spacexl}    \setlength{\spacexl}{38pt}     % 50px -> ~38pt
+\newlength{\spacexxl}   \setlength{\spacexxl}{45pt}    % 60px -> ~45pt
+
+% EXACT typography scale from design system
+% Name (h1): 2.8rem (44.8px) - Navy, Weight 700
+% Section titles: 1.1rem (17.6px) - Navy, Weight 600
+% Body text: 1rem (16px) - Charcoal, Weight 400, Line-height 1.6
+% Small text: 0.9rem (14.4px) - Dark gray
+% Micro text: 0.8rem (12.8px) - Medium gray
+
+% Use normal margins - the geometry package handles this properly
+
+% Custom commands - further reduced font sizes for strict 2-page layout
+\newcommand{\nameheading}[1]{%
+    {\fontsize{24pt}{28pt}\selectfont\color{navy}\bfseries #1}% Further reduced from 28pt
+}
+
+\newcommand{\taglinetext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{mediumgray} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytext}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal} #1}% Increased back to 10pt
+}
+
+\newcommand{\bodytextbold}[1]{%
+    {\fontsize{10pt}{14pt}\selectfont\color{charcoal}\bfseries #1}% Increased back to 10pt
+}
+
+\newcommand{\smalltext}[1]{%
+    {\fontsize{9pt}{13pt}\selectfont\color{darkgray} #1}% Increased back to 9pt
+}
+
+\newcommand{\microtext}[1]{%
+    {\fontsize{8pt}{11pt}\selectfont\color{mediumgray} #1}% Increased back to 8pt
+}
+
+% Section title - TONS of breathing room with page break protection
+\newcommand{\sectiontitle}[1]{%
+    \needspace{4\baselineskip}% Ensure at least 4 lines available, or force page break
+    \vspace{\spacexl}% Moderate space above sections
+    {\fontsize{12pt}{14pt}\selectfont\color{navy}\bfseries #1}\\*% Section title with no-break
+    \vspace{1pt}% Gap before divider
+    {\color{plum}\rule{20pt}{1pt}}% Divider - PLUM for academic
+    \vspace{0pt}% NO margin - I control the spacing, not LaTeX
+}
+
+% Plum bullet matching design system
+\newcommand{\plumbullet}{{\color{plum}$\bullet$}\space}
+
+% Job duration in monospace - NO SERIF FONTS IN DESIGN SYSTEM
+\newcommand{\jobduration}[1]{%
+    {\fontspec{JetBrains Mono}\microtext{#1}}
+}
+
+% Company name styling
+\newcommand{\companyname}[1]{%
+    {\color{darkgray}\bfseries #1}
+}
+
+% Tech tag styling (monospace, plum)
+\newcommand{\techtag}[1]{%
+    {\fontspec{JetBrains Mono}\color{plum}\microtext{#1}}
+}
+
+% Set default text properties - increased back to 10pt
+\renewcommand{\normalsize}{\fontsize{10pt}{14pt}\selectfont}
+\color{charcoal}
+
+% Remove paragraph indentation - design system has no indentation
+\setlength{\parindent}{0pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+\begin{document}
+
+% Header section with EXACT spacing
+\begin{center}
+    \nameheading{Leo Torres, PhD}\\[\spacexs]
+    \taglinetext{Lead Data Scientist \& Network Science Researcher}\\[\spacexs]
+    \smalltext{\href{mailto:leo@leotrs.com}{leo@leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[plum] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://leotrs.com}{leotrs.com} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[gold] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} \href{https://scholar.google.com/citations?user=xjyYHz0AAAAJ&hl=en&authuser=1}{Google Scholar} \hspace{6pt}
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \fill[coral] (0,0) -- (0.08,0.08) -- (0,0.16) -- (-0.08,0.08) -- cycle;
+    \end{tikzpicture}
+    \hspace{6pt} Leipzig, Germany}\\[\spacesm]
+\end{center}
+
+\vspace{-\spacesm}
+
+% Research Interests Section
+\sectiontitle{Research Interests}
+\vspace{\spacesm}
+
+\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}
+\raggedcolumns
+\bodytextbold{Mathematical Foundations}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Spectral Graph Theory:} Non-backtracking operators and eigenvalue analysis}
+    \item[\plumbullet] \bodytext{\textbf{Algebraic Topology:} Geometric methods in network analysis}
+    \item[\plumbullet] \bodytext{\textbf{Random Matrix Theory:} Statistical properties of graph spectra}
+    \item[\plumbullet] \bodytext{\textbf{Network Dynamics:} Mathematical modeling of complex systems}
+\end{itemize}
+
+\columnbreak
+
+\bodytextbold{Applications \& Methods}
+\vspace{2pt}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Mathematical Epidemiology:} Disease spread on mobility networks}
+    \item[\plumbullet] \bodytext{\textbf{LLM Applications:} Large-scale data systems processing}
+    \item[\plumbullet] \bodytext{\textbf{Geometric Embeddings:} Dimensionality reduction for networks}
+    \item[\plumbullet] \bodytext{\textbf{Open Source Software:} Scientific computing libraries}
+\end{itemize}
+\end{multicols}
+
+% Current Position Section
+\sectiontitle{Current Position}
+\vspace{\spacesm}
+
+\bodytext{\textbf{FGS Global - Lead Data Scientist}} \hfill \jobduration{May 2023 - Present}\\
+\companyname{Leipzig, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=2pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Applied network science and spectral methods to large-scale text analysis systems}
+    \item[\plumbullet] \bodytext{Built LLM-powered pipelines processing 10M+ articles daily for Fortune 500 clients}
+    \item[\plumbullet] \bodytext{Bridges theoretical research with practical applications in production environments}
+    \item[\plumbullet] \bodytext{Technical leadership for data infrastructure handling 1B+ log entries}
+\end{itemize}
+
+% Academic Experience Section
+\sectiontitle{Academic Experience}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Max Planck Institute for Mathematics in the Sciences - Postdoctoral Fellow}} \hfill \jobduration{Aug 2021 - May 2023}\\
+\companyname{Leipzig, Germany}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Developed spectral theory of non-backtracking operators on graphs}
+    \item[\plumbullet] \bodytext{Applied geometric methods to network analysis and graph embeddings}
+    \item[\plumbullet] \bodytext{Co-led development of open-source software for research community}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Network Science Institute, Northeastern University - Graduate Researcher}} \hfill \jobduration{2016 - 2021}\\
+\companyname{Boston, MA}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Dissertation: "Spectral Aspects of Mining Complex Networks" (Advisor: Tina Eliassi-Rad)}
+    \item[\plumbullet] \bodytext{Developed GLEE algorithm for geometric graph embeddings}
+    \item[\plumbullet] \bodytext{Published in SIAM Review, Journal of Complex Networks, Applied Network Science}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{MOBS Lab, Northeastern University - Research Assistant}} \hfill \jobduration{Mar 2020 - Jul 2020}\\
+\companyname{Boston, MA}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Applied network science to COVID-19 mobility analysis using 40TB GPS dataset}
+    \item[\plumbullet] \bodytext{Co-authored Nature Human Behaviour paper on pandemic mobility patterns}
+\end{itemize}
+
+% Publications Section
+\sectiontitle{Publications}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Published Articles}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{J. Jost, R. Mulas, \underline{L. Torres}. \textbf{Spectral theory of the non-backtracking Laplacian for graphs}. \textit{Discrete Mathematics} 346:10 (2023) \href{https://arxiv.org/abs/2203.10824}{\techtag{arXiv}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}, A. S. Blevins, D. S. Bassett, T. Eliassi-Rad. \textbf{The why, how, and when of representations for complex systems}. \textit{SIAM Review}, 63:3, 435-485 (2021) \href{https://epubs.siam.org/doi/abs/10.1137/20M1355896}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{S. McCabe, \underline{L. Torres}, T. LaRock, et al. \textbf{netrd: A library for network reconstruction and graph distances}. \textit{Journal of Open Source Software} (JOSS), 6(62): 2990 (2021) \href{https://github.com/netsiphd/netrd}{\techtag{Code}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}, K. S. Chan, H. Tong, T. Eliassi-Rad. \textbf{Nonbacktracking Eigenvalues under Node Removal: X-Centrality and Targeted Immunization}. \textit{SIAM Journal on Mathematics of Data Science} (SIMODS), 3(2) (2021) \href{https://github.com/leotrs/inbox}{\techtag{Code}}}
+    \item[\plumbullet] \bodytext{S. Yu, \underline{L. Torres}, S. Alfeld, T. Eliassi-Rad, Y. Vorobeychik. \textbf{POTION: Optimizing Graph Structure for Targeted Diffusion}. \textit{SIAM Conference on Data Mining} (SDM) (2021) \href{https://arxiv.org/abs/2008.05589}{\techtag{arXiv}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}, K. S. Chan, T. Eliassi-Rad. \textbf{GLEE: Geometric Laplacian Eigenmap Embedding}. \textit{Journal of Complex Networks}, 8(2), cnaa007 (2020) \href{https://github.com/leotrs/glee}{\techtag{Code}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}, P. Suárez-Serrato, T. Eliassi-Rad. \textbf{Non-backtracking Cycles: Length Spectrum Theory and Graph Mining Applications}. \textit{Applied Network Science} (2019) 4: 41 \href{https://github.com/leotrs/sunbeam}{\techtag{Code}}}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Technical Reports}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{N. W. Landry, M. Lucas, I. Iacopini, G. Petri, A. Schwarze, A. Patania, \underline{L Torres}. \textbf{XGI: A Python package for higher-order interaction networks}. \textit{Journal of Open Source Software} (JOSS) 8.85 (2023) \href{https://joss.theoj.org/papers/10.21105/joss.05162}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{B. Klein, T. LaRock, S. McCabe, \underline{L. Torres}, et al. \textbf{Reshaping a nation: Mobility, commuting, and contact patterns during the COVID-19 outbreak}. Technical report (2020)}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Preprints}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Klein, LaRock, McCabe, \underline{Torres}, et al. \textbf{Characterizing collective physical distancing in the U.S. during the first nine months of the COVID-19 pandemic}. arXiv:2212.08873 (2022) \href{https://arxiv.org/abs/2212.08873}{\techtag{arXiv}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}. \textbf{Geometric multiplicity of unitary non-backtracking eigenvalues}. arXiv:2205.02004 (2022) \href{https://arxiv.org/abs/2205.02004}{\techtag{arXiv}}}
+    \item[\plumbullet] \bodytext{\underline{L. Torres}. \textbf{The Perron non-backtracking eigenvalue after node addition}. arXiv:2111.09037 (2021) \href{https://arxiv.org/abs/2111.09037}{\techtag{arXiv}}}
+\end{itemize}
+
+% Selected Honours and Awards Section
+\sectiontitle{Selected Honours and Awards}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{SIAM Network Science Workshop 2022} Best Contributed Talk award (Sept 2022)}
+    \item[\plumbullet] \bodytext{\textbf{SIAM Data Mining 2021} Student Travel Award (May 2021)}
+    \item[\plumbullet] \bodytext{\textbf{LANET 2019} Scholarship for young researchers (July 2019)}
+    \item[\plumbullet] \bodytext{\textbf{Network Science Institute} Travel Grant (May 2019)}
+    \item[\plumbullet] \bodytext{\textbf{Pontificia Universidad Católica del Perú} Top 3\% grades in 75-year history of Sciences Department (2015)}
+\end{itemize}
+
+% Research Software Section
+\sectiontitle{Research Software}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{XGI:} The Comple(X) (G)roup (I)nteractions library for modeling complex systems with higher-order interactions \href{https://xgi.readthedocs.io/en/latest/}{\techtag{Docs}}}
+    \item[\plumbullet] \bodytext{\textbf{Manim Community Edition:} Community-maintained Python library for creating mathematical animations \href{https://www.manim.community/}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{\textbf{Netrd:} Library with state-of-the-art algorithms for network reconstruction and graph distances \href{https://github.com/netsiphd/netrd}{\techtag{GitHub}}}
+\end{itemize}
+
+% Teaching Section
+\sectiontitle{Teaching}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Courses}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Non-backtracking Operators of graphs} - Max Planck Institute for Mathematics in the Sciences, Spring 2022 (Joint with Dr. Raffaella Mulas) \href{https://www.mis.mpg.de/calendar/students/summer-2022/non-backtracking-operators-of-graphs.html}{\techtag{Link}}}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Tutorials}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Co-tutor for \textbf{Graph Metric Spaces} tutorial - SIAM International Conference on Data Mining (SDM19), Calgary, Canada (May 2019) \href{https://neu-spiral.github.io/GraphMetricSpaces/}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{Co-tutor for \textbf{Graph Metric Spaces} tutorial - International Conference on Knowledge Discovery and Data Mining (KDD18), London, UK (August 2018)}
+\end{itemize}
+
+% Academic Presentations Section
+\sectiontitle{Academic Presentations}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Invited Presentations}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{The why, how, and when of mathematical representations of complex systems} - University of Amsterdam Simulation-based science seminar (online, Feb 2022) \href{http://leotrs.com/static/whyhowwhen.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Graph homotopy, non-backtracking matrix, and X-centrality} - LCN2 seminar (online, Feb 2022) \href{http://leotrs.com/static/x_centrality_LCN2.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Non-backtracking cycles and the length spectrum of graphs} - AlToGeLiS seminar (online, Feb 2022) \href{http://leotrs.com/static/length_spectrum_altogelis.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{X-centrality, node immunization, and localization} - Oxford Networks Seminar (online, Feb 2022) \href{https://www.youtube.com/watch?v=bxtiwAQ6HI4}{\techtag{Video}}}
+    \item[\plumbullet] \bodytext{\textbf{Perturbation of Non-Backtracking Eigenvalues} - SIAM Conference on Applied Linear Algebra (LA21, online, May 2021) \href{http://leotrs.com/static/perturbation_nb_eigs_LA21.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Geometric aspects of mining complex networks} - NetSci'20 Machine Learning satellite (Rome, online, Sept 2020) \href{https://www.youtube.com/watch?v=cMNVaDX4ewo}{\techtag{Video}}}
+    \item[\plumbullet] \bodytext{\textbf{Stopping Disease Spreading with Non-Backtracking Eigenvalues} - ARL CRA Webinar, Penn State University (Aug 2020) \href{http://leotrs.com/static/X_centrality_ARL_CRA_webinar.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Non-Backtracking Cycles: Length Spectrum Theory} - MiDAS Research Group Seminar, Boston University (Nov 2019)}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Contributed Presentations}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Localization and percolation in networks} - SIAM Workshop on Network Science (NS22, online, Sept 2022) \href{http://leotrs.com/static/localization_percolation.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Localization and percolation in networks} - International Conference on Network Science (NetSci'22, Shanghai, online, July 2022)}
+    \item[\plumbullet] \bodytext{\textbf{Unitary Non-backtracking Eigenvalues} - Max Planck Institute Seminar (Leipzig, Oct 2021) \href{http://leotrs.com/static/unitary_eigenvalues_mpi_seminar.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{Node Immunization with Non-backtracking Eigenvalues} - Annual Conference on Complex Systems (CCS, online, Dec 2020) \href{https://www.youtube.com/watch?v=SxTqyVsh7Vk}{\techtag{Video}}}
+    \item[\plumbullet] \bodytext{\textbf{Non-backtracking Eigenvalues: X-Centrality} - COMPLEX NETWORKS 2020 (Madrid, online, Nov 2020) \href{https://www.youtube.com/watch?v=_ihPi6VLG7I}{\techtag{Video}}}
+    \item[\plumbullet] \bodytext{\textbf{GLEE: Geometric Laplacian Eigenmap Embedding} - Latin American Conference on Complex Networks (LANET'19, Cartagena, Aug 2019) \href{http://leotrs.com/static/GLEE_lanet19.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{GLEE: Geometric Laplacian Eigenmap Embedding} - International Conference on Network Science (NetSci'19, Burlington, May 2019) \href{http://leotrs.com/static/GLEE_netsci19.pdf}{\techtag{Slides}}}
+    \item[\plumbullet] \bodytext{\textbf{A Bridge Between Homotopy Theory and Network Science} - SIAM Workshop on Network Science 2018 (Portland, July 2018) \href{http://leotrs.com/static/siamns18.pdf}{\techtag{Slides}}}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Posters}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{POTION: Optimizing Graph Structure for Targeted Diffusion} - NETWORKS 2021 (online, July 2021) \href{http://leotrs.com/static/potion_poster.pdf}{\techtag{Poster}}}
+    \item[\plumbullet] \bodytext{\textbf{Node Immunization with Non-backtracking Eigenvalues} - NetSci'20 (Rome, online, Sept 2020) \href{http://leotrs.com/static/xcentrality_poster.pdf}{\techtag{Poster}}}
+    \item[\plumbullet] \bodytext{\textbf{The why, how, and when of representations for complex systems} - NetSci'19 (Burlington, May 2019) \href{http://leotrs.com/static/hyper_poster.pdf}{\techtag{Poster}}}
+    \item[\plumbullet] \bodytext{\textbf{GLEE: Geometric Laplacian Eigenmap Embedding} - New England Machine Learning Day 2019 (Boston, May 2019) \href{http://leotrs.com/static/glee_poster.pdf}{\techtag{Poster}}}
+    \item[\plumbullet] \bodytext{\textbf{Graph Distance from the Topological Perspective} - New England Machine Learning Day 2018 (Cambridge, May 2018) \href{http://leotrs.com/static/neml18.pdf}{\techtag{Poster}}}
+    \item[\plumbullet] \bodytext{\textbf{A Bridge between Homotopy Theory and Network Science} - Graph Exploitation Symposium (GraphEx'18, Dedham, April 2018) \href{http://leotrs.com/static/graphex18.pdf}{\techtag{Poster}}}
+\end{itemize}
+
+% Professional Experience Section
+\sectiontitle{Professional Experience}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Research Intern} - Yahoo! Research, New York, NY (Summer 2019): Machine learning intern under supervision of Yifan Hu}
+    \item[\plumbullet] \bodytext{\textbf{Recurse Center} - New York, NY (Spring 2016): 12-week programmers' retreat focusing on algorithm design and code quality}
+    \item[\plumbullet] \bodytext{\textbf{Research Programmer} - Wolfram Research South America, Lima, Peru (2012-2014): Content development for Wolfram|Alpha knowledge engine}
+    \item[\plumbullet] \bodytext{\textbf{Teaching Assistant} - Pontificia Universidad Católica del Perú (Spring 2015): Calculus course, exam proctoring and grading}
+\end{itemize}
+
+% Service Section
+\sectiontitle{Service}
+\vspace{\spacesm}
+
+\bodytext{\textbf{Conference Organization}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Co-organizer of \textbf{TopoNets} conference satellite, CCS'22 (October 2022)}
+    \item[\plumbullet] \bodytext{Co-organizer of \textbf{Higher Order Networks (HONS)} satellite, NetSci'22 (July 2022) \href{https://hons-web.github.io/online/}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{Co-organizer of \textbf{Minisymposium on Latest Advances in Spectral Linear Algebra in Network Science}, SIAM LA21 (May 2021)}
+    \item[\plumbullet] \bodytext{Co-organizer of \textbf{Diversify NetSci} satellites, NetSci'20 and NetSci'19 \href{https://www.networkscienceinstitute.org/diversifynetsci2020}{\techtag{Link}}}
+    \item[\plumbullet] \bodytext{Co-organizer of first \textbf{Student Research Symposium of NetSI}, Northeastern University (November 2018)}
+    \item[\plumbullet] \bodytext{Co-organizer and lecturer of Linear Algebra at \textbf{Network Science Institute Bootcamp} for incoming PhD students (2017, 2018)}
+    \item[\plumbullet] \bodytext{Co-organizer of first \textbf{Symposium for the Society of Young Network Scientists}, NetSci'17 (Indianapolis, June 2017)}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Journal Reviewing}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Scientific Reports, Information and Inference, Complexity, Applied Mathematics and Computation, IEEE TKDE, Journal of Complex Networks, JMLR, JOSS, Journal of Theoretical Biology, Linear Algebra and its Applications, Nature Communications Physics, Proceedings of the Royal Society A, Random Matrices: Theory and Applications, SIAM Journal on Matrix Analysis and Applications}
+\end{itemize}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{Committees}}
+
+\vspace{\spacexs}
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{Member of hiring committee, Mulas group at Max Planck Institute (postdoc search 2021)}
+    \item[\plumbullet] \bodytext{President, Network Science Institute graduate student association (Academic year 2018)}
+\end{itemize}
+
+% Miscellaneous Section
+\sectiontitle{Miscellaneous}
+\vspace{\spacesm}
+
+\begin{itemize}[leftmargin=15pt,itemindent=0pt,labelwidth=10pt,labelsep=5pt,itemsep=1pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item[\plumbullet] \bodytext{\textbf{Languages:} Spanish (native), English (bilingual), French (beginner)}
+    \item[\plumbullet] \bodytext{\textbf{Computer Skills:} Python (expert), Mathematica, Linux, LaTeX (advanced), MATLAB, C/C++, R, Javascript, Julia (intermediate)}
+    \item[\plumbullet] \bodytext{\textbf{Advocacy:} Open Science, Open Source, Open Data, diversity, equity, and inclusion}
+\end{itemize}
+
+% Education
+\sectiontitle{Education}
+\vspace{\spacesm}
+\vspace{0pt}
+
+\bodytext{\textbf{Ph.D. Network Science} - Northeastern University, Boston, MA} \hfill \jobduration{2016-2021}\\
+\smalltext{\textit{Dissertation: Spectral Aspects of Mining Complex Networks}}\\
+\smalltext{\textit{Advisor: Tina Eliassi-Rad}}
+
+\vspace{\spacemd}
+
+\bodytext{\textbf{B.Sc. Mathematics} - Pontificia Universidad Católica del Perú, Lima} \hfill \jobduration{2009-2015}\\
+\smalltext{\textit{Top 3\% grades in 75-year history of Sciences Department}}\\
+\smalltext{\textit{Honors Thesis: Small-World Random Graphs Beyond Watts-Strogatz}}
+
+\end{document}

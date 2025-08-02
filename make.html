@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leo Torres - Senior Software Engineer</title>
+    <title>Leo Torres - Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -32,6 +32,11 @@
       
       .cv-button:hover {
         background-color: var(--coral);
+      }
+      
+      .cv-button.secondary:hover {
+        background-color: var(--coral);
+        border-color: var(--coral);
       }
       
       .nav-links a.active::after {
@@ -63,9 +68,9 @@
             <a href="#skills" class="nav-link" onclick="showPage('skills', this); return false;">Skills</a>
           </div>
           <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='think.html'" data-tooltip="Think"></div>
-            <div class="diamond" onclick="window.location.href='lead.html'" data-tooltip="Lead"></div>
-            <div class="diamond" onclick="window.location.href='make.html'" data-tooltip="Make"></div>
+            <div class="diamond" onclick="window.location.href='think.html'" data-tooltip="Scholar"></div>
+            <div class="diamond" onclick="window.location.href='lead.html'" data-tooltip="Manager"></div>
+            <div class="diamond" onclick="window.location.href='make.html'" data-tooltip="Engineer"></div>
           </div>
         </nav>
       </header>
@@ -87,7 +92,7 @@
         <div class="cv-section">
           <div class="cv-buttons">
             <div class="cv-option">
-              <a href="/cv/leo_torres_engineer_cv.pdf" class="cv-button" download>Download Resume</a>
+              <a href="leo_torres_engineer.pdf" class="cv-button" download>Download Resume</a>
               <span class="cv-description">Full technical experience</span>
             </div>
             <div class="cv-option">
@@ -103,7 +108,7 @@
           
           <div class="content-text">
             <p>
-              I'm a Lead Data Scientist at FGS Global, building LLM-powered data pipelines that process 10M+ news articles daily for Fortune 500 clients. Based in Leipzig, Germany (commuting to Berlin), I specialize in large-scale AI systems, distributed data processing, and full-stack development.
+              I'm a Lead Data Scientist at FGS Global, building LLM-powered data pipelines that process 10k+ news articles daily for Fortune 500 clients. Based in Leipzig, Germany (commuting to Berlin), I specialize in large-scale AI systems, distributed data processing, and full-stack development.
             </p>
             <p>
               I architect data infrastructure handling billion-row datasets with sub-second query performance using BigQuery, Python, and modern cloud technologies. As tech lead for our flagship internal product, I manage a team of 6 engineers while implementing cutting-edge RAG architectures and vector databases.
@@ -144,18 +149,6 @@
           <h2 class="section-title">Featured Projects</h2>
           <div class="section-divider"></div>
           
-          <div class="project-item">
-            <h3>FGS Global AI Platform</h3>
-            <div class="project-description">
-              <p>Lead Data Scientist and Tech Lead for flagship internal product processing 10M+ news articles daily for Fortune 500 clients. Built LLM-powered pipelines with RAG architecture, managing team of 6 engineers while architecting infrastructure handling 1B+ log entries.</p>
-              <p><strong>Impact:</strong> Reduced processing time by 10x through optimized data pipelines, enabling real-time insights for enterprise clients across multiple industries.</p>
-            </div>
-            <p class="project-tech">Python • FastAPI • BigQuery • GCP • LLMs • RAG • Vector Databases</p>
-            <div class="project-links">
-              <a href="#">Architecture</a>
-              <a href="#">Case Study</a>
-            </div>
-          </div>
 
           <div class="project-item">
             <h3>The Aris Program</h3>
@@ -166,7 +159,7 @@
             <p class="project-tech">Python • FastAPI • Vue.js • HTMX • PostgreSQL • Docker • Netlify</p>
             <div class="project-links">
               <a href="https://aris.pub">Website</a>
-              <a href="#">GitHub</a>
+              <a href="https://github.com/aris-pub">GitHub</a>
             </div>
           </div>
 
@@ -179,8 +172,32 @@
             <p class="project-tech">Python • NumPy • pandas • Numba • pytest • GitHub Actions • OOP</p>
             <div class="project-links">
               <a href="https://xgi.readthedocs.io">Documentation</a>
-              <a href="#">GitHub</a>
-              <a href="#">PyPI</a>
+              <a href="https://github.com/xgi-org/xgi">GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3>Manim Community</h3>
+            <div class="project-description">
+              <p>Organization Owner and Core Developer of the community-maintained version of 3Blue1Brown's mathematical animation engine. Contributing to the open-source Python library that creates precise, programmatic mathematical visualizations and educational content.</p>
+              <p><strong>Recognition:</strong> Featured in GitHub's Popular Python Repositories. <strong>Contributions:</strong> Algorithm implementations, performance optimizations, documentation improvements, and community support for mathematical animation workflows.</p>
+            </div>
+            <p class="project-tech">Python • Mathematical Visualization • OpenGL • Cairo • Community Development</p>
+            <div class="project-links">
+              <a href="https://www.manim.community">Website</a>
+              <a href="https://github.com/ManimCommunity/manim">GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3>FGS Global - MediaIQ</h3>
+            <div class="project-description">
+              <p>Lead Data Scientist and Tech Lead for flagship internal product processing 10k+ news articles daily for Fortune 500 clients. Built LLM-powered pipelines with RAG architecture, managing team of 6 engineers while architecting infrastructure handling 1B+ log entries.</p>
+              <p><strong>Impact:</strong> Reduced processing time by 10x through optimized data pipelines, enabling real-time insights for enterprise clients across multiple industries.</p>
+            </div>
+            <p class="project-tech">Python • FastAPI • BigQuery • GCP • LLMs • RAG • Vector Databases</p>
+            <div class="project-links">
+              <a href="https://www.youtube.com/watch?v=SklZPLqA4a8&t=2s">Data Berlin Meetup Talk</a>
             </div>
           </div>
 
@@ -190,10 +207,10 @@
               <p>Engineered data pipeline processing mobility data for 300+ US cities during COVID-19 pandemic. Built ETL workflows using Apache Airflow, implemented data quality checks, and optimized geospatial queries with PostGIS.</p>
               <p><strong>Results:</strong> Enabled epidemiologists to analyze movement patterns in near real-time, contributing to public health policy decisions.</p>
             </div>
-            <p class="project-tech">Python • Airflow • PostGIS • Pandas • Dask • AWS S3 • Docker</p>
+            <p class="project-tech">Python • Airflow • Pandas</p>
             <div class="project-links">
-              <a href="#">Technical Report</a>
-              <a href="#">Dashboard</a>
+              <a href="https://www.mobs-lab.org/uploads/6/7/8/7/6787877/covid19mobility_report2.pdf">Reshaping a nation</a>
+              <a href="https://www.mobs-lab.org/uploads/6/7/8/7/6787877/assessing_mobility_changes_in_the_united_states_during_the_covid_19_outbreak.pdf">Assessing changes in commuting</a>
             </div>
           </div>
         </section>
@@ -212,7 +229,7 @@
             </div>
             <p class="company">FGS Global</p>
             <div class="project-description">
-              <p><span style="color: var(--coral);">•</span> Built LLM-powered pipelines processing 10M+ news articles daily for Fortune 500 clients</p>
+              <p><span style="color: var(--coral);">•</span> Built LLM-powered pipelines processing 10k+ news articles daily for Fortune 500 clients</p>
               <p><span style="color: var(--coral);">•</span> Architected data infrastructure handling 1B+ log entries with sub-second query performance</p>
               <p><span style="color: var(--coral);">•</span> Tech lead for flagship internal product, managing team of 6 engineers</p>
               <p><span style="color: var(--coral);">•</span> Implemented RAG architecture and vector databases for domain-specific information retrieval</p>
@@ -305,7 +322,7 @@
               <li><strong>Speaking:</strong> "LLMs: Computation or Measurement?" - Berlin Data Meetup 2024</li>
               <li><strong>Community:</strong> NumFOCUS project leadership, JOSS reviewer</li>
               <li><strong>Education:</strong> Ph.D. Network Science, Recurse Center alum (2016)</li>
-              <li><strong>Languages:</strong> English (fluent), Spanish (native), German (conversational)</li>
+              <li><strong>Languages:</strong> English (bilingual), Spanish (native), French (basic), German (basic)</li>
             </ul>
           </div>
         </section>
