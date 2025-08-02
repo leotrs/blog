@@ -22,12 +22,23 @@
 
       /* Engineer page accent color: coral (10%) */
       .research-focus {
-        background-color: #fffbfb; /* Very subtle coral tint */
+        background-color: var(--coral-section-bg);
         border: 1px solid var(--coral);
       }
       
       .section-divider {
         background-color: var(--coral);
+      }
+      
+      .cv-button.secondary {
+        border-color: var(--coral);
+      }
+      
+      .cv-button.secondary:hover {
+        background-color: var(--coral);
+        border-color: var(--coral);
+        color: var(--white);
+        transform: translateY(-1px);
       }
       
       .cv-button:hover {
@@ -57,15 +68,20 @@
       <header>
         <nav>
           <div class="nav-links">
-            <a href="#home" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
+            <a href="#" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
             <a href="#projects" class="nav-link" onclick="showPage('projects', this); return false;">Projects</a>
             <a href="#experience" class="nav-link" onclick="showPage('experience', this); return false;">Experience</a>
             <a href="#skills" class="nav-link" onclick="showPage('skills', this); return false;">Skills</a>
           </div>
-          <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='scholar.html'" data-tooltip="Scholar"></div>
-            <div class="diamond" onclick="window.location.href='manager.html'" data-tooltip="Manager"></div>
-            <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+              <span class="theme-text">Dark</span>
+            </button>
+            <div class="diamond-accent">
+              <div class="diamond" onclick="window.location.href='scholar.html'" data-tooltip="Scholar"></div>
+              <div class="diamond" onclick="window.location.href='manager.html'" data-tooltip="Manager"></div>
+              <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
+            </div>
           </div>
         </nav>
       </header>
@@ -371,6 +387,56 @@
           }
         }
       });
+
+      // Dark mode functionality
+      function toggleTheme() {
+        const html = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const text = toggle.querySelector('.theme-text');
+        
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update toggle appearance
+        if (newTheme === 'dark') {
+          text.textContent = 'Light';
+        } else {
+          text.textContent = 'Dark';
+        }
+      }
+      
+      // Initialize theme on page load
+      function initTheme() {
+        const html = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const text = toggle.querySelector('.theme-text');
+        
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        let theme;
+        if (savedTheme) {
+          theme = savedTheme;
+        } else {
+          theme = systemDarkMode ? 'dark' : 'light';
+        }
+        
+        html.setAttribute('data-theme', theme);
+        
+        // Update toggle appearance
+        if (theme === 'dark') {
+          text.textContent = 'Light';
+        } else {
+          text.textContent = 'Dark';
+        }
+      }
+      
+      // Initialize theme immediately
+      initTheme();
 
     </script>
   </body>

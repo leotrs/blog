@@ -22,12 +22,23 @@
 
       /* Researcher page accent color: plum (10%) */
       .research-focus {
-        background-color: #faf9fb; /* Very subtle plum tint */
+        background-color: var(--research-bg);
         border: 1px solid var(--plum);
       }
       
       .section-divider {
         background-color: var(--plum-accent);
+      }
+      
+      .cv-button.secondary {
+        border-color: var(--plum);
+      }
+      
+      .cv-button.secondary:hover {
+        background-color: var(--plum);
+        border-color: var(--plum);
+        color: var(--white);
+        transform: translateY(-1px);
       }
       
       .cv-button:hover {
@@ -71,10 +82,10 @@
       }
 
       .related-publications li::before {
-        content: "–";
+        content: "•";
         position: absolute;
         left: 0;
-        color: var(--medium-gray);
+        color: var(--plum-accent);
       }
 
       /* Publications/Presentations */
@@ -135,14 +146,19 @@
       <header>
         <nav>
           <div class="nav-links">
-            <a href="#home" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
+            <a href="#" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
             <a href="#research" class="nav-link" onclick="showPage('research', this); return false;">Research</a>
             <a href="#publications" class="nav-link" onclick="showPage('publications', this); return false;">Publications</a>
           </div>
-          <div class="diamond-accent">
-            <div class="diamond" onclick="window.location.href='scholar.html'" data-tooltip="Scholar"></div>
-            <div class="diamond" onclick="window.location.href='manager.html'" data-tooltip="Manager"></div>
-            <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+              <span class="theme-text">Dark</span>
+            </button>
+            <div class="diamond-accent">
+              <div class="diamond" onclick="window.location.href='scholar.html'" data-tooltip="Scholar"></div>
+              <div class="diamond" onclick="window.location.href='manager.html'" data-tooltip="Manager"></div>
+              <div class="diamond" onclick="window.location.href='engineer.html'" data-tooltip="Engineer"></div>
+            </div>
           </div>
         </nav>
       </header>
@@ -405,6 +421,56 @@
           showPage(initialPage, initialLink);
         }
       });
+
+      // Dark mode functionality
+      function toggleTheme() {
+        const html = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const text = toggle.querySelector('.theme-text');
+        
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update toggle appearance
+        if (newTheme === 'dark') {
+          text.textContent = 'Light';
+        } else {
+          text.textContent = 'Dark';
+        }
+      }
+      
+      // Initialize theme on page load
+      function initTheme() {
+        const html = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const text = toggle.querySelector('.theme-text');
+        
+        // Check for saved theme preference or default to system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        let theme;
+        if (savedTheme) {
+          theme = savedTheme;
+        } else {
+          theme = systemDarkMode ? 'dark' : 'light';
+        }
+        
+        html.setAttribute('data-theme', theme);
+        
+        // Update toggle appearance
+        if (theme === 'dark') {
+          text.textContent = 'Light';
+        } else {
+          text.textContent = 'Dark';
+        }
+      }
+      
+      // Initialize theme immediately
+      initTheme();
 
     </script>
   </body>

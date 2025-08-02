@@ -1,5 +1,5 @@
 :root {
-  /* Colors */
+  /* Light mode colors */
   --navy: #1a365d;
   --gold: #f59e0b;
   --coral: #e53e3e;
@@ -10,6 +10,11 @@
   --dark-gray: #4b5563;
   --charcoal: #1f2937;
   --white: #ffffff;
+  
+  /* Section backgrounds */
+  --research-bg: #faf9fb;
+  --coral-section-bg: #fffbfb;
+  --gold-section-bg: #fffbf5;
   
   /* Typography */
   --font-primary: 'Manrope', sans-serif;
@@ -22,6 +27,46 @@
   --space-lg: 35px;
   --space-xl: 50px;
   --space-xxl: 60px;
+}
+
+/* Dark mode colors */
+[data-theme="dark"] {
+  --navy: #9db2ff;
+  --gold: #e6b85c;
+  --coral: #ff9f9f;
+  --plum: #a78bfa;
+  --plum-accent: #c4b5fd;
+  --light-bg: #0f172a;
+  --medium-gray: #94a3b8;
+  --dark-gray: #cbd5e1;
+  --charcoal: #f1f5f9;
+  --white: #1e293b;
+  
+  /* Section backgrounds */
+  --research-bg: #1e293b;
+  --coral-section-bg: #1e293b;
+  --gold-section-bg: #1e293b;
+}
+
+/* Respect system preference by default */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --navy: #9db2ff;
+    --gold: #e6b85c;
+    --coral: #ff9f9f;
+    --plum: #a78bfa;
+    --plum-accent: #c4b5fd;
+    --light-bg: #0f172a;
+    --medium-gray: #94a3b8;
+    --dark-gray: #cbd5e1;
+    --charcoal: #f1f5f9;
+    --white: #1e293b;
+    
+    /* Section backgrounds */
+    --research-bg: #1e293b;
+    --coral-section-bg: #1e293b;
+    --gold-section-bg: #1e293b;
+  }
 }
 
 * {
@@ -92,6 +137,26 @@ nav {
   left: 0;
   width: 100%;
   height: 2px;
+}
+
+/* Dark mode toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--medium-gray);
+  color: var(--dark-gray);
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: var(--font-primary);
+}
+
+.theme-toggle:hover {
+  background-color: var(--light-bg);
+  border-color: var(--dark-gray);
+  transform: translateY(-1px);
 }
 
 /* Header with diamond accent */
@@ -228,8 +293,9 @@ header {
 }
 
 .cv-button.secondary:hover {
-  background-color: var(--navy);
-  color: var(--white);
+  background-color: var(--medium-gray);
+  border-color: var(--dark-gray);
+  transform: translateY(-1px);
 }
 
 .cv-description {
