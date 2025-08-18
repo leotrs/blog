@@ -27,7 +27,7 @@ identity through careful color distribution and typography choices.
 **10% Accent Colors (Persona-Specific)**
 - **Researcher/Academic**: `#6b5b95` (plum) + `#8b7bb8` (plum-accent)
 - **Leadership**: `#f59e0b` (gold)
-- **Engineer/Technical**: `#e53e3e` (coral)
+- **Engineer/Technical**: `#4C956C` (verdigris)
 
 ### Rationale for Navy as Primary Brand Color
 
@@ -56,11 +56,11 @@ The accent color system differentiates three professional angles while maintaini
 - **Usage**: Section dividers, achievement metrics, bullet points, hover states, borders
 - **Subtle background tint**: `#fefdf8` (warm gold wash)
 
-#### **Engineer/Technical Persona (Coral)**
-- **Accent**: `#e53e3e` (coral)
-- **Psychological association**: Energy, action, problem-solving, technical execution
+#### **Engineer/Technical Persona (Verdigris)**
+- **Accent**: `#4C956C` (verdigris)
+- **Psychological association**: Growth, balance, technical expertise, reliability
 - **Usage**: Section dividers, technical tags, bullet points, hover states, borders
-- **Subtle background tint**: `#fffbfb` (gentle coral wash)
+- **Subtle background tint**: `#f8fdf9` (gentle verdigris wash)
 
 ## Visual Identity Elements
 
@@ -79,7 +79,7 @@ The diamond navigation serves as both brand element and persona indicator:
 **Active State Logic**:
 - **Academic page**: First diamond filled with plum, others outlined
 - **Leadership page**: Second diamond filled with gold, others outlined
-- **Engineering page**: Third diamond filled with coral, others outlined
+- **Engineering page**: Third diamond filled with verdigris, others outlined
 
 **Footer Diamonds**: Always show all three colors as permanent brand elements
 
@@ -224,7 +224,7 @@ border-radius: 4px;
   --white: #ffffff;
 
   /* Accent colors - persona specific */
-  --coral: #e53e3e;      /* Engineer */
+  --verdigris: #4C956C;      /* Engineer */
   --gold: #f59e0b;       /* Leader */
   --plum: #6b5b95;       /* Academic */
   --plum-accent: #8b7bb8; /* Academic secondary */

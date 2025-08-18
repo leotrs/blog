@@ -2,7 +2,7 @@
   /* Light mode colors */
   --navy: #1a365d;
   --gold: #f59e0b;
-  --coral: #e53e3e;
+  --verdigris: #4C956C;
   --plum: #6b5b95;
   --plum-accent: #8b7bb8;
   --light-bg: #f8fafc;
@@ -13,7 +13,7 @@
   
   /* Section backgrounds */
   --research-bg: #faf9fb;
-  --coral-section-bg: #fffbfb;
+  --verdigris-section-bg: #f8fdf9;
   --gold-section-bg: #fffbf5;
   
   /* Typography */
@@ -33,7 +33,7 @@
 [data-theme="dark"] {
   --navy: #9db2ff;
   --gold: #e6b85c;
-  --coral: #ff9f9f;
+  --verdigris: #7db89a;
   --plum: #a78bfa;
   --plum-accent: #c4b5fd;
   --light-bg: #0f172a;
@@ -44,7 +44,7 @@
   
   /* Section backgrounds */
   --research-bg: #1e293b;
-  --coral-section-bg: #1e293b;
+  --verdigris-section-bg: #1e293b;
   --gold-section-bg: #1e293b;
 }
 
@@ -53,7 +53,7 @@
   :root {
     --navy: #9db2ff;
     --gold: #e6b85c;
-    --coral: #ff9f9f;
+    --verdigris: #7db89a;
     --plum: #a78bfa;
     --plum-accent: #c4b5fd;
     --light-bg: #0f172a;
@@ -64,7 +64,7 @@
     
     /* Section backgrounds */
     --research-bg: #1e293b;
-    --coral-section-bg: #1e293b;
+    --verdigris-section-bg: #1e293b;
     --gold-section-bg: #1e293b;
   }
 }
@@ -640,7 +640,7 @@ section {
 }
 
 .footer-diamonds .diamond:nth-child(3) {
-  background-color: var(--coral);
+  background-color: var(--verdigris);
 }
 
 /* Responsive design */
