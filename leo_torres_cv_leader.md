@@ -24,7 +24,7 @@ Data science leader with unique blend of deep technical expertise (Ph.D. Network
 - Fostered culture of technical excellence and continuous learning
 
 **Product & Technical Delivery**
-- Delivered LLM-powered platform processing 10M+ articles daily
+- Delivered LLM-powered platform processing 1M+ articles daily
 - Architected infrastructure handling 1B+ log entries with enterprise-grade reliability
 - Optimized cloud resource utilization and system performance across multiple environments
 - Designed and delivered technical workshop for key enterprise client
