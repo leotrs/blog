@@ -1,5 +1,5 @@
 # Leo Torres
-**Lead Data Scientist & Full-Stack Developer**
+**Senior Data Engineer**
 Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com) | [leotrs.com](https://leotrs.com) | [github.com/leotrs](https://github.com/leotrs)
 
 ## Technical Skills
@@ -18,7 +18,7 @@ Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com)
 
 - Built LLM-powered pipelines processing 1M+ news articles daily for Fortune 500 clients
 - Architected data infrastructure handling 1B+ log entries with sub-second query performance
-- Tech lead for flagship internal product, managing team of 6 engineers
+- Technical lead for a team of 6 engineers on the flagship internal product
 - Implemented RAG architecture and vector databases for domain-specific information retrieval
 - Reduced processing time by 10x through optimized data pipelines and caching strategies
 - Built robust API layer with FastAPI serving multiple internal products
