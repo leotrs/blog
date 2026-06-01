@@ -5,7 +5,7 @@ Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com)
 ## Technical Skills
 
 **Languages**: Python (expert), JavaScript (advanced), SQL (advanced), Mathematica, C/C++, R, Julia
-**LLM & AI**: GPT-4, Claude, prompt engineering, RAG systems, vector databases
+**LLM & AI**: Frontier LLMs (Claude, GPT, open models), RAG systems, vector databases, agentic workflows
 **Cloud & Infrastructure**: GCP (BigQuery, Dataflow, Cloud Run), Azure ML Studio, Docker, Airflow
 **Web Development**: FastAPI, Vue.js, HTMX, Netlify, Fly.io, GitHub Actions
 **Data Science**: pandas, NumPy, SciPy, scikit-learn, NetworkX, graph algorithms, spectral methods
@@ -16,7 +16,7 @@ Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com)
 ### FGS Global - Lead Data Scientist & Tech Lead
 *May 2023 - Present | Berlin, Germany*
 
-- Built LLM-powered pipelines processing 1M+ news articles daily for Fortune 500 clients
+- Built LLM-powered pipelines processing 10M+ documents daily for Fortune 500 clients
 - Architected data infrastructure handling 1B+ log entries with sub-second query performance
 - Technical lead for a team of 6 engineers on the flagship internal product
 - Implemented RAG architecture and vector databases for domain-specific information retrieval

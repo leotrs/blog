@@ -131,7 +131,7 @@
           
           <div class="content-text">
             <p>
-              I'm a Lead Data Scientist at FGS Global, building LLM-powered data pipelines that process 1M+ news articles daily for Fortune 500 clients. Based in Leipzig, Germany (commuting to Berlin), I specialize in large-scale AI systems, distributed data processing, and production data infrastructure.
+              I'm a Lead Data Scientist at FGS Global, building LLM-powered data pipelines that process 10M+ documents daily for Fortune 500 clients. Based in Leipzig, Germany (commuting to Berlin), I specialize in large-scale AI systems, distributed data processing, and production data infrastructure.
             </p>
             <p>
               I architect data infrastructure handling billion-row datasets with sub-second query performance using BigQuery, Python, and modern cloud technologies. As technical lead for a team of 6 engineers on our flagship internal product, I implement cutting-edge RAG architectures and vector databases.
@@ -173,10 +173,10 @@
           <div class="section-divider"></div>
           
           <div class="project-item">
-            <h3>FGS Global &mdash; MediaIQ</h3>
+            <h3>FGS Global &mdash; Flagship Intelligence Product</h3>
             <div class="project-description">
-              <p>Lead Data Scientist and technical lead for a team of 6 engineers on flagship internal product processing 1M+ news articles daily for Fortune 500 clients. Built LLM-powered pipelines with RAG architecture and architected infrastructure handling 1B+ log entries.</p>
-              <p><strong>Impact:</strong> Reduced processing time by 10x through optimized data pipelines, enabling real-time insights for enterprise clients across multiple industries.</p>
+              <p>Lead Data Scientist and technical lead for a team of 6 engineers. Built and operate the LLM pipeline processing 10M+ documents/day into client-facing intelligence for Fortune 500 firms. Architected retrieval infrastructure over billion-row datasets in BigQuery with sub-second query performance.</p>
+              <p><strong>Design:</strong> RAG and vector-search layer made domain-specific retrieval accurate enough for production client use; FastAPI service layer serves multiple internal products from a shared data backend.</p>
             </div>
             <p class="project-tech">Python • FastAPI • BigQuery • GCP • LLMs • RAG • Vector Databases</p>
             <div class="project-links">
@@ -185,12 +185,21 @@
           </div>
 
           <div class="project-item">
+            <h3>hns &mdash; Headless Multi-Agent Orchestration</h3>
+            <div class="project-description">
+              <p>Headless dispatcher that runs Claude Code workers in parallel through a state machine: PR triage, CI gating, stuck-detection with escalation, orphan recovery, autonomous worktree dispatch.</p>
+              <p><strong>Design:</strong> Python; abstractions and control loop designed from first principles.</p>
+            </div>
+            <p class="project-tech">Python • State Machines • Concurrency • Git Worktrees</p>
+          </div>
+
+          <div class="project-item">
             <h3>The Aris Program</h3>
             <div class="project-description">
-              <p>Founder and Lead Developer of next-generation academic publishing platform. Building open-source tools for collaborative scientific writing with real-time version control. Full-stack architecture using Python, FastAPI, Vue.js, and HTMX.</p>
-              <p><strong>Vision:</strong> Revolutionizing how researchers collaborate and publish, launching 2025 with focus on transparency and reproducibility.</p>
+              <p>Founder of a multi-project open-source organization building web-native infrastructure for academic publishing. Designed RSM (Readable Science Markup), a markup language for scientific documents, with a tree-sitter grammar.</p>
+              <p><strong>Built Scroll Press:</strong> a preprint server (FastAPI, PostgreSQL, HTMX) accepting Typst, Quarto, MyST, and Jupyter; live in beta. Architecting a collaborative editor (Vue) as the reference RSM implementation.</p>
             </div>
-            <p class="project-tech">Python • FastAPI • Vue.js • HTMX • PostgreSQL • Docker • Netlify</p>
+            <p class="project-tech">Python • FastAPI • PostgreSQL • HTMX • Vue.js • tree-sitter</p>
             <div class="project-links">
               <a href="https://aris.pub">Website</a>
               <a href="https://github.com/aris-pub">GitHub</a>
@@ -242,15 +251,16 @@
 
           <div class="experience-item">
             <div class="experience-header">
-              <h3 class="job-title">Lead Data Scientist &amp; Tech Lead</h3>
+              <h3 class="job-title">Lead Data Scientist &rarr; Tech Lead, Data Platform</h3>
               <span class="duration">May 2023 - Present</span>
             </div>
             <p class="company">FGS Global</p>
             <div class="project-description">
-              <p><span style="color: var(--verdigris);">•</span> Built LLM-powered pipelines processing 1M+ news articles daily for Fortune 500 clients</p>
-              <p><span style="color: var(--verdigris);">•</span> Architected data infrastructure handling 1B+ log entries with sub-second query performance</p>
-              <p><span style="color: var(--verdigris);">•</span> Technical lead for a team of 6 engineers on the flagship internal product</p>
-              <p><span style="color: var(--verdigris);">•</span> Implemented RAG architecture and vector databases for domain-specific information retrieval</p>
+              <p><span style="color: var(--verdigris);">•</span> Built and operate the LLM pipeline powering the flagship intelligence product, processing 10M+ documents/day into client-facing intelligence for Fortune 500 firms</p>
+              <p><span style="color: var(--verdigris);">•</span> Architected retrieval infrastructure over billion-row datasets in BigQuery with sub-second query performance</p>
+              <p><span style="color: var(--verdigris);">•</span> Designed the RAG and vector-search layer that made domain-specific retrieval accurate enough for production client use</p>
+              <p><span style="color: var(--verdigris);">•</span> Technical lead for a team of 6 engineers: set architecture, owned technical direction, drove hiring decisions</p>
+              <p><span style="color: var(--verdigris);">•</span> Built the FastAPI service layer serving multiple internal products from a shared data backend</p>
             </div>
           </div>
 
@@ -284,6 +294,18 @@
         <section>
           <h2 class="section-title">Open-Source Maintainership</h2>
           <div class="section-divider"></div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 class="job-title">hns &mdash; Headless Multi-Agent Orchestration</h3>
+              <span class="duration">2025 - Present</span>
+            </div>
+            <p class="company">Headless dispatcher for parallel Claude Code workers</p>
+            <div class="project-description">
+              <p><span style="color: var(--verdigris);">•</span> State machine for PR triage, CI gating, stuck-detection with escalation, orphan recovery, autonomous worktree dispatch</p>
+              <p><span style="color: var(--verdigris);">•</span> Python; abstractions and control loop designed from first principles</p>
+            </div>
+          </div>
 
           <div class="experience-item">
             <div class="experience-header">
