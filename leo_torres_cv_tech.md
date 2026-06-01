@@ -16,11 +16,10 @@ Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com)
 ### FGS Global - Lead Data Scientist & Tech Lead
 *May 2023 - Present | Berlin, Germany*
 
-- Built LLM-powered pipelines processing 10M+ documents daily for Fortune 500 clients
+- Designed, built, and own end-to-end the news media analysis pipeline at FGS — an LLM-powered system processing 10M+ documents/day into client-facing intelligence for Fortune 500 firms
 - Architected data infrastructure handling 1B+ log entries with sub-second query performance
 - Technical lead for a team of 6 engineers on the flagship internal product
 - Implemented RAG architecture and vector databases for domain-specific information retrieval
-- Reduced processing time by 10x through optimized data pipelines and caching strategies
 - Built robust API layer with FastAPI serving multiple internal products
 
 ### Max Planck Institute for Mathematics in the Sciences - Postdoctoral Fellow
