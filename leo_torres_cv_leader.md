@@ -54,7 +54,7 @@ Data science leader with unique blend of deep technical expertise (Ph.D. Network
 **Open Source Leadership**
 - Co-lead developer of XGI (NumFOCUS affiliated), managing community of contributors
 - Core team member of Manim CE, helping grow from fork to established project
-- Led team of 12+ developers on netrd project (network science toolkit)
+- Co-led team of ~6 core developers on netrd project (network science toolkit)
 
 **Academic Leadership**
 - Co-organized international conferences: TopoNets (CCS'22), HONS (NetSci'22)

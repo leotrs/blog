@@ -72,7 +72,7 @@ Leipzig, Germany (commuting to Berlin) | [leo@leotrs.com](mailto:leo@leotrs.com)
 *Jan 2019 - Jul 2019 | [github.com/netsiphd/netrd](https://github.com/netsiphd/netrd)*
 
 - Implemented 40+ algorithms for network reconstruction and comparison
-- Led team of 12+ developers, established coding standards
+- Co-led team of ~6 core developers; established coding standards
 - Published in Journal of Open Source Software (JOSS)
 
 ### Journal of Open Source Software - Reviewer
