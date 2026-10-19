@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoos - Leo Torres</title>
+    <meta name="description" content="Tattoos, each shown next to the image it came from.">
+    <meta property="og:title" content="Tattoos - Leo Torres">
+    <meta property="og:description" content="Tattoos, each shown next to the image it came from.">
+    <meta property="og:image" content="placeholder-poster.jpg">
+    <link rel="icon" type="image/svg+xml" href="../favicon-navy.svg">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+      /* This page is not one of the three personas, so no accent is claimed and
+         all three diamonds stay outlined. */
+      .diamond-accent .diamond:nth-child(1) { border: 2px solid var(--plum); }
+      .diamond-accent .diamond:nth-child(2) { border: 2px solid var(--gold); }
+      .diamond-accent .diamond:nth-child(3) { border: 2px solid var(--verdigris); }
+      .section-divider { background-color: var(--navy); }
+      .nav-links a.active::after { background-color: var(--navy); }
+
+      /* The diamond tooltip is laid out even while hidden, which makes the page
+         9px wider than the viewport on a phone. Keeping it out of layout until
+         hover fixes that. The same two lines in styles.css would fix it for
+         every other page on the site, which is why they are not there. */
+      .diamond::after { display: none; }
+      .diamond:hover::after { display: block; }
+
+      .intro { font-size: 0.9rem; color: var(--dark-gray); max-width: 600px; margin-bottom: var(--space-lg); }
+
+      /* Inside the site's 800px column this lands on two cards per row and
+         collapses to one well before phone width. */
+      .tattoo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--space-lg) var(--space-md);
+        margin-bottom: var(--space-xl);
+      }
+
+      .tattoo-card { min-width: 0; }
+      .tattoo-card .frame {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: var(--light-bg);
+      }
+      .tattoo-card video,
+      .tattoo-card .poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tattoo-card .poster { display: none; }
+
+      .tattoo-card h2 {
+        font-size: 1rem; font-weight: 600; color: var(--navy);
+        margin-top: var(--space-sm); margin-bottom: 4px;
+      }
+      .tattoo-card dl {
+        display: grid; grid-template-columns: max-content 1fr;
+        gap: 2px var(--space-sm);
+        font-size: 0.8rem; font-family: var(--font-mono);
+      }
+      .tattoo-card dt { color: var(--medium-gray); }
+      .tattoo-card dd { color: var(--dark-gray); font-weight: 500; }
+      .tattoo-card dd a { color: var(--dark-gray); text-decoration: underline; text-underline-offset: 2px; }
+      .tattoo-card dd a:hover { color: var(--navy); }
+      .tattoo-card .notes { font-size: 0.85rem; color: var(--dark-gray); margin-top: var(--space-xs); }
+      .tattoo-card .credit { font-size: 0.7rem; color: var(--medium-gray); margin-top: 6px; }
+
+      a:focus-visible, button:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+      /* Reduced motion: the poster stands in and nothing ever plays. */
+      @media (prefers-reduced-motion: reduce) {
+        .tattoo-card video { display: none; }
+        .tattoo-card .poster { display: block; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <div class="nav-left">
+            <div class="burger-menu" onclick="toggleBurgerMenu()" id="burger-menu">
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+            </div>
+            <div class="page-title" id="page-title">Tattoos</div>
+          </div>
+
+          <div class="nav-links" id="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/tattoos/" class="nav-link active">Tattoos</a>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: var(--space-md);">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+              <span class="theme-text">Dark</span>
+            </button>
+            <div class="diamond-accent">
+              <div class="diamond" onclick="window.location.href='/scholar.html'" data-tooltip="Scholar"></div>
+              <div class="diamond" onclick="window.location.href='/manager.html'" data-tooltip="Manager"></div>
+              <div class="diamond" onclick="window.location.href='/engineer.html'" data-tooltip="Engineer"></div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <h1 class="section-title">Tattoos</h1>
+        <div class="section-divider"></div>
+        <p class="intro">Each one started somewhere else: a photograph, a line on a plate, a textile. The animation runs from that source into the tattoo and back.</p>
+
+        <div class="tattoo-grid">
+      <article class="tattoo-card" id="placeholder">
+        <div class="frame">
+          <video autoplay muted loop playsinline preload="metadata"
+                 poster="placeholder-poster.jpg" role="img" aria-label="Placeholder: from its source to the tattoo">
+            <source src="placeholder.mp4" type="video/mp4">
+            <img src="placeholder.webp" alt="Placeholder: from its source to the tattoo">
+          </video>
+          <img class="poster" src="placeholder-poster.jpg" alt="Placeholder: from its source to the tattoo">
+        </div>
+        <h2>Placeholder</h2>
+        <dl><dt>When</dt><dd>2019-05</dd><dt>Where</dt><dd>Lima, Peru</dd><dt>Artist</dt><dd>TODO</dd></dl>
+        <p class="notes">TODO. Replace this entry; it exists so the page builds before the real photos arrive.</p>
+        <p class="credit">Synthetic placeholder image.</p>
+      </article>
+        </div>
+      </main>
+
+      <footer class="contact">
+        <div class="contact-links">
+          <a href="mailto:leo@leotrs.com">Email</a>
+          <a href="https://github.com/leotrs">GitHub</a>
+          <a href="https://www.linkedin.com/in/leo-torres-550ba068/">LinkedIn</a>
+        </div>
+
+        <div class="footer-diamonds">
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+          <div class="diamond"></div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Dark mode, same contract as the rest of the site.
+      function toggleTheme() {
+        const html = document.documentElement;
+        const text = document.getElementById('theme-toggle').querySelector('.theme-text');
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        text.textContent = newTheme === 'dark' ? 'Light' : 'Dark';
+      }
+
+      function initTheme() {
+        const html = document.documentElement;
+        const text = document.getElementById('theme-toggle').querySelector('.theme-text');
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        html.setAttribute('data-theme', theme);
+        text.textContent = theme === 'dark' ? 'Light' : 'Dark';
+      }
+      initTheme();
+
+      function toggleBurgerMenu() {
+        document.getElementById('burger-menu').classList.toggle('active');
+        document.getElementById('nav-links').classList.toggle('active');
+      }
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const clips = document.querySelectorAll('.tattoo-card video');
+      if (reduced) {
+        clips.forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+      } else {
+        // Only play what is on screen.
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+          if (e.isIntersecting) e.target.play().catch(() => {});
+          else e.target.pause();
+        }), { threshold: 0.25 });
+        clips.forEach(v => io.observe(v));
+      }
+    </script>
+  </body>
+</html>

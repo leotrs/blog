@@ -1,0 +1,26 @@
+# Placeholder entries only, built from the synthetic images in img/.
+# Render these to a scratch directory to check the pipeline
+# end to end without touching the published page.
+
+- slug: demo-crossfade
+  title: Demo, plain crossfade
+  source: img/source.jpg
+  tattoo: img/tattoo.jpg
+  date: 2019-05
+  place: Lima, Peru
+  artist: Placeholder Artist
+  notes: No alignment points, so both images are centre-cropped.
+  source_credit: Synthetic placeholder image.
+
+- slug: demo-aligned
+  title: Demo, aligned via line drawing
+  source: img/source.jpg
+  tattoo: img/tattoo.jpg
+  date: 2019-05
+  place: Lima, Peru
+  artist: Placeholder Artist
+  artist_url: https://example.com
+  transition: edges
+  align:
+    source: [[500, 450], [387, 447], [740, 450], [920, 330]]
+    tattoo: [[330, 520], [244, 549], [510, 454], [613, 315]]

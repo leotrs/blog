@@ -1,0 +1,16 @@
+# The published gallery. Newest first is handled by the build, so order here
+# does not matter.
+#
+# TODO: replace this entry with the real tattoos. The photos themselves live
+# outside this repo, under ~/tattoo-sources/ by default, so they never reach
+# GitHub. See the Tattoos section of README.md.
+
+- slug: placeholder
+  title: Placeholder
+  source: img/source.jpg
+  tattoo: img/tattoo.jpg
+  date: 2019-05
+  place: Lima, Peru
+  artist: TODO
+  notes: TODO. Replace this entry; it exists so the page builds before the real photos arrive.
+  source_credit: Synthetic placeholder image.
