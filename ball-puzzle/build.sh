@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+# Builds leotrs.com/ball-puzzle in this folder: compiles ball-puzzle.mtp, copies the mathterpiece
+# runtime next to it, and writes index.html, the page that holds the figure and its buttons.
+#
+#   ./build.sh
+#
+# solutions.mtp is written by solve.py, which is run by hand when the list should change. The
+# mathterpiece checkout is ~/aris/mathterpiece, or $MATHTERPIECE.
+set -euo pipefail
+cd "$(dirname "$0")"
+mtp="${MATHTERPIECE:-$HOME/aris/mathterpiece}"
+
+uv run --project "$mtp" mtp compile ball-puzzle.mtp -o ball-puzzle.mtpc
+(cd "$mtp/web" && pnpm build >/dev/null)
+cp "$mtp/web/dist/mathterpiece.js" mathterpiece.js
+
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ball puzzle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<script type="module" src="mathterpiece.js"></script>
+<style>
+  :root { color-scheme: light dark; --page: light-dark(#f6f1e7, #1d1b19); --ink: light-dark(#2b2a33, #ece6da);
+    --soft: light-dark(#7b7680, #a39d95); --chip: light-dark(#fffaf0, #2a2724); --edge: light-dark(#e3d9c6, #463f36);
+    --accent: #f5862b; --accent-deep: #c96512; --on: light-dark(#fff1e4, #3a2a1c); }
+  html, body { margin: 0; height: 100%; background: var(--page); color: var(--ink); font-family: Fredoka, sans-serif;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; overflow: hidden; }
+  main { height: 100dvh; display: flex; flex-direction: column; box-sizing: border-box;
+    padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); gap: 10px; }
+  .top { display: flex; align-items: center; gap: 10px; }
+  .sizes { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+  .stage { flex: 1; min-height: 0; position: relative; }
+  .stage mtp-canvas { position: absolute; top: 0; left: 0; display: block; transform-origin: 0 0; }
+  .bottom { display: flex; justify-content: center; gap: 18px; }
+
+  /* The figure's buttons, large enough for a small finger, labelled in one word or a number.
+     Under main, so these win over mathterpiece's own button styles, which come later. */
+  main mtp-button button { font: 600 22px/1 Fredoka, sans-serif; color: var(--ink); background: var(--chip);
+    border: 3px solid var(--edge); border-radius: 14px; min-width: 50px; height: 50px; padding: 0 12px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: none; }
+  main mtp-button button:hover { background: var(--chip); border-color: var(--edge); color: var(--ink); }
+  main mtp-button button[aria-pressed="true"], main mtp-button button[aria-pressed="true"]:hover { border-color: var(--accent); background: var(--on); color: var(--ink); }
+  main mtp-button button:disabled { opacity: .35; cursor: default; }
+  main mtp-button[name="new"] button, main mtp-button[name="another"] button { background: var(--accent); border-color: var(--accent);
+    color: #fff; box-shadow: 0 4px 0 var(--accent-deep); padding: 0 18px; }
+  main .bottom mtp-button button { height: 62px; font-size: 26px; padding: 0 22px; }
+  /* Tabler icons (MIT): dice, rotate-clockwise and flip-vertical, drawn in the text color. */
+  main mtp-button[name="new"] button::before, main mtp-button[name="another"] button::before,
+  main mtp-button[name="turn"] button::before, main mtp-button[name="flip"] button::before {
+    content: ""; width: 28px; height: 28px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+  main mtp-button[name="new"], main mtp-button[name="another"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z'/%3E%3Ccircle cx='8.5' cy='8.5' r='.5' fill='black'/%3E%3Ccircle cx='15.5' cy='15.5' r='.5' fill='black'/%3E%3Ccircle cx='12' cy='12' r='.5' fill='black'/%3E%3C/svg%3E"); }
+  main mtp-button[name="turn"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5'/%3E%3C/svg%3E"); }
+  main mtp-button[name="flip"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12l18 0'/%3E%3Cpath d='M7 16l10 0l-10 5l0 -5'/%3E%3Cpath d='M7 8l10 0l-10 -5l0 5'/%3E%3C/svg%3E"); }
+
+  /* The celebration: shown while Another can be pressed, that is while the board is full. */
+  .cheer { position: fixed; inset: 0; display: none; place-items: center; background: color-mix(in srgb, var(--page) 55%, transparent); }
+  .cheer:has(mtp-button[name="another"]:not([data-mtp-inactive])) { display: grid; }
+  .card { background: var(--chip); border-radius: 28px; padding: 30px 46px; display: grid; gap: 16px; justify-items: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .2); }
+  .card::before { content: "★★★"; font-size: 60px; line-height: 1; letter-spacing: 8px; color: #ffd31b; text-shadow: 0 3px 0 #e0a800; }
+  main .card mtp-readout { font: 600 44px/1.1 Fredoka, sans-serif; }
+
+  /* New sits at the top on a wide screen, and next to Turn and Flip on a narrow one, so the size
+     tiles keep one row. */
+  .narrow { display: none; }
+  @media (max-width: 600px) {
+    .wide { display: none; }
+    .narrow { display: block; }
+    main mtp-button button { font-size: 15px; min-width: 27px; height: 34px; border-radius: 9px; padding: 0 3px; border-width: 2px; }
+    .sizes { gap: 4px; flex-wrap: nowrap; justify-content: center; }
+    .bottom { gap: 10px; }
+    main .bottom mtp-button button { height: 50px; font-size: 20px; padding: 0 14px; }
+    main .bottom mtp-button button::before { width: 24px; height: 24px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <mtp-model id="m" src="ball-puzzle.mtpc"></mtp-model>
+  <div class="top">
+    <div class="sizes">
+      <mtp-button model="m" name="size-0"></mtp-button><mtp-button model="m" name="size-1"></mtp-button>
+      <mtp-button model="m" name="size-2"></mtp-button><mtp-button model="m" name="size-3"></mtp-button>
+      <mtp-button model="m" name="size-4"></mtp-button><mtp-button model="m" name="size-5"></mtp-button>
+      <mtp-button model="m" name="size-6"></mtp-button><mtp-button model="m" name="size-7"></mtp-button>
+      <mtp-button model="m" name="size-8"></mtp-button><mtp-button model="m" name="size-9"></mtp-button>
+      <mtp-button model="m" name="size-10"></mtp-button>
+    </div>
+    <mtp-button model="m" name="new" class="wide"></mtp-button>
+  </div>
+  <div class="stage"><mtp-canvas model="m" name="view"></mtp-canvas></div>
+  <div class="bottom"><mtp-button model="m" name="turn"></mtp-button><mtp-button model="m" name="flip"></mtp-button><mtp-button model="m" name="new" class="narrow"></mtp-button></div>
+  <div class="cheer"><div class="card"><mtp-readout model="m" name="cheer"></mtp-readout><mtp-button model="m" name="another"></mtp-button></div></div>
+</main>
+<script>
+  // The figure fills the room it has. Upright on a narrow screen it is turned a quarter, so the
+  // tray to the right of the board ends up under it. The figure's shape follows how many pieces
+  // are left, so this runs again whenever it changes.
+  const stage = document.querySelector(".stage");
+  const canvas = stage.querySelector("mtp-canvas");
+  const fit = () => {
+    const svg = canvas.querySelector("svg");
+    const box = svg?.viewBox?.baseVal;
+    if (!box || !box.width) return;
+    const ratio = box.height / box.width;
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const upright = H > W;
+    if (upright) {
+      // Turned: the figure's width runs down the screen and its height across.
+      const w = Math.min(H, W / ratio);
+      canvas.style.width = `${w}px`;
+      canvas.style.transform = `translate(${(W + w * ratio) / 2}px, ${(H - w) / 2}px) rotate(90deg)`;
+    } else {
+      const w = Math.min(W, H / ratio);
+      canvas.style.width = `${w}px`;
+      canvas.style.transform = `translate(${(W - w) / 2}px, ${(H - w * ratio) / 2}px)`;
+    }
+  };
+  new ResizeObserver(fit).observe(stage);
+  document.getElementById("m").addEventListener("mtp-change", () => requestAnimationFrame(fit));
+  new MutationObserver(fit).observe(canvas, { subtree: true, attributes: true, attributeFilter: ["viewBox"] });
+</script>
+</body>
+</html>
+HTML
+echo "built $(pwd)"

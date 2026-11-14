@@ -1,0 +1,200 @@
+; A ball puzzle: twelve pieces, each a few balls joined in a row or a bend, fill a board of 5 by
+; 11 holes. A puzzle is a full solution with some pieces fixed in place and the others, as many
+; as the reader picks, waiting in the tray to the right of the board. The solutions come from
+; solutions.mtp, written by solve.py.
+;
+; A piece dropped where all its balls sit in empty holes stays there. One dropped partly over the
+; board, where it does not fit, bounces side to side and slides back to where it was before it was
+; picked up. One dropped off the board goes back to its place in the tray. Turn and Flip act on
+; the last piece touched, while it is in the tray.
+
+(import rand)
+(import ease cubic-in-out)
+(import solutions known)
+
+(color paper (light-dark '#f6f1e7' '#1d1b19'))
+(color ink (light-dark '#2b2a33' '#ece6da'))
+(color board-wood (light-dark '#e8dcc4' '#4a4235'))
+(color board-edge (light-dark '#d6c6a6' '#5d5444'))
+(color hole (light-dark '#cbbd9f' '#2f2a22'))
+(color picked (light-dark '#f5862b' '#f5862b'))
+
+; A piece's balls, as offsets from its first ball, in whole holes. solve.py holds the same list.
+(list[list[point]] shapes
+    [[[0 0] [1 0] [0 1]]
+     [[0 0] [1 0] [2 0] [0 1]]
+     [[0 0] [1 0] [0 1] [1 1]]
+     [[0 0] [1 0] [2 0] [1 1]]
+     [[1 0] [2 0] [0 1] [1 1] [1 2]]
+     [[0 0] [1 0] [2 0] [3 0] [0 1]]
+     [[0 0] [1 0] [2 0] [2 1] [3 1]]
+     [[0 0] [1 0] [0 1] [1 1] [0 2]]
+     [[0 0] [2 0] [0 1] [1 1] [2 1]]
+     [[0 0] [1 0] [1 1] [2 1] [2 2]]
+     [[1 0] [0 1] [1 1] [2 1] [1 2]]
+     [[0 0] [1 0] [2 0] [3 0] [1 1]]]
+    (const))
+; Twelve colors that are easy to tell apart. The darkest blue would sink into a dark board, so on a
+; dark page it is a light one.
+(list[color] paints
+    ['#db2728' '#f5862b' '#ffd31b' '#37cab6' '#157067' '#0e9ae9' '#7629c7' '#bb89f7' '#f472b6'
+     '#8b9fad' (light-dark '#0c456e' '#7dcdfc') '#973a15']
+    (const))
+
+; An offset turned by a piece's turn: 0 to 3 quarter turns, and 4 to 7 the same after flipping it
+; over. solve.py holds the same rule.
+(func[point] turned ((point c) (int o))
+  (let ((f (if (>= o 4) [(- c.x) c.y] c))
+        (k (mod o 4)))
+    (cond ((= k 0) f)
+          ((= k 1) [(- f.y) f.x])
+          ((= k 2) [(- f.x) (- f.y)])
+          (else [f.y (- f.x)]))))
+; A quarter turn clockwise: one fewer quarter turn counterclockwise, on the same side up.
+(func[int] quarter-clockwise ((int o)) (+ (if (>= o 4) 4 0) (mod (+ o 3) 4)))
+(func[int] flipped ((int o)) (mod (+ o 4) 8))
+
+; The holes a piece's balls land in when it is let go at at, each rounded to the nearest hole.
+(func[list[point]] landing ((list[point] cells) (point at) (int o))
+  (map cells (fn c (+ [(round at.x) (round at.y)] (turned c o)))))
+(func[bool] on-board ((point b)) (and (>= b.x 0) (<= b.x 10) (>= b.y 0) (<= b.y 4)))
+; Whether none of the holes bs holds a ball of another piece than me: taken[j] are the holes
+; piece j's balls sit in now.
+(func[bool] clear ((list[point] bs) (list[list[point]] taken) (int me))
+  (all bs (fn b (all (range 12) (fn j (or (= j me)
+                                          (all (or? taken[j] []) (fn d (or (!= d.x b.x) (!= d.y b.y))))))))))
+
+; The middle of a piece's balls, turned by o: the middle of the box around them.
+(func[point] middle ((list[point] cells) (int o))
+  (let ((t (map cells (fn c (turned c o))))
+        (xs (map t (fn q q.x)))
+        (ys (map t (fn q q.y))))
+    [(/ (+ (or? (min xs) 0) (or? (max xs) 0)) 2) (/ (+ (or? (min ys) 0) (or? (max ys) 0)) 2)]))
+; The tray: two rows of places to the right of the board, filled in the order the pieces were
+; dealt, each piece centered in its place.
+(func[point] place ((int r)) [(+ 14 (* 4.5 (floor (/ r 2)))) (if (= (mod r 2) 0) 4 0)])
+(func[point] tray-pos ((int r) (list[point] cells) (int o)) (- (place r) (middle cells o)))
+; Where a ball at offset v is drawn while its piece turns or flips: turned spin degrees about the
+; piece's middle m, then squeezed toward m by squeeze across the line it flips over (an upright
+; line when the piece has an even number of quarter turns, a level one otherwise). At spin 0 and
+; squeeze 1 it is v itself.
+(func[point] shown ((point v) (point m) (real spin) (real squeeze) (int o))
+  (let ((dx (- v.x m.x))
+        (dy (- v.y m.y))
+        (rx (- (* dx (cosd spin)) (* dy (sind spin))))
+        (ry (+ (* dx (sind spin)) (* dy (cosd spin)))))
+    (if (= (mod o 2) 0) [(+ m.x (* rx squeeze)) (+ m.y ry)] [(+ m.x rx) (+ m.y (* ry squeeze))])))
+
+; The puzzle: how many pieces are left to place, which solution, and which pieces are left. A
+; roll of the dice draws a new solution and a new choice of pieces.
+(int level 2 (>= 2) (<= 12))
+(int sol (rand-int 0 49))
+(list[int] order (shuffle (range 12)))
+; Where each piece comes in the order: the pieces that come first are the ones left to place.
+(list[int] rank (map 12 (fn i (sum (map 12 (fn k (if (= order[k] i) k 0)))))))
+(list[bool] free (map 12 (fn i (< rank[i] level))))
+; The piece last touched, which Turn and Flip act on; -1 for none.
+(int last -1 (>= -1) (<= 11))
+
+(motif piece ((list[point] cells []) (int size 5 (>= 0) (<= 5)) (int orient 0 (>= 0) (<= 7))
+              (color paint) (int idx 0 (>= 0) (<= 11)) (bool fixed false) (bool marked false)
+              (point home [0 0]) (real spin 0) (real squeeze 1 (>= -1) (<= 1)))
+  doc@'Balls joined into one piece, turned by orient: size of them, at most 5. spin and squeeze draw it partway through a turn or a flip.'
+  (let ((t (map cells (fn c (turned c orient))))
+        (xs (map t (fn q q.x)))
+        (ys (map t (fn q q.y)))
+        (m (middle cells orient)))
+    ; A dashed outline around the piece last touched.
+    (rect_ (pos m) (width (+ 1.3 (- (or? (max xs) 0) (or? (min xs) 0)))) (height (+ 1.3 (- (or? (max ys) 0) (or? (min ys) 0))))
+        (rx 0.45) (fill none) (stroke picked) (stroke-width 3) (dash [7 5]) (opacity (if (and marked (= spin 0) (= squeeze 1)) 1 0)))
+    (foreach j size
+      (circle_ (pos (shown (turned cells[j] orient) m spin squeeze orient)) (r 0.45) (fill paint) (stroke none) (opacity (if fixed 0.88 1)))
+      (circle_ (pos (+ (shown (turned cells[j] orient) m spin squeeze orient) [-0.13 0.13])) (r 0.13) (fill '#ffffff') (stroke none)
+          (opacity (if fixed 0.25 0.45))))
+    ; A small pin on the first ball of a fixed piece, so it reads as stuck to the board.
+    (circle_ (pos (turned (or? cells[0] [0 0]) orient)) (r 0.09) (fill ink) (stroke none) (opacity (if fixed 0.55 0)))))
+
+(scene puzzle (background paper)
+  (rect board (pos [5 2]) (width 11.6) (height 5.6) (rx 0.45) (fill board-wood) (stroke board-edge) (stroke-width 3))
+  (group holes (defaults (fill hole) (stroke none))
+    (foreach ((i 11) (j 5))
+      (circle_ (pos [i j]) (r 0.38))))
+  (group pieces
+    (foreach i 12
+      (piece #'piece-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
+          (fixed (not (or? free[i] true))) (marked (= last i)) (pos (place i))))))
+
+; The holes each piece's balls sit in now, and whether the board is full: with no two pieces
+; ever in one hole, it is full when 55 balls sit in holes of the board.
+(list[list[point]] taken (map pieces (fn q (map q.cells (fn c (+ q.pos (turned c q.orient)))))))
+(bool solved
+  (= (sum (map taken (fn bs (count bs (fn b (and (on-board b) (= b.x (round b.x)) (= b.y (round b.y)))))))) 55))
+; The x of each piece, to tell whether the last one touched is in the tray.
+(list[real] xs (map pieces (fn q q.x)))
+(bool turnable (and (>= last 0) (> (or? xs[last] 0) 11.5)))
+
+; Deals the puzzle: the fixed pieces slide to their places in the solution, turned as there, and
+; the others to the tray, unturned.
+(animation deal
+  (at-once
+    (move last (to -1) (duration 0))
+    (foreach p pieces
+      (move p.orient (to (if (or? free[p.idx] true) 0 (or? known.turn[sol][p.idx] 0))) (duration 0))
+      (move p.pos (to (if (or? free[p.idx] true)
+                          (tray-pos (or? rank[p.idx] 0) p.cells 0)
+                          (or? known.pos[sol][p.idx] [0 0])))
+          (duration 0.45) (ease cubic-in-out)))))
+
+(canvas view (x -1) (y -2.5) (width (+ 17.75 (* 4.5 (- (ceil (/ level 2)) 1)))) (height 9) (pan false) (zoom false)
+  doc@'The board, and the pieces left to place in the tray to its right.'
+  puzzle
+  (on-ready (animation deal) doc@'Deals the first puzzle.')
+  (foreach p pieces
+    (on-dragstart p (active (not p.fixed))
+        (animation (at-once (move p.home (to p.pos) (duration 0)) (move last (to p.idx) (duration 0))))
+      doc@'Remembers where the piece was, and marks it as the last touched.')
+    (on-drag p p.pos (active (not p.fixed)) doc@'Moves the piece.')
+    (on-click p (active (not p.fixed)) (animation (move last (to p.idx) (duration 0)))
+      doc@'Marks the piece as the last touched, for Turn and Flip.')
+    (on-dragend p (active (let ((bs (landing p.cells p.pos p.orient)))
+                            (and (all bs (fn b (on-board b))) (clear bs taken p.idx))))
+        (animation (move p.pos (to [(round p.x) (round p.y)]) (duration 0.12)))
+      doc@'Settles the piece into the holes under it.')
+    (on-dragend p (active (let ((bs (landing p.cells p.pos p.orient)))
+                            (and (any bs (fn b (on-board b)))
+                                 (not (and (all bs (fn b (on-board b))) (clear bs taken p.idx))))))
+        (animation (move p.x (to (+ p.x 0.22)) (duration 0.07)) (move p.x (to (- p.x 0.44)) (duration 0.1))
+                   (move p.x (to (+ p.x 0.44)) (duration 0.1)) (move p.x (to (- p.x 0.22)) (duration 0.07))
+                   (move p.pos (to p.home) (duration 0.35) (ease cubic-in-out)))
+      doc@'Bounces the piece side to side and slides it back, since it does not fit there.')
+    (on-dragend p (active (not (any (landing p.cells p.pos p.orient) (fn b (on-board b)))))
+        (animation (move p.pos (to (tray-pos (or? rank[p.idx] 0) p.cells p.orient)) (duration 0.3) (ease cubic-in-out)))
+      doc@'Sends a piece let go off the board back to its place in the tray.')))
+
+; How many pieces are left to place: 2 to 12. Each choice deals a new puzzle of that size.
+(foreach k 11
+  (button #'size-{k}' (label $'{(+ k 2)}') (selected (= level (+ k 2)))
+      (animation (move level (to (+ k 2)) (duration 0)) (roll-dice) deal)
+    doc@'Deals a new puzzle with this many pieces to place.'))
+(button new (label 'New') (animation (roll-dice) deal) doc@'Deals another puzzle of the same size.')
+(button another (label 'Another') (active solved) (animation (roll-dice) deal)
+  doc@'After a full board, deals another puzzle of the same size.')
+; Turn and Flip change the last piece touched at once, then draw the change: a turn starts drawn a
+; quarter back and spins forward, and a flip starts drawn mirrored and opens out through flat.
+(button turn (label 'Turn') (active turnable)
+    (animation
+      (at-once (foreach p pieces
+        (move p.orient (to (if (= p.idx last) (quarter-clockwise p.orient) p.orient)) (duration 0))
+        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) p.cells (quarter-clockwise p.orient)) p.pos)) (duration 0))
+        (move p.spin (to (if (= p.idx last) 90 0)) (duration 0))))
+      (at-once (foreach p pieces (move p.spin (to 0) (duration 0.3) (ease cubic-in-out)))))
+  doc@'Turns the last piece touched a quarter clockwise.')
+(button flip (label 'Flip') (active turnable)
+    (animation
+      (at-once (foreach p pieces
+        (move p.orient (to (if (= p.idx last) (flipped p.orient) p.orient)) (duration 0))
+        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) p.cells (flipped p.orient)) p.pos)) (duration 0))
+        (move p.squeeze (to (if (= p.idx last) -1 1)) (duration 0))))
+      (at-once (foreach p pieces (move p.squeeze (to 1) (duration 0.35) (ease cubic-in-out)))))
+  doc@'Flips the last piece touched over.')
+(readout cheer (if solved 'Well done!' ''))
