@@ -31,11 +31,12 @@
   main mtp-button[name="new"] button, main mtp-button[name="another"] button { background: var(--accent); border-color: var(--accent);
     color: #fff; box-shadow: 0 4px 0 var(--accent-deep); padding: 0 18px; }
   main .bottom mtp-button button { height: 62px; font-size: 26px; padding: 0 22px; }
-  /* Tabler icons (MIT): dice, rotate-clockwise and flip-vertical, drawn in the text color. */
+  /* Tabler icons (MIT): dice, rotate-clockwise, flip-vertical and arrow-back-up, drawn in the text color. */
   main mtp-button[name="new"] button::before, main mtp-button[name="another"] button::before,
-  main mtp-button[name="turn"] button::before, main mtp-button[name="flip"] button::before {
+  main mtp-button[name="turn"] button::before, main mtp-button[name="flip"] button::before, main mtp-button[name="again"] button::before {
     content: ""; width: 28px; height: 28px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
   main mtp-button[name="new"], main mtp-button[name="another"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z'/%3E%3Ccircle cx='8.5' cy='8.5' r='.5' fill='black'/%3E%3Ccircle cx='15.5' cy='15.5' r='.5' fill='black'/%3E%3Ccircle cx='12' cy='12' r='.5' fill='black'/%3E%3C/svg%3E"); }
+  main mtp-button[name="again"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14l-4 -4l4 -4'/%3E%3Cpath d='M5 10h11a4 4 0 1 1 0 8h-1'/%3E%3C/svg%3E"); }
   main mtp-button[name="turn"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5'/%3E%3C/svg%3E"); }
   main mtp-button[name="flip"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12l18 0'/%3E%3Cpath d='M7 16l10 0l-10 5l0 -5'/%3E%3Cpath d='M7 8l10 0l-10 -5l0 5'/%3E%3C/svg%3E"); }
 
@@ -47,17 +48,21 @@
   .card::before { content: "★★★"; font-size: 60px; line-height: 1; letter-spacing: 8px; color: #ffd31b; text-shadow: 0 3px 0 #e0a800; }
   main .card mtp-readout { font: 600 44px/1.1 Fredoka, sans-serif; }
 
-  /* New sits at the top on a wide screen, and next to Turn and Flip on a narrow one, so the size
-     tiles keep one row. */
+  /* Start again and New sit at the top on a wide screen, and next to Turn and Flip on a narrow
+     one, so the size tiles keep one row. */
   .narrow { display: none; }
   @media (max-width: 600px) {
     .wide { display: none; }
     .narrow { display: block; }
     main mtp-button button { font-size: 15px; min-width: 27px; height: 34px; border-radius: 9px; padding: 0 3px; border-width: 2px; }
     .sizes { gap: 4px; flex-wrap: nowrap; justify-content: center; }
-    .bottom { gap: 10px; }
-    main .bottom mtp-button button { height: 50px; font-size: 20px; padding: 0 14px; }
-    main .bottom mtp-button button::before { width: 24px; height: 24px; }
+    .bottom { gap: 6px; }
+    main .bottom mtp-button button { height: 50px; font-size: 17px; line-height: 1.05; padding: 0 9px; gap: 5px; }
+    main .bottom mtp-button button::before { width: 20px; height: 20px; flex: none; }
+  }
+  @media (max-width: 359px) {
+    .bottom { gap: 3px; }
+    main .bottom mtp-button button { font-size: 15px; padding: 0 6px; gap: 3px; }
   }
 </style>
 </head>
@@ -73,10 +78,11 @@
       <mtp-button model="m" name="size-8"></mtp-button><mtp-button model="m" name="size-9"></mtp-button>
       <mtp-button model="m" name="size-10"></mtp-button>
     </div>
+    <mtp-button model="m" name="again" class="wide"></mtp-button>
     <mtp-button model="m" name="new" class="wide"></mtp-button>
   </div>
   <div class="stage"><mtp-canvas model="m" name="view"></mtp-canvas></div>
-  <div class="bottom"><mtp-button model="m" name="turn"></mtp-button><mtp-button model="m" name="flip"></mtp-button><mtp-button model="m" name="new" class="narrow"></mtp-button></div>
+  <div class="bottom"><mtp-button model="m" name="turn"></mtp-button><mtp-button model="m" name="flip"></mtp-button><mtp-button model="m" name="again" class="narrow"></mtp-button><mtp-button model="m" name="new" class="narrow"></mtp-button></div>
   <div class="cheer"><div class="card"><mtp-readout model="m" name="cheer"></mtp-readout><mtp-button model="m" name="another"></mtp-button></div></div>
 </main>
 <script>
