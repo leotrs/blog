@@ -132,6 +132,8 @@
           (opacity (if (or hidden fixed) 0 0.45))))))
 
 (scene puzzle (background paper)
+  ; The empty page behind everything, so a tap anywhere off a free piece can be heard.
+  (rect backdrop (pos [20 2]) (width 60) (height 30) (fill paper) (stroke none))
   (rect board (pos [5 2]) (width 11.6) (height 5.6) (rx 0.45) (fill board-wood) (stroke board-edge) (stroke-width 3))
   (group holes (defaults (fill hole) (stroke none))
     (foreach ((i 11) (j 5))
@@ -191,6 +193,13 @@
     (on-drag p p.pos (active (not p.fixed)) doc@'Moves the piece.')
     (on-click p (active (not p.fixed)) (animation (move last (to p.idx) (duration 0)))
       doc@'Marks the piece as the last touched, for Turn and Flip.')
+    (on-click p (active p.fixed) (animation (move last (to -1) (duration 0)))
+      doc@'A tap on a fixed piece is a tap off the free pieces: nothing is marked any more.'))
+  ; A tap anywhere off the free pieces leaves no piece marked.
+  (on-click backdrop (animation (move last (to -1) (duration 0))) doc@'Unmarks the last piece touched.')
+  (on-click board (animation (move last (to -1) (duration 0))) doc@'Unmarks the last piece touched.')
+  (on-click holes (animation (move last (to -1) (duration 0))) doc@'Unmarks the last piece touched.')
+  (foreach p pieces
     (on-dragend p (active (let ((bs (landing p.cells p.pos p.orient)))
                             (and (all bs (fn b (on-board b))) (clear bs taken p.idx))))
         (animation (move p.pos (to [(round p.x) (round p.y)]) (duration 0.12)))
