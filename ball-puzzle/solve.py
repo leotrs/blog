@@ -88,8 +88,34 @@ def solve(rnd):
     return [placed[p] for p in range(12)]
 
 
+def cells_of(solution):
+    """The holes each piece covers in a solution."""
+    return [
+        {(px + dx, py + dy) for dx, dy in (turned(c, o) for c in SHAPES[i])}
+        for i, (o, (px, py)) in enumerate(solution)
+    ]
+
+
+def growing_order(solution, rnd):
+    """The pieces in an order where each one touches an earlier one, starting from a random piece.
+
+    The first k pieces of it then always cover one connected region, so taking them off the board
+    leaves a single hole.
+    """
+    cells = cells_of(solution)
+
+    def touch(a, b):
+        return any((x + dx, y + dy) in cells[b] for x, y in cells[a] for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+
+    order = [rnd.randrange(12)]
+    while len(order) < 12:
+        nexts = [p for p in range(12) if p not in order and any(touch(p, q) for q in order)]
+        order.append(rnd.choice(nexts))
+    return order
+
+
 def main():
-    count = int(sys.argv[1]) if len(sys.argv) > 1 else 50
+    count = int(sys.argv[1]) if len(sys.argv) > 1 else 100
     rnd = random.Random(2026)
     solutions, seen = [], set()
     while len(solutions) < count:
@@ -100,12 +126,15 @@ def main():
             solutions.append(s)
     pos = "\n     ".join("[" + " ".join(f"[{x} {y}]" for _, (x, y) in s) + "]" for s in solutions)
     turn = "\n     ".join("[" + " ".join(str(o) for o, _ in s) + "]" for s in solutions)
+    order = "\n     ".join("[" + " ".join(str(p) for p in growing_order(s, rnd)) + "]" for s in solutions)
     Path(__file__).with_name("solutions.mtp").write_text(
         f"; {count} full solutions of the ball puzzle, written by solve.py: do not edit by hand.\n"
-        "; For solution s, piece i sits at known.pos[s][i] with turn known.turn[s][i]. They\n"
-        "; are in a namespace because a file to import cannot hold a const list yet (mtp bug).\n\n"
-        f"(namespace known\n  (list[list[point]] pos\n    [{pos}])\n"
-        f"  (list[list[int]] turn\n    [{turn}]))\n"
+        "; For solution s, piece i sits at solution-pos[s][i] with turn solution-turn[s][i].\n"
+        "; solution-order[s] lists the pieces so that each touches an earlier one: the first k of\n"
+        "; them, taken off the board, leave a single hole.\n\n"
+        f"(list[list[point]] solution-pos\n    [{pos}]\n    (const))\n"
+        f"(list[list[int]] solution-turn\n    [{turn}]\n    (const))\n"
+        f"(list[list[int]] solution-order\n    [{order}]\n    (const))\n"
     )
     print(f"wrote {count} solutions")
 

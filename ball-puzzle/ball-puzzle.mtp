@@ -10,7 +10,7 @@
 
 (import rand)
 (import ease cubic-in-out)
-(import solutions known)
+(import solutions solution-pos solution-turn solution-order)
 
 (color paper (light-dark '#f6f1e7' '#1d1b19'))
 (color ink (light-dark '#2b2a33' '#ece6da'))
@@ -103,10 +103,12 @@
     (if (= (mod o 2) 0) [(+ m.x (* rx squeeze)) (+ m.y ry)] [(+ m.x rx) (+ m.y (* ry squeeze))])))
 
 ; The puzzle: how many pieces are left to place, which solution, and which pieces are left. A
-; roll of the dice draws a new solution and a new choice of pieces.
+; roll of the dice draws a new solution, and with it the pieces left.
 (int level 2 (>= 2) (<= 12))
-(int sol (rand-int 0 49))
-(list[int] order (shuffle (range 12)))
+(int sol (rand-int 0 99))
+; The pieces in the order solve.py found for this solution, each touching an earlier one, so the
+; pieces left always leave a single hole in the board.
+(list[int] order (or? solution-order[sol] (range 12)))
 ; Where each piece comes in the order: the pieces that come first are the ones left to place.
 (list[int] rank (map 12 (fn i (sum (map 12 (fn k (if (= order[k] i) k 0)))))))
 (list[bool] free (map 12 (fn i (< rank[i] level))))
@@ -184,10 +186,10 @@
   (at-once
     (move last (to -1) (duration 0))
     (foreach p pieces
-      (move p.orient (to (if (or? free[p.idx] true) 0 (or? known.turn[sol][p.idx] 0))) (duration 0))
+      (move p.orient (to (if (or? free[p.idx] true) 0 (or? solution-turn[sol][p.idx] 0))) (duration 0))
       (move p.pos (to (if (or? free[p.idx] true)
                           (tray-pos (or? rank[p.idx] 0) rows p.cells 0)
-                          (or? known.pos[sol][p.idx] [0 0])))
+                          (or? solution-pos[sol][p.idx] [0 0])))
           (duration 0.45) (ease cubic-in-out)))))
 
 (canvas view (x -1) (y (- 2 (/ (+ (* 4 rows) 1) 2))) (width (+ 17.75 (* 4.5 (- (ceil (/ level rows)) 1))))
