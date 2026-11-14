@@ -86,10 +86,11 @@
         (xs (map t (fn q q.x)))
         (ys (map t (fn q q.y))))
     [(/ (+ (or? (min xs) 0) (or? (max xs) 0)) 2) (/ (+ (or? (min ys) 0) (or? (max ys) 0)) 2)]))
-; The tray: two rows of places to the right of the board, filled in the order the pieces were
-; dealt, each piece centered in its place.
-(func[point] place ((int r)) [(+ 14 (* 4.5 (floor (/ r 2)))) (if (= (mod r 2) 0) 4 0)])
-(func[point] tray-pos ((int r) (list[point] cells) (int o)) (- (place r) (middle cells o)))
+; The tray: rows of places to the right of the board, centered on it and filled column by column
+; in the order the pieces were dealt, each piece centered in its place.
+(func[point] place ((int r) (int rows))
+  [(+ 14 (* 4.5 (floor (or? (/ r rows) 0)))) (- (+ 2 (* 2 (- rows 1))) (* 4 (or? (mod r rows) 0)))])
+(func[point] tray-pos ((int r) (int rows) (list[point] cells) (int o)) (- (place r rows) (middle cells o)))
 ; Where a ball at offset v is drawn while its piece turns or flips: turned spin degrees about the
 ; piece's middle m, then squeezed toward m by squeeze across the line it flips over (an upright
 ; line when the piece has an even number of quarter turns, a level one otherwise). At spin 0 and
@@ -109,6 +110,9 @@
 ; Where each piece comes in the order: the pieces that come first are the ones left to place.
 (list[int] rank (map 12 (fn i (sum (map 12 (fn k (if (= order[k] i) k 0)))))))
 (list[bool] free (map 12 (fn i (< rank[i] level))))
+; How many rows the tray has: more as more pieces are left, so the figure keeps close to the
+; shape of a tablet held sideways, and of a phone held upright, where it is drawn turned.
+(int rows (cond ((<= level 4) 2) ((<= level 10) 3) (else 4)))
 ; The piece last touched, which Turn and Flip act on; -1 for none.
 (int last -1 (>= -1) (<= 11))
 
@@ -144,7 +148,7 @@
   (group pieces
     (foreach i 12
       (piece #'piece-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
-          (fixed (not (or? free[i] true))) (hidden (or? free[i] false)) (marked (= last i)) (pos (place i)))))
+          (fixed (not (or? free[i] true))) (hidden (or? free[i] false)) (marked (= last i)) (pos (place i 2)))))
   (group free-look (pointer-events false)
     (foreach i 12
       (piece #'free-look-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
@@ -178,11 +182,12 @@
     (foreach p pieces
       (move p.orient (to (if (or? free[p.idx] true) 0 (or? known.turn[sol][p.idx] 0))) (duration 0))
       (move p.pos (to (if (or? free[p.idx] true)
-                          (tray-pos (or? rank[p.idx] 0) p.cells 0)
+                          (tray-pos (or? rank[p.idx] 0) rows p.cells 0)
                           (or? known.pos[sol][p.idx] [0 0])))
           (duration 0.45) (ease cubic-in-out)))))
 
-(canvas view (x -1) (y -2.5) (width (+ 17.75 (* 4.5 (- (ceil (/ level 2)) 1)))) (height 9) (pan false) (zoom false)
+(canvas view (x -1) (y (- 2 (/ (+ (* 4 rows) 1) 2))) (width (+ 17.75 (* 4.5 (- (ceil (/ level rows)) 1))))
+    (height (+ (* 4 rows) 1)) (pan false) (zoom false)
   doc@'The board, and the pieces left to place in the tray to its right.'
   puzzle
   (on-ready (animation deal) doc@'Deals the first puzzle.')
@@ -212,7 +217,7 @@
                    (move p.pos (to p.home) (duration 0.35) (ease cubic-in-out)))
       doc@'Bounces the piece side to side and slides it back, since it does not fit there.')
     (on-dragend p (active (not (any (landing p.cells p.pos p.orient) (fn b (on-board b)))))
-        (animation (move p.pos (to (tray-pos (or? rank[p.idx] 0) p.cells p.orient)) (duration 0.3) (ease cubic-in-out)))
+        (animation (move p.pos (to (tray-pos (or? rank[p.idx] 0) rows p.cells p.orient)) (duration 0.3) (ease cubic-in-out)))
       doc@'Sends a piece let go off the board back to its place in the tray.')))
 
 ; How many pieces are left to place: 2 to 12. Each choice deals a new puzzle of that size.
@@ -230,7 +235,7 @@
     (animation
       (at-once (foreach p pieces
         (move p.orient (to (if (= p.idx last) (quarter-clockwise p.orient) p.orient)) (duration 0))
-        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) p.cells (quarter-clockwise p.orient)) p.pos)) (duration 0))
+        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) rows p.cells (quarter-clockwise p.orient)) p.pos)) (duration 0))
         (move p.spin (to (if (= p.idx last) 90 0)) (duration 0))))
       (at-once (foreach p pieces (move p.spin (to 0) (duration 0.3) (ease cubic-in-out)))))
   doc@'Turns the last piece touched a quarter clockwise.')
@@ -238,7 +243,7 @@
     (animation
       (at-once (foreach p pieces
         (move p.orient (to (if (= p.idx last) (flipped p.orient) p.orient)) (duration 0))
-        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) p.cells (flipped p.orient)) p.pos)) (duration 0))
+        (move p.pos (to (if (= p.idx last) (tray-pos (or? rank[p.idx] 0) rows p.cells (flipped p.orient)) p.pos)) (duration 0))
         (move p.squeeze (to (if (= p.idx last) -1 1)) (duration 0))))
       (at-once (foreach p pieces (move p.squeeze (to 1) (duration 0.35) (ease cubic-in-out)))))
   doc@'Flips the last piece touched over.')
