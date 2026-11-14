@@ -108,11 +108,12 @@
     (rect_ (pos m) (width (+ 1.3 (- (or? (max xs) 0) (or? (min xs) 0)))) (height (+ 1.3 (- (or? (max ys) 0) (or? (min ys) 0))))
         (rx 0.45) (fill none) (stroke picked) (stroke-width 3) (dash [7 5]) (opacity (if (and marked (= spin 0) (= squeeze 1)) 1 0)))
     (foreach j size
-      (circle_ (pos (shown (turned cells[j] orient) m spin squeeze orient)) (r 0.45) (fill paint) (stroke none) (opacity (if fixed 0.88 1)))
+      ; A fixed piece is washed into the board, flat, as if painted on it, so only the pieces
+      ; that can be moved are bright and shiny.
+      (circle_ (pos (shown (turned cells[j] orient) m spin squeeze orient)) (r 0.45) (fill (if fixed (mix paint board-wood 0.7) paint))
+          (stroke none))
       (circle_ (pos (+ (shown (turned cells[j] orient) m spin squeeze orient) [-0.13 0.13])) (r 0.13) (fill '#ffffff') (stroke none)
-          (opacity (if fixed 0.25 0.45))))
-    ; A small pin on the first ball of a fixed piece, so it reads as stuck to the board.
-    (circle_ (pos (turned (or? cells[0] [0 0]) orient)) (r 0.09) (fill ink) (stroke none) (opacity (if fixed 0.55 0)))))
+          (opacity (if fixed 0 0.45))))))
 
 (scene puzzle (background paper)
   (rect board (pos [5 2]) (width 11.6) (height 5.6) (rx 0.45) (fill board-wood) (stroke board-edge) (stroke-width 3))
