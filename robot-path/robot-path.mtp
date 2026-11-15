@@ -1,0 +1,187 @@
+; A robot path: a robot on a 6 by 6 grid, stars to collect and rocks in the way. The reader lays
+; out a program of up to 12 cards, Forward, Left and Right, and Go plays it: the robot steps a
+; square forward, or turns a quarter in place, one card at a time. A Forward into a rock or off
+; the grid bumps and stays. The levels come from levels.mtp, written by levels.py.
+;
+; Everything the robot does is worked out from the cards and from t, how far the program has
+; played: t is 2.5 halfway through the third card. Go moves only t.
+
+(import ease cubic-in-out)
+(import levels level-start level-face level-rocks level-stars)
+
+(color paper (light-dark '#f6f1e7' '#1d1b19'))
+(color ink (light-dark '#2b2a33' '#ece6da'))
+(color square (light-dark '#e8dcc4' '#3b352c'))
+(color slot (light-dark '#ece3d1' '#2c2823'))
+(color rock (light-dark '#9c8467' '#7a6650'))
+(color rock-edge (light-dark '#7c6650' '#5c4c3b'))
+(color star-gold '#ffd31b')
+(color star-edge '#e0a800')
+(color body '#0e9ae9')
+(color nose '#f5862b')
+(color wheel (light-dark '#2b2a33' '#111015'))
+(color card (light-dark '#fffaf0' '#2a2724'))
+(color now '#f5862b')
+; One color for each kind of card, the same as its button's on the page.
+(color go-color '#2f9e44')
+(color left-color '#7629c7')
+(color right-color '#d9480f')
+
+; The cards: 0 for an empty slot, 1 Forward, 2 Left, 3 Right.
+(type kind int (>= 0) (<= 3))
+(func[point] ahead ((int d)) (cond ((= d 0) [1 0]) ((= d 1) [0 1]) ((= d 2) [-1 0]) (else [0 -1])))
+; Which way the robot faces after the first k cards: 0 right, 1 up, 2 left, 3 down.
+(func[int] heading ((list[kind] cards) (int d0) (int k))
+  (mod (+ d0 (sum (map 12 (fn i (cond ((>= i k) 0) ((= (or? cards[i] 0) 2) 1) ((= (or? cards[i] 0) 3) -1) (else 0)))))) 4))
+(func[bool] open ((point c) (list[point] rocks))
+  (and (>= c.x 0) (<= c.x 5) (>= c.y 0) (<= c.y 5) (not (any rocks (fn r (= r c))))))
+; The square the robot is on after the first k cards.
+(func[point] spot ((list[kind] cards) (point p0) (int d0) (list[point] rocks) (int k))
+  (if (<= k 0)
+      p0
+      (let ((p (spot cards p0 d0 rocks (- k 1)))
+            (q (+ p (ahead (heading cards d0 (- k 1))))))
+        (if (and (= (or? cards[(- k 1)] 0) 1) (open q rocks)) q p))))
+(func smooth (((real (>= 0) (<= 1)) x)) (* x x (- 3 (* 2 x))))
+(func clamp01 ((real x)) (max 0 (min 1 x)))
+; Where slot i of the program is drawn: two rows of six under the grid.
+(func[point] slot-pos ((int i)) [(mod i 6) (- -1.3 (* 1.05 (floor (/ i 6))))])
+; The corners of a five-pointed star around c.
+(func[list[point]] star-points ((point c) (real s))
+  (map 10 (fn k (+ c (polar (* s (if (= (mod k 2) 0) 0.4 0.17)) (+ 90 (* 36 k)))))))
+
+; The level, the program, and how far it has played.
+(int level 0 (>= 0) (<= 11))
+(list[kind] program [0 0 0 0 0 0 0 0 0 0 0 0] (length 12))
+(int n 0 (>= 0) (<= 12) doc@'How many cards the program has.')
+(real t 0 (>= 0) (<= 12) doc@'How far the program has played, in cards.')
+
+(point start (or? level-start[level] [0 0]))
+(int face (or? level-face[level] 0))
+(list[point] rocks (or? level-rocks[level] []))
+(list[point] stars (or? level-stars[level] []))
+(list[point] spots (map 13 (fn k (spot program start face rocks k))))
+(list[int] heads (map 13 (fn k (heading program face k))))
+
+; The robot at t: on card seg, a share f of the way through it.
+(int seg (floor t))
+(real f (- t seg))
+(int doing (if (< seg n) (or? program[seg] 0) 0))
+(point from-spot (or? spots[seg] start))
+(point to-spot (or? spots[(+ seg 1)] from-spot))
+(int from-head (or? heads[seg] face))
+; A Forward that cannot go bumps: the robot leans a little way forward and comes back.
+(bool bumping (and (= doing 1) (= from-spot to-spot)))
+(point robot-pos
+  (if bumping
+      (+ from-spot (* (* 0.22 (sind (* 180 f))) (ahead from-head)))
+      (lerp from-spot to-spot (smooth (clamp01 f)))))
+(real robot-angle
+  (+ (* 90 from-head) (cond ((= doing 2) (* 90 (smooth (clamp01 f)))) ((= doing 3) (* -90 (smooth (clamp01 f)))) (else 0))))
+
+; When the robot reaches each star: the card after which it stands on it, 99 for never. A
+; padded star, off the grid, counts as reached at the start.
+(list[real] reached
+  (map stars (fn s (if (< s.x 0) -1 (min (map 12 (fn i (if (and (< i n) (= (or? spots[(+ i 1)] [-9 -9]) s)) (+ i 1) 99))))))))
+(list[bool] got (map reached (fn k (>= t (- k 0.3)))))
+(bool done (and (> n 0) (>= t n) (all got)))
+(bool missed (and (> n 0) (>= t n) (not (all got))))
+(bool running (and (> t 0) (< t n)))
+
+(motif robot ((real angle 0))
+  doc@'The robot seen from above, facing angle: wheels at its sides, eyes and a nose to the front.'
+  (circle_ (pos (polar 0.3 (+ angle 90))) (r 0.12) (fill wheel) (stroke none))
+  (circle_ (pos (polar 0.3 (- angle 90))) (r 0.12) (fill wheel) (stroke none))
+  (circle_ (r 0.34) (fill body) (stroke none))
+  (triangle_ (a (polar 0.5 angle)) (b (polar 0.3 (+ angle 24))) (c (polar 0.3 (- angle 24)))
+      (fill nose) (stroke none))
+  (circle_ (pos (polar 0.16 (+ angle 42))) (r 0.1) (fill '#ffffff') (stroke none))
+  (circle_ (pos (polar 0.16 (- angle 42))) (r 0.1) (fill '#ffffff') (stroke none))
+  (circle_ (pos (polar 0.2 (+ angle 36))) (r 0.05) (fill wheel) (stroke none))
+  (circle_ (pos (polar 0.2 (- angle 36))) (r 0.05) (fill wheel) (stroke none)))
+
+(motif card-face ((kind shows 0) (bool lit false))
+  doc@'A card of the program: an empty slot, or Forward, Left or Right drawn as an arrow.'
+  (rect_ (width 0.86) (height 0.86) (rx 0.16) (fill (if (= shows 0) slot card))
+      (stroke (if lit now (if (= shows 0) square rock-edge))) (stroke-width (if lit 4 2))
+      (dash (if (= shows 0) [5 4] [])))
+  (line_ (from [0 -0.24]) (to [0 0.2]) (stroke go-color) (stroke-width 5) (line-cap 'round')
+      (head-end 'dart') (head-size 0.7) (opacity (if (= shows 1) 1 0)))
+  ; A turn is most of a circle with a head where it ends: counterclockwise for Left, clockwise for
+  ; Right, as the icons on the buttons.
+  (arc_ (r 0.22) (from 15) (to 300) (stroke left-color) (stroke-width 5) (line-cap 'round')
+      (opacity (if (= shows 2) 1 0)))
+  (triangle_ (a (+ (polar 0.22 300) (polar 0.15 30))) (b (polar 0.32 300)) (c (polar 0.12 300))
+      (fill left-color) (stroke none) (opacity (if (= shows 2) 1 0)))
+  (arc_ (r 0.22) (from 165) (to -120) (stroke right-color) (stroke-width 5) (line-cap 'round')
+      (opacity (if (= shows 3) 1 0)))
+  (triangle_ (a (+ (polar 0.22 -120) (polar 0.15 150))) (b (polar 0.32 -120)) (c (polar 0.12 -120))
+      (fill right-color) (stroke none) (opacity (if (= shows 3) 1 0))))
+
+(scene board (background paper)
+  (group squares (defaults (fill square) (stroke none))
+    (foreach ((i 6) (j 6))
+      (rect_ (pos [i j]) (width 0.94) (height 0.94) (rx 0.14))))
+  (group rocks-drawn (defaults (fill rock) (stroke rock-edge) (stroke-width 2))
+    (foreach k 16
+      (let ((c (or? rocks[k] [-9 -9])))
+        (rect_ (pos c) (width 0.8) (height 0.8) (rx 0.22) (opacity (if (< c.x 0) 0 1))))))
+  ; Each star grows and fades as the robot reaches it.
+  (group stars-drawn (defaults (fill star-gold) (stroke star-edge) (stroke-width 2) (line-join 'round'))
+    (foreach k 3
+      (let ((c (or? stars[k] [-9 -9]))
+            (pop (clamp01 (/ (- t (- (or? reached[k] 99) 0.3)) 0.4))))
+        (polygon_ (points (star-points c (+ 1 (* 0.7 pop)))) (opacity (if (< c.x 0) 0 (- 1 pop)))))))
+  ; The robot's trail: the squares it has been on, and where it is now.
+  (polyline trail (points (map 14 (fn k (if (<= k seg) (or? spots[k] start) robot-pos))))
+      (stroke body) (stroke-width 5) (stroke-opacity 0.35) (dash [2 9]) (line-cap 'round') (line-join 'round')
+      (fill none))
+  (robot bot (pos robot-pos) (angle robot-angle))
+  ; The program, under the grid. The card playing now is outlined.
+  (group cards
+    (foreach i 12
+      (card-face #'card-{i}' (pos (slot-pos i)) (shows (or? program[i] 0)) (lit (and running (= seg i)))))))
+
+(canvas view (x -0.65) (y -2.95) (width 6.3) (height 8.6) (pan false) (zoom false)
+  doc@'The grid with the robot, the stars and the rocks, and the program under it.'
+  board)
+
+; Adds a card at the end of the program, and puts the robot back at the start.
+(choreo add ((kind card))
+  (at-once (defaults (duration 0))
+    (move program (to (map 12 (fn i (if (= i n) card (or? program[i] 0))))))
+    (move n (to (+ n 1)))
+    (move t (to 0))))
+(choreo wipe ()
+  (at-once (defaults (duration 0))
+    (move program (to [0 0 0 0 0 0 0 0 0 0 0 0]))
+    (move n (to 0))
+    (move t (to 0))))
+
+(button forward (label 'Forward') (active (< n 12)) (add 1) doc@'Adds a Forward card.')
+(button left (label 'Left') (active (< n 12)) (add 2) doc@'Adds a Left card.')
+(button right (label 'Right') (active (< n 12)) (add 3) doc@'Adds a Right card.')
+(button go (label 'Go') (active (> n 0))
+    (animation (move t (to 0) (duration 0))
+      ; One move a card. Those past the last card change nothing, so the robot stands still.
+      (foreach k 12 (move t (to (min n (+ k 1))) (duration 0.7))))
+  doc@'Plays the program from the start.')
+(button back (label 'Back') (active (> n 0))
+    (animation
+      (at-once (defaults (duration 0))
+        (move program (to (map 12 (fn i (if (= i (- n 1)) 0 (or? program[i] 0))))))
+        (move n (to (- n 1)))
+        (move t (to 0))))
+  doc@'Takes the last card away.')
+(button clear (label 'Clear') (active (> n 0)) (wipe) doc@'Takes every card away.')
+(foreach k 12
+  (button #'level-{k}' (label $'{(+ k 1)}') (selected (= level k))
+      (animation (move level (to k) (duration 0)) (wipe))
+    doc@'Starts this level with an empty program.'))
+(button again (label 'Again') (active done) (animation (move t (to 0) (duration 0)))
+  doc@'After every star, puts the robot back at the start, keeping the program.')
+(button next (label 'Next') (active done)
+    (animation (move level (to (if (< level 11) (+ level 1) 0)) (duration 0)) (wipe))
+  doc@'After every star, starts the next level.')
+(readout cheer (if done 'Yay!' ''))
+(readout oops (if missed 'Oops!' ''))

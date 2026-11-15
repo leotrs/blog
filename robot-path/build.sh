@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# Builds leotrs.com/robot-path in this folder: compiles robot-path.mtp, copies the mathterpiece
+# runtime next to it, and writes index.html, the page that holds the figure and its buttons.
+#
+#   ./build.sh
+#
+# levels.mtp is written by levels.py, which is run by hand when the levels change. The
+# mathterpiece checkout is ~/aris/mathterpiece, or $MATHTERPIECE.
+set -euo pipefail
+cd "$(dirname "$0")"
+mtp="${MATHTERPIECE:-$HOME/aris/mathterpiece}"
+
+uv run --project "$mtp" mtp compile robot-path.mtp -o robot-path.mtpc
+(cd "$mtp/web" && pnpm build >/dev/null)
+cp "$mtp/web/dist/mathterpiece.js" mathterpiece.js
+
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robot path</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap">
+<script type="module" src="mathterpiece.js"></script>
+<style>
+  :root { color-scheme: light dark; --page: light-dark(#f6f1e7, #1d1b19); --ink: light-dark(#2b2a33, #ece6da);
+    --chip: light-dark(#fffaf0, #2a2724); --edge: light-dark(#e3d9c6, #463f36);
+    --accent: #f5862b; --on: light-dark(#fff1e4, #3a2a1c);
+    --go: #2f9e44; --go-deep: #237a34; --left: #7629c7; --right: #d9480f; }
+  html, body { margin: 0; height: 100%; background: var(--page); color: var(--ink); font-family: Fredoka, sans-serif;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; overflow: hidden; }
+  main { height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; box-sizing: border-box; gap: 10px;
+    padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  .levels { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .stage { min-height: 0; position: relative; }
+  .stage mtp-canvas { position: absolute; top: 0; left: 0; display: block; }
+  .oops { position: absolute; top: 0; left: 0; right: 0; text-align: center; pointer-events: none; }
+  main .oops mtp-readout { font: 600 30px/1 Fredoka, sans-serif; color: var(--accent); }
+  .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+  .cards, .run { display: flex; gap: 10px; }
+
+  /* The figure's buttons, large enough for a small finger, labelled in one word or a number.
+     Under main, so these win over mathterpiece's own button styles, which come later. */
+  main mtp-button button { font: 600 22px/1 Fredoka, sans-serif; color: var(--ink); background: var(--chip);
+    border: 3px solid var(--edge); border-radius: 14px; min-width: 50px; height: 50px; padding: 0 12px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: none; }
+  main mtp-button button:hover { background: var(--chip); border-color: var(--edge); color: var(--ink); }
+  main mtp-button button[aria-pressed="true"], main mtp-button button[aria-pressed="true"]:hover { border-color: var(--accent); background: var(--on); color: var(--ink); }
+  main mtp-button button:disabled { opacity: .35; cursor: default; }
+  /* The three cards show only their arrow, in the color the card has in the program. */
+  main .cards mtp-button button { width: 76px; height: 76px; font-size: 0; border-width: 4px; border-radius: 18px; }
+  main .cards mtp-button[name="forward"] button { color: var(--go); border-color: var(--go); }
+  main .cards mtp-button[name="left"] button { color: var(--left); border-color: var(--left); }
+  main .cards mtp-button[name="right"] button { color: var(--right); border-color: var(--right); }
+  main mtp-button[name="go"] button, main mtp-button[name="next"] button { background: var(--go); border-color: var(--go);
+    color: #fff; box-shadow: 0 4px 0 var(--go-deep); height: 76px; font-size: 30px; padding: 0 24px; }
+  main .run mtp-button[name="back"] button, main .run mtp-button[name="clear"] button { height: 76px; }
+  /* Tabler icons (MIT): arrow-up, rotate, rotate-clockwise, player-play, backspace and x. */
+  main mtp-button[name="forward"] button::before, main mtp-button[name="left"] button::before, main mtp-button[name="right"] button::before,
+  main mtp-button[name="go"] button::before, main mtp-button[name="back"] button::before, main mtp-button[name="clear"] button::before,
+  main mtp-button[name="next"] button::before, main mtp-button[name="again"] button::before {
+    content: ""; width: 28px; height: 28px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+  main .cards mtp-button button::before { width: 48px; height: 48px; }
+  main mtp-button[name="forward"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5l0 14'/%3E%3Cpath d='M18 11l-6 -6'/%3E%3Cpath d='M6 11l6 -6'/%3E%3C/svg%3E"); }
+  main mtp-button[name="left"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5'/%3E%3C/svg%3E"); }
+  main mtp-button[name="right"], main mtp-button[name="again"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5'/%3E%3C/svg%3E"); }
+  main mtp-button[name="go"], main mtp-button[name="next"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z'/%3E%3C/svg%3E"); }
+  main mtp-button[name="back"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-11l-5 -5a1.5 1.5 0 0 1 0 -2l5 -5z'/%3E%3Cpath d='M12 10l4 4m0 -4l-4 4'/%3E%3C/svg%3E"); }
+  main mtp-button[name="clear"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6l-12 12'/%3E%3Cpath d='M6 6l12 12'/%3E%3C/svg%3E"); }
+
+  /* The celebration: shown while Next can be pressed, that is once every star is collected. */
+  .cheer { position: fixed; inset: 0; display: none; place-items: center; background: color-mix(in srgb, var(--page) 55%, transparent); }
+  .cheer:has(mtp-button[name="next"]:not([data-mtp-inactive])) { display: grid; }
+  .card { background: var(--chip); border-radius: 28px; padding: 30px 40px; display: grid; gap: 16px; justify-items: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .2); }
+  .card::before { content: "★★★"; font-size: 60px; line-height: 1; letter-spacing: 8px; color: #ffd31b; text-shadow: 0 3px 0 #e0a800; }
+  .card .row { display: flex; gap: 12px; }
+  main .card mtp-readout { font: 600 48px/1.1 Fredoka, sans-serif; }
+  main .card mtp-button[name="again"] button { height: 76px; font-size: 26px; padding: 0 20px; }
+
+  /* Sideways, the buttons stand in a column to the right of the figure. */
+  @media (orientation: landscape) and (min-width: 700px) {
+    main { grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; }
+    .levels { grid-column: 1 / 3; }
+    .controls { flex-direction: column; flex-wrap: nowrap; }
+    .run { flex-direction: column; align-items: stretch; }
+  }
+  @media (max-width: 420px) {
+    main mtp-button button { font-size: 16px; min-width: 25px; height: 34px; border-radius: 9px; padding: 0 2px; border-width: 2px; }
+    .levels { gap: 3px; flex-wrap: nowrap; }
+    .controls, .cards, .run { gap: 7px; }
+    main .cards mtp-button button { width: 64px; height: 64px; }
+    main .cards mtp-button button::before { width: 40px; height: 40px; }
+    main mtp-button[name="go"] button { height: 64px; font-size: 24px; padding: 0 14px; }
+    main .run mtp-button[name="back"] button, main .run mtp-button[name="clear"] button { height: 64px; font-size: 18px; padding: 0 9px; gap: 4px; }
+    main .run mtp-button button::before { width: 22px; height: 22px; }
+  }
+</style>
+</head>
+<body>
+<mtp-model id="m" src="robot-path.mtpc"></mtp-model>
+<main>
+  <div class="levels">
+    <mtp-button model="m" name="level-0"></mtp-button><mtp-button model="m" name="level-1"></mtp-button>
+    <mtp-button model="m" name="level-2"></mtp-button><mtp-button model="m" name="level-3"></mtp-button>
+    <mtp-button model="m" name="level-4"></mtp-button><mtp-button model="m" name="level-5"></mtp-button>
+    <mtp-button model="m" name="level-6"></mtp-button><mtp-button model="m" name="level-7"></mtp-button>
+    <mtp-button model="m" name="level-8"></mtp-button><mtp-button model="m" name="level-9"></mtp-button>
+    <mtp-button model="m" name="level-10"></mtp-button><mtp-button model="m" name="level-11"></mtp-button>
+  </div>
+  <div class="stage">
+    <mtp-canvas model="m" name="view"></mtp-canvas>
+    <div class="oops"><mtp-readout model="m" name="oops"></mtp-readout></div>
+  </div>
+  <div class="controls">
+    <div class="cards"><mtp-button model="m" name="forward"></mtp-button><mtp-button model="m" name="left"></mtp-button><mtp-button model="m" name="right"></mtp-button></div>
+    <div class="run"><mtp-button model="m" name="go"></mtp-button><mtp-button model="m" name="back"></mtp-button><mtp-button model="m" name="clear"></mtp-button></div>
+  </div>
+  <div class="cheer"><div class="card"><mtp-readout model="m" name="cheer"></mtp-readout>
+    <div class="row"><mtp-button model="m" name="again"></mtp-button><mtp-button model="m" name="next"></mtp-button></div></div></div>
+</main>
+<script>
+  // The figure fills the room it has, keeping its shape.
+  const stage = document.querySelector(".stage");
+  const canvas = stage.querySelector("mtp-canvas");
+  const fit = () => {
+    const box = canvas.querySelector("svg")?.viewBox?.baseVal;
+    if (!box || !box.width) return;
+    const ratio = box.height / box.width;
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const w = Math.min(W, H / ratio);
+    canvas.style.width = `${w}px`;
+    canvas.style.transform = `translate(${(W - w) / 2}px, ${(H - w * ratio) / 2}px)`;
+  };
+  new ResizeObserver(fit).observe(stage);
+  new MutationObserver(fit).observe(canvas, { childList: true, subtree: true, attributes: true, attributeFilter: ["viewBox"] });
+  document.getElementById("m").addEventListener("mtp-change", () => requestAnimationFrame(fit));
+</script>
+</body>
+</html>
+HTML
+echo "built $(pwd)"
