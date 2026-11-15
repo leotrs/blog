@@ -1,8 +1,12 @@
 ; A hop run: a little critter runs to the right on its own, and a tap anywhere makes it jump. It
 ; jumps over rocks and gaps and takes coins on the way to a flag. A rock stops it until it jumps,
 ; onto the rock or over it, and a fall into a gap puts it back a few steps before the gap: nothing
-; ends the run but the flag. Pause stops everything. The levels come from levels.mtp, written by
-; levels.py.
+; ends the run but the flag. Pause stops everything.
+;
+; Each level is made up at random, from the dice: a row of chunks, each 7 units of ground with one
+; thing to get past in its middle. Every kind of chunk can be crossed by itself, and each starts
+; and ends with clear ground, so any row of them can be crossed too. The level the reader picks,
+; 1 to 8, sets how many chunks there are and which kinds may come.
 ;
 ; The run is a loop, as in examples/three-body.mtp: each round works out the next state from this
 ; one, the next values bound below, and moves every state variable to its next value at once. It
@@ -12,7 +16,7 @@
 ; over when there are restarts it has not done yet; Pause writes paused, and while it holds the
 ; loop's time stands still.
 
-(import levels level-gaps level-back level-rocks level-coins level-flag level-length)
+(import rand)
 
 (color sky (light-dark '#bfe6fb' '#1c2a3a'))
 (color cloud (light-dark '#ffffff' '#33465a'))
@@ -35,16 +39,54 @@
 (real hop 11 (const) doc@'How fast a jump starts upward: about 2 units high and 4 across.')
 (real rock-top 0.64 (const) doc@'How high a rock is: the critter can stand on one.')
 (real reach 0.6 (const) doc@'How far from a rock\'s middle the critter runs into it.')
-(int coin-slots 24 (const))
+(int coin-slots 45 (const))
+
+; The kinds of chunk, easiest first: 0 coins to run through, 1 a rock, 2 high coins, 3 a rock with
+; a coin over it, 4 two rocks, 5 a gap 2 wide, 6 three rocks, 7 a gap 3 wide. Each lists where its
+; rocks, its gap and its coins are from the chunk's start, padded with things far off at -999.
+(real chunk 7 (const) doc@'How long a chunk is.')
+(list[list[real]] kind-rocks
+    [[-999 -999 -999] [4.5 -999 -999] [-999 -999 -999] [4.5 -999 -999]
+     [3.5 4.5 -999] [-999 -999 -999] [3.5 4.5 5.5] [-999 -999 -999]]
+    (const))
+(list[point] kind-gap [[-999 -998] [-999 -998] [-999 -998] [-999 -998] [-999 -998] [3 5] [-999 -998] [3 6]] (const))
+(list[list[point]] kind-coins
+    [[[2.5 1] [3.5 1] [4.5 1]] [[1.5 1] [2.5 1] [-999 -999]] [[3.5 2.3] [4.5 2.3] [-999 -999]]
+     [[4.5 2.3] [-999 -999] [-999 -999]] [[4 2.4] [-999 -999] [-999 -999]] [[4 2.3] [-999 -999] [-999 -999]]
+     [[4.5 2.4] [-999 -999] [-999 -999]] [[4.5 2.3] [-999 -999] [-999 -999]]]
+    (const))
 
 (int level 0 (>= 0) (<= 7))
 (int look 1 (>= 0) (<= 3))
-(list[point] gaps (or? level-gaps[level] []))
-(list[real] backs (or? level-back[level] []))
-(list[real] rocks (or? level-rocks[level] []))
-(list[point] coins (or? level-coins[level] []))
-(real flag-x (or? level-flag[level] 30))
-(real ground-end (or? level-length[level] 40))
+; The level: 9 to 16 chunks, the first one easy, then each drawn from the kinds the level allows:
+; up to kind level + 1, and on level 8 only the hard ones.
+(int chunks (+ 9 level))
+(foreach k 16
+  (int #'kind-{k}' (if (= k 0) 0 (rand-int (if (= level 7) 3 0) (if (< level 6) (+ level 1) 7)))))
+(list[int] kinds [kind-0 kind-1 kind-2 kind-3 kind-4 kind-5 kind-6 kind-7 kind-8 kind-9 kind-10
+                  kind-11 kind-12 kind-13 kind-14 kind-15])
+(func[int] kind-at ((list[int] ks) (int k) (int n)) (if (< k n) (or? ks[k] 0) 0))
+; Each chunk also gets 0 to 3 more units of plain ground at its end, so things do not come at a
+; steady beat; starts[k] is where chunk k starts.
+(foreach k 16 (int #'extra-{k}' (rand-int 0 3)))
+(list[int] extras [extra-0 extra-1 extra-2 extra-3 extra-4 extra-5 extra-6 extra-7 extra-8 extra-9
+                   extra-10 extra-11 extra-12 extra-13 extra-14 extra-15])
+(list[real] starts (map 17 (fn k (+ (* chunk k) (sum (map 16 (fn i (if (< i k) (or? extras[i] 0) 0))))))))
+(func[real] start-of ((list[real] ss) (int k)) (or? ss[k] 0))
+(list[real] rocks
+  (map 45 (fn i (let ((k (floor (/ i 3))) (r (or? kind-rocks[(kind-at kinds k chunks)] [])))
+                  (if (< k chunks) (+ (start-of starts k) (or? r[(mod i 3)] -999)) -999)))))
+(list[point] gaps
+  (map 15 (fn k (let ((g (or? kind-gap[(kind-at kinds k chunks)] [-999 -998])))
+                  (if (and (< k chunks) (> g.x 0)) (+ [(start-of starts k) (start-of starts k)] g) [-999 -998])))))
+; Where the critter starts again after falling into the gap of chunk k: the end of the chunk
+; before, clear ground at least 3 units from the gap.
+(list[real] backs (map 15 (fn k (- (start-of starts k) 0.5))))
+(list[point] coins
+  (map 45 (fn i (let ((k (floor (/ i 3))) (cs (or? kind-coins[(kind-at kinds k chunks)] [])) (c (or? cs[(mod i 3)] [-999 -999])))
+                  (if (and (< k chunks) (> c.x 0)) (+ [(start-of starts k) 0] c) [-999 -999])))))
+(real flag-x (+ (start-of starts chunks) 3.5))
+(real ground-end (+ (start-of starts chunks) 8))
 
 ; The state the loop moves.
 (real wx 1 doc@'Where the critter is along the ground.')
@@ -56,7 +98,7 @@
 (int used 0 doc@'How many of those taps the loop has seen.')
 (int restarts 0 doc@'How many times the reader has asked to start a level over, ever.')
 (int done 0 doc@'How many of those the loop has done.')
-(list[real] got [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (length 24)
+(list[real] got [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (length 45)
   doc@'For each coin, the clock when the critter took it, or -1.')
 (bool finished false)
 (bool paused false doc@'Written only by Pause and the buttons that start a level.')
@@ -79,7 +121,7 @@
 (bool fell (< next-y -3))
 ; A few steps before the gap it fell into.
 (real back-to
-  (or? (max (map 8 (fn k (let ((g (or? gaps[k] [-99 -98])))
+  (or? (max (map 15 (fn k (let ((g (or? gaps[k] [-999 -998])))
                            (if (and (> wx (- g.x 1)) (< wx (+ g.y 1))) (or? backs[k] 1) -99)))))
        1))
 (real pace (cond (finished 0) (waiting 0) ((> stun 0) 0) ((< y -0.3) 0) (else fast)))
@@ -90,7 +132,7 @@
 (real next-wx (min (+ wx (* pace tick)) wall))
 (bool pressed (and (> pace 0) (< (- wall wx) 0.01)))
 (list[real] next-got
-  (map coin-slots (fn i (let ((g (or? got[i] -1)) (c (or? coins[i] [-99 -99])))
+  (map coin-slots (fn i (let ((g (or? got[i] -1)) (c (or? coins[i] [-999 -999])))
                           (if (or (>= g 0) (>= (or? (dist [wx (+ y 0.55)] c) 9) 0.8)) g clock)))))
 
 (int coin-count (count got (fn g (>= g 0))))
@@ -98,7 +140,7 @@
 ; The camera keeps the critter a quarter of the way across, and stops at both ends of the ground.
 (real cam (max 0 (min (- wx 5) (- ground-end 16))))
 
-(list[real] no-coins [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (const))
+(list[real] no-coins [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (const))
 
 (animation game (loop)
   doc@'Each round, every state variable moves to its next value, all at once, or back to the start.'
@@ -139,24 +181,24 @@
     (foreach k 12
       (ellipse_ (pos [(+ 2 (* 7 k)) (+ 5.6 (* 0.7 (mod k 3)))]) (rx 1.1) (ry 0.45))))
   (group hills (translate [(* -0.5 cam) 0]) (defaults (fill hill) (stroke none))
-    (foreach k 10
+    (foreach k 14
       (ellipse_ (pos [(+ 3 (* 9 k)) 0]) (rx (+ 3 (mod k 2))) (ry (+ 1.6 (* 0.6 (mod k 3)))))))
   (group near (translate [(- cam) 0])
     (rect ground (pos [(/ ground-end 2) -0.8]) (width ground-end) (height 1.6) (fill dirt) (stroke none))
     (rect turf (pos [(/ ground-end 2) -0.12]) (width ground-end) (height 0.24) (fill grass) (stroke none))
     (group holes (defaults (fill sky) (stroke none))
-      (foreach k 8
-        (let ((g (or? gaps[k] [-99 -98])))
+      (foreach k 15
+        (let ((g (or? gaps[k] [-999 -998])))
           (rect_ (pos [(/ (+ g.x g.y) 2) -0.85]) (width (- g.y g.x)) (height 1.7)))))
     (group stones (defaults (fill stone) (stroke stone-edge) (stroke-width 2))
-      (foreach k 16
-        (rect_ (pos [(or? rocks[k] -99) 0.32]) (width 0.9) (height 0.64) (rx 0.26))))
+      (foreach k 45
+        (rect_ (pos [(or? rocks[k] -999) 0.32]) (width 0.9) (height 0.64) (rx 0.26))))
     (line flagpole (from [flag-x 0]) (to [flag-x 3.4]) (stroke pole) (stroke-width 5) (line-cap 'round'))
     (triangle flag (a [flag-x 3.4]) (b [(+ flag-x 1.3) 3.0]) (c [flag-x 2.6]) (fill banner) (stroke none))
     ; Each coin flies up, grows and fades as the critter takes it.
     (group purse (defaults (fill gold) (stroke gold-edge) (stroke-width 2))
-      (foreach k 24
-        (let ((c (or? coins[k] [-99 -99])) (a (pop (or? got[k] -1) clock)))
+      (foreach k 45
+        (let ((c (or? coins[k] [-999 -999])) (a (pop (or? got[k] -1) clock)))
           (circle_ (pos (+ c [0 (* 0.8 a)])) (r (* 0.28 (+ 1 (* 0.8 a)))) (opacity (- 1 a))))))
     ; Once at the flag, it hops for joy.
     (critter runner (pos [wx (if finished (* 0.7 (abs (sind (* 300 clock)))) y)])
@@ -173,11 +215,12 @@
 
 (foreach k 8
   (button #'level-{k}' (label $'{(+ k 1)}') (selected (= level k))
-      (animation (move level (to k) (duration 0)) restart)
+      (animation (move level (to k) (duration 0)) (roll-dice) restart)
     doc@'Starts this level.'))
 (foreach k 4
   (button #'look-{k}' (label ' ') (selected (= look k)) (animation (move look (to k) (duration 0)))
     doc@'Gives the critter this color.'))
+(button new (label 'New') (animation (roll-dice) restart) doc@'Makes up a new level of the same size.')
 (button pause (label (if paused 'Play' 'Pause')) (selected paused) (active (not finished))
     (animation (move paused (to (not paused)) (duration 0)))
   doc@'Stops everything where it is, or goes on.')
@@ -185,5 +228,5 @@
 (readout cheer (if finished 'Yay!' ''))
 (button again (label 'Again') (active finished) (animation restart) doc@'Runs this level again.')
 (button next (label 'Next') (active finished)
-    (animation (move level (to (if (< level 7) (+ level 1) 0)) (duration 0)) restart)
+    (animation (move level (to (if (< level 7) (+ level 1) 7)) (duration 0)) (roll-dice) restart)
   doc@'Runs the next level.')

@@ -4,8 +4,8 @@
 #
 #   ./build.sh
 #
-# levels.mtp is written by levels.py, which is run by hand when the levels change. The
-# mathterpiece checkout is ~/aris/mathterpiece, or $MATHTERPIECE.
+# The levels are made up at random inside hop-run.mtp. The mathterpiece checkout is
+# ~/aris/mathterpiece, or $MATHTERPIECE.
 set -euo pipefail
 cd "$(dirname "$0")"
 mtp="${MATHTERPIECE:-$HOME/aris/mathterpiece}"
@@ -56,10 +56,14 @@ cat > index.html <<'HTML'
   main mtp-button[name="look-1"] button, main mtp-button[name="look-1"] button:hover { background: #0e9ae9; }
   main mtp-button[name="look-2"] button, main mtp-button[name="look-2"] button:hover { background: #bb89f7; }
   main mtp-button[name="look-3"] button, main mtp-button[name="look-3"] button:hover { background: #f472b6; }
-  main mtp-button[name="next"] button { background: var(--go); border-color: var(--go); color: #fff; box-shadow: 0 4px 0 var(--go-deep); }
+  main mtp-button[name="next"] button, main mtp-button[name="next"] button:hover { background: var(--go); border-color: var(--go); color: #fff; box-shadow: 0 4px 0 var(--go-deep); }
   main .card mtp-button button { height: 76px; font-size: 30px; padding: 0 24px; }
   main mtp-button[name="pause"] button { min-width: 120px; }
-  main mtp-button[name="pause"] button[aria-pressed="true"] { background: var(--go); border-color: var(--go); color: #fff; }
+  main mtp-button[name="new"] button, main mtp-button[name="new"] button:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 4px 0 #c96512; }
+  /* Tabler icon (MIT): dice. */
+  main mtp-button[name="new"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z'/%3E%3Ccircle cx='8.5' cy='8.5' r='.5' fill='black'/%3E%3Ccircle cx='15.5' cy='15.5' r='.5' fill='black'/%3E%3Ccircle cx='12' cy='12' r='.5' fill='black'/%3E%3C/svg%3E"); }
+  main mtp-button[name="new"] button::before { content: ""; width: 28px; height: 28px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+  main mtp-button[name="pause"] button[aria-pressed="true"], main mtp-button[name="pause"] button[aria-pressed="true"]:hover { background: var(--go); border-color: var(--go); color: #fff; }
   /* Tabler icons (MIT): player-play, player-pause and rotate-clockwise. */
   main mtp-button[name="pause"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z'/%3E%3Cpath d='M17 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z'/%3E%3C/svg%3E"); }
   main mtp-button[name="pause"]:has(button[aria-pressed="true"]) { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z'/%3E%3C/svg%3E"); }
@@ -94,7 +98,7 @@ cat > index.html <<'HTML'
       <mtp-button model="m" name="level-4"></mtp-button><mtp-button model="m" name="level-5"></mtp-button>
       <mtp-button model="m" name="level-6"></mtp-button><mtp-button model="m" name="level-7"></mtp-button>
     </div>
-    <div class="middle"><mtp-button model="m" name="pause"></mtp-button><mtp-readout model="m" name="purse-count"></mtp-readout></div>
+    <div class="middle"><mtp-button model="m" name="new"></mtp-button><mtp-button model="m" name="pause"></mtp-button><mtp-readout model="m" name="purse-count"></mtp-readout></div>
     <div class="looks">
       <mtp-button model="m" name="look-0"></mtp-button><mtp-button model="m" name="look-1"></mtp-button>
       <mtp-button model="m" name="look-2"></mtp-button><mtp-button model="m" name="look-3"></mtp-button>
