@@ -15,7 +15,8 @@
   main { height: 100dvh; display: flex; flex-direction: column; box-sizing: border-box; gap: 10px;
     padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
   .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .levels, .looks { display: flex; gap: 6px; }
+  .levels, .looks, .middle { display: flex; gap: 6px; align-items: center; }
+  .middle { gap: 18px; }
   .stage { flex: 1; min-height: 0; position: relative; }
   .stage mtp-canvas { position: absolute; top: 0; left: 0; display: block; border-radius: 18px; overflow: hidden; }
   main mtp-readout[name="purse-count"] { font: 600 30px/1 Fredoka, sans-serif; display: inline-flex; align-items: center; gap: 8px; }
@@ -40,8 +41,12 @@
   main mtp-button[name="look-3"] button, main mtp-button[name="look-3"] button:hover { background: #f472b6; }
   main mtp-button[name="next"] button { background: var(--go); border-color: var(--go); color: #fff; box-shadow: 0 4px 0 var(--go-deep); }
   main .card mtp-button button { height: 76px; font-size: 30px; padding: 0 24px; }
-  /* Tabler icons (MIT): player-play and rotate-clockwise. */
-  main mtp-button[name="next"] button::before, main mtp-button[name="again"] button::before {
+  main mtp-button[name="pause"] button { min-width: 120px; }
+  main mtp-button[name="pause"] button[aria-pressed="true"] { background: var(--go); border-color: var(--go); color: #fff; }
+  /* Tabler icons (MIT): player-play, player-pause and rotate-clockwise. */
+  main mtp-button[name="pause"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z'/%3E%3Cpath d='M17 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z'/%3E%3C/svg%3E"); }
+  main mtp-button[name="pause"]:has(button[aria-pressed="true"]) { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z'/%3E%3C/svg%3E"); }
+  main mtp-button[name="next"] button::before, main mtp-button[name="again"] button::before, main mtp-button[name="pause"] button::before {
     content: ""; width: 30px; height: 30px; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
   main mtp-button[name="next"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z'/%3E%3C/svg%3E"); }
   main mtp-button[name="again"] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5'/%3E%3C/svg%3E"); }
@@ -70,8 +75,9 @@
       <mtp-button model="m" name="level-0"></mtp-button><mtp-button model="m" name="level-1"></mtp-button>
       <mtp-button model="m" name="level-2"></mtp-button><mtp-button model="m" name="level-3"></mtp-button>
       <mtp-button model="m" name="level-4"></mtp-button><mtp-button model="m" name="level-5"></mtp-button>
+      <mtp-button model="m" name="level-6"></mtp-button><mtp-button model="m" name="level-7"></mtp-button>
     </div>
-    <mtp-readout model="m" name="purse-count"></mtp-readout>
+    <div class="middle"><mtp-button model="m" name="pause"></mtp-button><mtp-readout model="m" name="purse-count"></mtp-readout></div>
     <div class="looks">
       <mtp-button model="m" name="look-0"></mtp-button><mtp-button model="m" name="look-1"></mtp-button>
       <mtp-button model="m" name="look-2"></mtp-button><mtp-button model="m" name="look-3"></mtp-button>

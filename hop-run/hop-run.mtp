@@ -1,16 +1,18 @@
 ; A hop run: a little critter runs to the right on its own, and a tap anywhere makes it jump. It
-; jumps over rocks and gaps and takes coins on the way to a flag. A rock makes it stumble and slow
-; down for a moment, and a fall into a gap puts it back just before the gap: nothing ends the run
-; but the flag. The levels come from levels.mtp, written by levels.py.
+; jumps over rocks and gaps and takes coins on the way to a flag. A rock stops it until it jumps,
+; onto the rock or over it, and a fall into a gap puts it back a few steps before the gap: nothing
+; ends the run but the flag. Pause stops everything. The levels come from levels.mtp, written by
+; levels.py.
 ;
 ; The run is a loop, as in examples/three-body.mtp: each round works out the next state from this
 ; one, the next values bound below, and moves every state variable to its next value at once. It
 ; runs from the start and never stops. The reader's writers never write what it moves, which
 ; would cancel it: a tap only counts itself in taps, and the loop jumps when there are taps it has
 ; not used yet; a level button or Again counts itself in restarts, and the loop starts the level
-; over when there are restarts it has not done yet.
+; over when there are restarts it has not done yet; Pause writes paused, and while it holds the
+; loop's time stands still.
 
-(import levels level-gaps level-rocks level-coins level-flag level-length)
+(import levels level-gaps level-back level-rocks level-coins level-flag level-length)
 
 (color sky (light-dark '#bfe6fb' '#1c2a3a'))
 (color cloud (light-dark '#ffffff' '#33465a'))
@@ -28,15 +30,17 @@
 (list[color] looks ['#f5862b' '#0e9ae9' '#bb89f7' '#f472b6'] (const))
 
 (real dt 0.016 (const) doc@'The time of one round of the loop, in seconds.')
-(real fast 4.5 (const) doc@'How fast the critter runs, in units a second.')
-(real slow 1.6 (const) doc@'How fast it runs while it stumbles.')
+(real fast 5.5 (const) doc@'How fast the critter runs, in units a second.')
 (real gravity 30 (const))
-(real hop 11 (const) doc@'How fast a jump starts upward: about 2 units high and 3 across.')
+(real hop 11 (const) doc@'How fast a jump starts upward: about 2 units high and 4 across.')
+(real rock-top 0.64 (const) doc@'How high a rock is: the critter can stand on one.')
+(real reach 0.6 (const) doc@'How far from a rock\'s middle the critter runs into it.')
 (int coin-slots 24 (const))
 
-(int level 0 (>= 0) (<= 5))
+(int level 0 (>= 0) (<= 7))
 (int look 1 (>= 0) (<= 3))
 (list[point] gaps (or? level-gaps[level] []))
+(list[real] backs (or? level-back[level] []))
 (list[real] rocks (or? level-rocks[level] []))
 (list[point] coins (or? level-coins[level] []))
 (real flag-x (or? level-flag[level] 30))
@@ -46,7 +50,7 @@
 (real wx 1 doc@'Where the critter is along the ground.')
 (real y 0 doc@'How high its feet are above the ground.')
 (real vy 0)
-(real stumble 0 (>= 0) doc@'How long it still stumbles, in seconds.')
+(real stun 0 (>= 0) doc@'How long it still stands dazed after a fall, in seconds.')
 (real clock 0 doc@'How long this run has lasted, in seconds.')
 (int taps 0 doc@'How many times the reader has tapped, ever.')
 (int used 0 doc@'How many of those taps the loop has seen.')
@@ -55,23 +59,36 @@
 (list[real] got [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (length 24)
   doc@'For each coin, the clock when the critter took it, or -1.')
 (bool finished false)
+(bool paused false doc@'Written only by Pause and the buttons that start a level.')
 
-; The next state, from this one.
-(bool over-gap (any gaps (fn g (and (> wx (+ g.x 0.2)) (< wx (- g.y 0.2))))))
-(bool grounded (and (not over-gap) (<= y 0.0001)))
+; The next state, from this one. While paused, no time passes in a round.
+(real tick (if paused 0 dt))
 (bool starting (> restarts done))
 ; The critter stands still for a moment at the start, so the reader can get ready.
 (bool waiting (< clock 0.8))
-(bool jumps (and (> taps used) grounded (not finished) (not waiting)))
-(real next-vy (cond (jumps hop) ((and grounded (<= vy 0)) 0) (else (- vy (* gravity dt)))))
-(real rise (+ y (* next-vy dt)))
-; It lands on the ground, but not on the ground's edge once it is down in a gap.
-(real next-y (if (and (not over-gap) (< rise 0) (> y -0.3)) 0 rise))
+; What is under its middle: the top of a rock, the ground, or nothing, over a gap.
+(bool over-gap (any gaps (fn g (and (> wx (+ g.x 0.2)) (< wx (- g.y 0.2))))))
+(bool over-rock (any rocks (fn r (< (abs (- wx r)) 0.5))))
+(real floor (cond (over-rock rock-top) (over-gap -99) (else 0)))
+(bool grounded (and (<= y (+ floor 0.0001)) (>= y (- floor 0.05))))
+(bool jumps (and (> taps used) grounded (not finished) (not waiting) (not paused) (<= stun 0)))
+(real next-vy (cond (jumps hop) ((and grounded (<= vy 0)) 0) (else (- vy (* gravity tick)))))
+(real rise (+ y (* next-vy tick)))
+; It lands on what is under it, coming down onto it from above, but not once it is below it.
+(real next-y (if (and (< rise floor) (>= y (- floor 0.3))) floor rise))
 (bool fell (< next-y -3))
-; Just before the gap it fell into.
-(real back-to (or? (max (map gaps (fn g (if (and (> wx (- g.x 1)) (< wx (+ g.y 1))) (- g.x 1.5) -99)))) 1))
-(bool bumps (any rocks (fn r (and (< (abs (- wx r)) 0.6) (< y 0.7)))))
-(real pace (cond (finished 0) (waiting 0) ((< y -0.3) 0) ((> stumble 0) slow) (else fast)))
+; A few steps before the gap it fell into.
+(real back-to
+  (or? (max (map 8 (fn k (let ((g (or? gaps[k] [-99 -98])))
+                           (if (and (> wx (- g.x 1)) (< wx (+ g.y 1))) (or? backs[k] 1) -99)))))
+       1))
+(real pace (cond (finished 0) (waiting 0) ((> stun 0) 0) ((< y -0.3) 0) (else fast)))
+; The side of the nearest rock ahead, while the critter is too low to get over it: it runs up to
+; the rock and stops there, pressed against it, until a jump takes it up.
+(real wall
+  (or? (min (map rocks (fn r (if (and (< y (- rock-top 0.04)) (>= (- r reach) (- wx 0.001))) (- r reach) 999)))) 999))
+(real next-wx (min (+ wx (* pace tick)) wall))
+(bool pressed (and (> pace 0) (< (- wall wx) 0.01)))
 (list[real] next-got
   (map coin-slots (fn i (let ((g (or? got[i] -1)) (c (or? coins[i] [-99 -99])))
                           (if (or (>= g 0) (>= (or? (dist [wx (+ y 0.55)] c) 9) 0.8)) g clock)))))
@@ -79,24 +96,26 @@
 (int coin-count (count got (fn g (>= g 0))))
 (int coin-total (count coins (fn c (> c.x 0))))
 ; The camera keeps the critter a quarter of the way across, and stops at both ends of the ground.
-(real cam (max 0 (min (- wx 4) (- ground-end 16))))
+(real cam (max 0 (min (- wx 5) (- ground-end 16))))
 
 (list[real] no-coins [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] (const))
 
 (animation game (loop)
   doc@'Each round, every state variable moves to its next value, all at once, or back to the start.'
   (at-once (defaults (duration 0))
-    (move wx (to (cond (starting 1) (fell back-to) (else (+ wx (* pace dt))))))
+    (move wx (to (cond (starting 1) (fell back-to) (else next-wx))))
     (move y (to (if (or starting fell) 0 next-y)))
     (move vy (to (if (or starting fell) 0 next-vy)))
-    (move stumble (to (cond (starting 0) (fell 0.5) ((and bumps (<= stumble 0)) 1.1) (else (max 0 (- stumble dt))))))
-    (move clock (to (if starting 0 (+ clock dt))))
+    (move stun (to (cond (starting 0) (fell 0.7) (else (max 0 (- stun tick))))))
+    (move clock (to (if starting 0 (+ clock tick))))
     (move used (to taps))
     (move done (to restarts))
     (move got (to (if starting no-coins next-got)))
     (move finished (to (and (not starting) (or finished (>= wx flag-x))))))
+  ; With the moves above at once, this wait is all the time a round takes.
   (wait dt))
-(animation restart (move restarts (to (+ restarts 1)) (duration 0)))
+(animation restart
+  (at-once (defaults (duration 0)) (move restarts (to (+ restarts 1))) (move paused (to false))))
 
 (func pop ((real at) (real now)) (if (< at 0) 0 (max 0 (min 1 (/ (- now at) 0.35)))))
 
@@ -130,7 +149,7 @@
         (let ((g (or? gaps[k] [-99 -98])))
           (rect_ (pos [(/ (+ g.x g.y) 2) -0.85]) (width (- g.y g.x)) (height 1.7)))))
     (group stones (defaults (fill stone) (stroke stone-edge) (stroke-width 2))
-      (foreach k 12
+      (foreach k 16
         (rect_ (pos [(or? rocks[k] -99) 0.32]) (width 0.9) (height 0.64) (rx 0.26))))
     (line flagpole (from [flag-x 0]) (to [flag-x 3.4]) (stroke pole) (stroke-width 5) (line-cap 'round'))
     (triangle flag (a [flag-x 3.4]) (b [(+ flag-x 1.3) 3.0]) (c [flag-x 2.6]) (fill banner) (stroke none))
@@ -141,7 +160,7 @@
           (circle_ (pos (+ c [0 (* 0.8 a)])) (r (* 0.28 (+ 1 (* 0.8 a)))) (opacity (- 1 a))))))
     ; Once at the flag, it hops for joy.
     (critter runner (pos [wx (if finished (* 0.7 (abs (sind (* 300 clock)))) y)])
-        (tint (or? looks[look] '#f5862b')) (hurt (> stumble 0))
+        (tint (or? looks[look] '#f5862b')) (hurt (or pressed (> stun 0)))
         (stride (if (and grounded (> pace 0)) (* 900 clock) 0))))
   ; Over everything, a pad that hears the taps.
   (rect pad (pos [8 3]) (width 20) (height 12) (fill sky) (fill-opacity 0) (stroke none)))
@@ -152,16 +171,19 @@
   (on-ready (animation game) doc@'Starts the run, which never stops.')
   (on-click pad (animation (move taps (to (+ taps 1)) (duration 0))) doc@'Asks for a jump.'))
 
-(foreach k 6
+(foreach k 8
   (button #'level-{k}' (label $'{(+ k 1)}') (selected (= level k))
       (animation (move level (to k) (duration 0)) restart)
     doc@'Starts this level.'))
 (foreach k 4
   (button #'look-{k}' (label ' ') (selected (= look k)) (animation (move look (to k) (duration 0)))
     doc@'Gives the critter this color.'))
+(button pause (label (if paused 'Play' 'Pause')) (selected paused) (active (not finished))
+    (animation (move paused (to (not paused)) (duration 0)))
+  doc@'Stops everything where it is, or goes on.')
 (readout purse-count $'{coin-count} / {coin-total}')
 (readout cheer (if finished 'Yay!' ''))
 (button again (label 'Again') (active finished) (animation restart) doc@'Runs this level again.')
 (button next (label 'Next') (active finished)
-    (animation (move level (to (if (< level 5) (+ level 1) 0)) (duration 0)) restart)
+    (animation (move level (to (if (< level 7) (+ level 1) 0)) (duration 0)) restart)
   doc@'Runs the next level.')
