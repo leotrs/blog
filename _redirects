@@ -1,3 +1,7 @@
 # The Bourgain digestion now lives only on Scroll Press.
 /digestions/lipschitz-embedding    https://scroll.press/2026/bourgain-embedding  301
 /digestions/lipschitz-embedding/*  https://scroll.press/2026/bourgain-embedding  301
+
+# The draft link sent to Raffaella Mulas before the page went public.
+/p/nbl-3c169cb46c4b    /papers/nb-real-eigenvalues/  301
+/p/nbl-3c169cb46c4b/*  /papers/nb-real-eigenvalues/  301
