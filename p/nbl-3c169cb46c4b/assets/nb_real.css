@@ -1,0 +1,139 @@
+/* The LaTeX source labels this list (i), (ii), (iii), and the proof text
+   refers to the items by those labels. */
+@counter-style paren-roman {
+  system: extends lower-roman;
+  prefix: "(";
+  suffix: ") ";
+}
+
+ol.paren-roman {
+  list-style-type: paren-roman;
+}
+
+/* The paragraph that holds only the inline math preamble would otherwise
+   leave an empty gap below the authors. */
+.hr:has(> .hr-content-zone > p > .math-preamble:only-child) {
+  display: none;
+}
+
+/* Page colours: a warm paper background and an ink-blue accent. The accent is
+   set on the RSM primary scale, so links, buttons and the sidebar follow it.
+   [data-accent] repeats the rule because RSM puts that attribute on html and body,
+   and braiid.css sets the blue scale there. Each
+   pair is light, dark; in dark mode the scale runs the other way. */
+:root, [data-accent] {
+  --gray-0: light-dark(#FBF8F1, #191713);
+  --gray-50: light-dark(#FFFDF8, #201D18);
+  --gray-75: light-dark(#F4EFE4, #27231D);
+  --gray-100: light-dark(#ECE5D5, #2F2A23);
+  --gray-200: light-dark(#DFD5C0, #3B352C);
+  --gray-300: light-dark(#CABEA5, #4A4337);
+  --primary-50: light-dark(#EEF2FB, #121A33);
+  --primary-100: light-dark(#DDE5F7, #18234A);
+  --primary-200: light-dark(#BCCBEF, #22336A);
+  --primary-300: light-dark(#95ACE3, #2D4590);
+  --primary-400: light-dark(#6A88D2, #3C5BB5);
+  --primary-500: light-dark(#3F63C2, #5577D6);
+  --primary-600: light-dark(#2F51AB, #7393E6);
+  --primary-700: light-dark(#24438F, #98B2F2);
+  --primary-800: light-dark(#1C3573, #BCCDF7);
+  --primary-900: light-dark(#15285A, #DDE5FB);
+  --primary-950: light-dark(#0D1A3C, #EEF2FD);
+}
+
+/* Three colours used in formulas and figures alike. Each colour marks where the
+   eigenvalues being counted lie: in [0,1) (low), in (1,2] (high), or off the
+   real line (non-real). */
+:root {
+  --nb-low: light-dark(#1d7467, #5cc4b3);
+  --nb-high: light-dark(#b0502a, #ec8d63);
+  --nb-cplx: light-dark(#6a5aa6, #ab9de6);
+  --nb-ink: var(--text-body);
+  --nb-faint: light-dark(#c9ccd1, #4a4f57);
+  --nb-shade: light-dark(#eef0f2, #262a30);
+  /* Widgets sit on a lighter card than the page, with the page accent for
+     controls and selection. */
+  --nb-card: light-dark(#FFFEFB, #221F1A);
+  --nb-card-edge: light-dark(#e6dcc6, #3a352c);
+  --nb-accent: var(--primary-600);
+  --nb-accent-soft: var(--primary-100);
+}
+
+.nbw {
+  --nb-shade: light-dark(#ece4d2, #2d2a24);
+  --nb-faint: light-dark(#cfc5b1, #4d473c);
+  background: var(--nb-card);
+  border: 1px solid var(--nb-card-edge);
+  border-top: 3px solid var(--nb-accent);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgb(60 45 20 / 0.06), 0 6px 18px rgb(60 45 20 / 0.06);
+}
+
+mjx-container .nbl { color: var(--nb-low); }
+mjx-container .nbh { color: var(--nb-high); }
+mjx-container .nbc { color: var(--nb-cplx); }
+
+.nbw { font-size: 0.875rem; color: var(--nb-ink); }
+.nbw .nbw-controls { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; margin-bottom: 0.75rem; }
+.nbw label { display: inline-flex; gap: 0.4rem; align-items: center; }
+.nbw select, .nbw button {
+  font: inherit; color: inherit; background: var(--surface-primary);
+  border: 1px solid var(--nb-card-edge); border-radius: var(--radius-lg);
+  padding: 0.3rem 0.6rem; min-height: 2.25rem;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.nbw button { color: var(--nb-accent); border-color: var(--nb-accent); font-weight: var(--weight-semi); }
+.nbw button:hover:not(:disabled) { background: var(--nb-accent); color: var(--nb-card); }
+.nbw select:hover { border-color: var(--nb-accent); }
+.nbw :is(button, select, input):focus-visible { outline: 2px solid var(--nb-accent); outline-offset: 2px; }
+.nbw input[type="range"] { width: 12rem; accent-color: var(--nb-accent); }
+.nbw .nbw-body { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; justify-content: center; }
+.nbw svg { display: block; overflow: visible; }
+.nbw svg text { fill: var(--text-subtle); font-size: 11px; font-family: inherit; }
+.nbw .axis { stroke: var(--nb-faint); stroke-width: 1; fill: none; }
+.nbw .shade { fill: var(--nb-shade); stroke: none; }
+.nbw .ring { stroke: var(--nb-faint); stroke-width: 1; fill: none; }
+.nbw .ring.dashed { stroke-dasharray: 3 3; stroke: var(--text-subtle); }
+.nbw .pt-low { fill: var(--nb-low); }
+.nbw .pt-high { fill: var(--nb-high); }
+.nbw .pt-cplx { fill: var(--nb-cplx); }
+.nbw .mult { fill: var(--nb-ink); font-size: 10px; }
+.nbw .gedge { stroke: light-dark(#8da0cf, #5a6a92); stroke-width: 1.75; }
+.nbw .gnode { fill: var(--nb-accent); stroke: var(--surface-page); stroke-width: 1.5; }
+.nbw .readout { min-width: 15rem; line-height: 1.7; }
+.nbw .readout .low { color: var(--nb-low); }
+.nbw .readout .high { color: var(--nb-high); }
+.nbw .readout .cplx { color: var(--nb-cplx); }
+.nbw .readout b { font-weight: var(--weight-semi); }
+.nbw .cells rect { stroke: var(--nb-card); stroke-width: 1; }
+.nbw .cells .empty { fill: var(--nb-shade); }
+.nbw .mark { stroke: var(--nb-ink); stroke-width: 1.5; }
+
+/* Terms in the text that are linked to a widget: hovering or clicking one
+   highlights the matching eigenvalues and dims the rest. */
+mjx-container .lk { cursor: pointer; border-radius: 3px; }
+mjx-container .lk:hover, mjx-container .lk.on { background: var(--nb-accent-soft); }
+.nbw [class^="pt-"], .nbw .readout > div { transition: opacity 0.15s; }
+.nbw[data-hl="low"] :is(.pt-high, .pt-cplx),
+.nbw[data-hl="high"] :is(.pt-low, .pt-cplx),
+.nbw[data-hl="cplx"] :is(.pt-low, .pt-high) { opacity: 0.12; }
+.nbw[data-hl="low"] .readout > :is(.high, .cplx),
+.nbw[data-hl="high"] .readout > :is(.low, .cplx),
+.nbw[data-hl="cplx"] .readout > :is(.low, .high) { opacity: 0.3; }
+.nbw .hl-ring { fill: none; stroke-width: 2.5; }
+.nbw .hl-ring.low { stroke: var(--nb-low); }
+.nbw .hl-ring.high { stroke: var(--nb-high); }
+
+/* Graph editor in the spectrum explorer. */
+.nbw .editor { display: flex; flex-direction: column; align-items: center; max-width: 260px; }
+.nbw .hint { font-size: 0.75rem; color: var(--text-subtle); margin: 0.25rem 0 0; text-align: center; }
+.nbw svg.graph { touch-action: none; cursor: crosshair; background: var(--surface-page); border: 1px solid var(--nb-card-edge); border-radius: var(--radius-lg); }
+.nbw .gnode-wrap { cursor: pointer; outline: none; }
+.nbw .gnode-wrap .hit { fill: transparent; }
+.nbw .gnode-wrap:focus-visible .hit { stroke: var(--nb-accent); stroke-width: 2; }
+.nbw .gnode-wrap .sel { fill: none; stroke: var(--nb-accent); stroke-width: 2.5; }
+.nbw .gnode-wrap .bad { fill: none; stroke: var(--nb-high); stroke-width: 2; stroke-dasharray: 3 2; }
+.nbw button:disabled { opacity: 0.45; cursor: default; }
+.nbw > .readout { margin: 0.75rem 0 0.25rem; text-align: center; }
+.nbw .readout .note { color: var(--text-subtle); }

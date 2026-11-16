@@ -1,0 +1,3 @@
+# Drafts under /p/ are shared by link only and must stay out of search engines.
+/p/*
+  X-Robots-Tag: noindex, nofollow, noarchive
