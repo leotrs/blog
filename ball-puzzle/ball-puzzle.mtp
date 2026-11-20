@@ -8,16 +8,16 @@
 ; picked up. One dropped off the board goes back to its place in the tray. Turn and Flip act on
 ; the last piece touched, while it is in the tray.
 
-(import rand)
+(import rand rand-int roll-dice)
 (import ease cubic-in-out)
 (import solutions solution-pos solution-turn solution-order)
 
-(color paper (light-dark '#f6f1e7' '#1d1b19'))
-(color ink (light-dark '#2b2a33' '#ece6da'))
-(color board-wood (light-dark '#e8dcc4' '#4a4235'))
-(color board-edge (light-dark '#d6c6a6' '#5d5444'))
-(color hole (light-dark '#cbbd9f' '#2f2a22'))
-(color picked (light-dark '#f5862b' '#f5862b'))
+(color paper (light-dark #'#f6f1e7' #'#1d1b19'))
+(color ink (light-dark #'#2b2a33' #'#ece6da'))
+(color board-wood (light-dark #'#e8dcc4' #'#4a4235'))
+(color board-edge (light-dark #'#d6c6a6' #'#5d5444'))
+(color hole (light-dark #'#cbbd9f' #'#2f2a22'))
+(color picked (light-dark #'#f5862b' #'#f5862b'))
 
 ; A piece's balls, as offsets from its first ball, in whole holes. solve.py holds the same list.
 (list[list[point]] shapes
@@ -53,8 +53,8 @@
 ; Twelve colors that are easy to tell apart. The darkest blue would sink into a dark board, so on a
 ; dark page it is a light one.
 (list[color] paints
-    ['#db2728' '#f5862b' '#ffd31b' '#37cab6' '#157067' '#0e9ae9' '#7629c7' '#bb89f7' '#f472b6'
-     '#8b9fad' (light-dark '#0c456e' '#7dcdfc') '#973a15']
+    [#'#db2728' #'#f5862b' #'#ffd31b' #'#37cab6' #'#157067' #'#0e9ae9' #'#7629c7' #'#bb89f7' #'#f472b6'
+     #'#8b9fad' (light-dark #'#0c456e' #'#7dcdfc') #'#973a15']
     (const))
 
 ; An offset turned by a piece's turn: 0 to 3 quarter turns, and 4 to 7 the same after flipping it
@@ -111,7 +111,7 @@
 (list[int] order (or? solution-order[sol] (range 12)))
 ; Where each piece comes in the order: the pieces that come first are the ones left to place.
 (list[int] rank (map 12 (fn i (sum (map 12 (fn k (if (= order[k] i) k 0)))))))
-(list[bool] free (map 12 (fn i (< rank[i] level))))
+(list[bool] open (map 12 (fn i (< rank[i] level))))
 ; How many rows the tray has: more as more pieces are left, so the figure keeps close to the
 ; shape of a tablet held sideways, and of a phone held upright, where it is drawn turned.
 (int rows (cond ((<= level 4) 2) ((<= level 10) 3) (else 4)))
@@ -138,7 +138,7 @@
       ; that can be moved are bright and shiny.
       (circle_ (pos (shown (turned cells[j] orient) m spin squeeze orient)) (r 0.45) (fill (if fixed (mix paint board-wood 0.55) paint))
           (stroke none) (opacity (if hidden 0 1)))
-      (circle_ (pos (+ (shown (turned cells[j] orient) m spin squeeze orient) [-0.13 0.13])) (r 0.13) (fill '#ffffff') (stroke none)
+      (circle_ (pos (+ (shown (turned cells[j] orient) m spin squeeze orient) [-0.13 0.13])) (r 0.13) (fill #'#ffffff') (stroke none)
           (opacity (if (or hidden fixed) 0 0.45))))))
 
 (scene puzzle (background paper)
@@ -153,19 +153,19 @@
   ; touched on top of every other. Those layers let the pointer through to the pieces here.
   (group pieces
     (foreach i 12
-      (piece #'piece-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
-          (fixed (not (or? free[i] true))) (hidden (or? free[i] false)) (marked (= last i)) (pos (place i 2)))))
+      (piece @'piece-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
+          (fixed (not (or? open[i] true))) (hidden (or? open[i] false)) (marked (= last i)) (pos (place i 2)))))
   (group free-look (pointer-events false)
     (foreach i 12
-      (piece #'free-look-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
-          (hidden (or (not (or? free[i] false)) (= last i)))
+      (piece @'free-look-{i}' (cells shapes[i]) (size (count shapes[i])) (paint paints[i]) (idx i)
+          (hidden (or (not (or? open[i] false)) (= last i)))
           (pos (let ((ps (map pieces (fn q q.pos)))) (or? ps[i] [0 0])))
           (orient (let ((os (map pieces (fn q q.orient)))) (or? os[i] 0)))
           (spin (let ((ss (map pieces (fn q q.spin)))) (or? ss[i] 0)))
           (squeeze (let ((qs (map pieces (fn q q.squeeze)))) (or? qs[i] 1))))))
   (group held-look (pointer-events false)
     (piece held (cells (or? shapes5[last] [])) (size 5) (paint (or? paints[last] ink))
-        (hidden (or (< last 0) (not (or? free[last] false)))) (marked true)
+        (hidden (or (< last 0) (not (or? open[last] false)))) (marked true)
         (pos (let ((ps (map pieces (fn q q.pos)))) (or? ps[last] [0 0])))
         (orient (let ((os (map pieces (fn q q.orient)))) (or? os[last] 0)))
         (spin (let ((ss (map pieces (fn q q.spin)))) (or? ss[last] 0)))
@@ -186,8 +186,8 @@
   (at-once
     (move last (to -1) (duration 0))
     (foreach p pieces
-      (move p.orient (to (if (or? free[p.idx] true) 0 (or? solution-turn[sol][p.idx] 0))) (duration 0))
-      (move p.pos (to (if (or? free[p.idx] true)
+      (move p.orient (to (if (or? open[p.idx] true) 0 (or? solution-turn[sol][p.idx] 0))) (duration 0))
+      (move p.pos (to (if (or? open[p.idx] true)
                           (tray-pos (or? rank[p.idx] 0) rows p.cells 0)
                           (or? solution-pos[sol][p.idx] [0 0])))
           (duration 0.45) (ease cubic-in-out)))))
@@ -228,7 +228,7 @@
 
 ; How many pieces are left to place: 2 to 12. Each choice deals a new puzzle of that size.
 (foreach k 11
-  (button #'size-{k}' (label $'{(+ k 2)}') (selected (= level (+ k 2)))
+  (button @'size-{k}' (label $'{(+ k 2)}') (selected (= level (+ k 2)))
       (animation (move level (to (+ k 2)) (duration 0)) (roll-dice) deal)
     doc@'Deals a new puzzle with this many pieces to place.'))
 (button new (label 'New') (animation (roll-dice) deal) doc@'Deals another puzzle of the same size.')
