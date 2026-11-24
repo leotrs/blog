@@ -228,7 +228,7 @@
 
 ; How many pieces are left to place: 2 to 12. Each choice deals a new puzzle of that size.
 (foreach k 11
-  (button @'size-{k}' (label $'{(+ k 2)}') (selected (= level (+ k 2)))
+  (button @'size-{k}' (label f'{(+ k 2)}') (selected (= level (+ k 2)))
       (animation (move level (to (+ k 2)) (duration 0)) (roll-dice) deal)
     doc@'Deals a new puzzle with this many pieces to place.'))
 (button new (label 'New') (animation (roll-dice) deal) doc@'Deals another puzzle of the same size.')
